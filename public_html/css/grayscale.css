@@ -12,6 +12,31 @@ body {
     color: #fff;
     background-color: #000;
 }
+.iconrow {
+    margin-top: 10px;
+}
+
+.iconlabel {
+    display: inline;
+    position: relative;
+    top: 7px;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+/* custom icons
+   copy the styles below into icons-dashboard-sprites.css */
+
+[class^="icon-dashboard-"],
+[class*=" icon-dashboard-"] {
+    background-image: url("https://app.10000ft.com/images/compSpritesButtonsIcons.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.icon-dashboard-logo { background-position : -550px -690px; width : 120px; height : 120px;  }
+.icon-dashboard-intheoffice { background-position: -395px -60px; width: 24px; height: 24px  } 
+.icon-dashboard-edit { background-position: -765px -200px; width: 24px; height: 29px  } 
 
 /* Contaner for the style of the html document or overall page*/
 html {
