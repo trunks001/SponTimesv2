@@ -1127,8 +1127,12 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
+  display: block;
   max-width: 100%;
-  max-height: 100px;
+  height: auto;
+  margin-top: 50px;
+  color: transparent;
+  background-color: #ddd;
 }
 
 /* Style used to control the size the image*/
@@ -1143,9 +1147,10 @@ img {
   display: inline-block;
   max-width: 100%;
   height: auto;
+  padding-top: 100px;
   padding: 4px;
   line-height: 1.42857143;
-  background-color: #fff;
+
   border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-transition: all .2s ease-in-out;
@@ -2996,7 +3001,7 @@ select[multiple].form-group-lg .form-control {
 .btn {
   display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
