@@ -1,5 +1,5 @@
 ## Credits
-This website is based on the [Grayscale](http://startbootstrap.com/template-overviews/grayscale/) bootstrap template created by [Start Bootstrap](http://startbootstrap.com/). The creator is David Miller
+This website is based on the [Grayscale](http://startbootstrap.com/template-overviews/grayscale/) bootstrap template created by [Start Bootstrap](http://startbootstrap.com/). The creator of this template is David Miller.
 Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
 ## Getting Started
