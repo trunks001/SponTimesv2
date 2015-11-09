@@ -5,39 +5,15 @@
  */
 
 /* Contaner for the style of the body section */
+@import url('http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+
 body {
     width: 100%;
     height: 100%;
     font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #fff;
-    background-color: #000;
+    color: #000;
+    background-color: #ffffff;
 }
-.iconrow {
-    margin-top: 10px;
-}
-
-.iconlabel {
-    display: inline;
-    position: relative;
-    top: 7px;
-    margin-left: 10px;
-    vertical-align: top;
-}
-
-/* custom icons
-   copy the styles below into icons-dashboard-sprites.css */
-
-[class^="icon-dashboard-"],
-[class*=" icon-dashboard-"] {
-    background-image: url("https://app.10000ft.com/images/compSpritesButtonsIcons.png");
-    background-repeat: no-repeat;
-    display: inline-block;
-}
-
-.icon-dashboard-logo { background-position : -550px -690px; width : 120px; height : 120px;  }
-.icon-dashboard-intheoffice { background-position: -395px -60px; width: 24px; height: 24px  } 
-.icon-dashboard-edit { background-position: -765px -200px; width: 24px; height: 29px  } 
-
 /* Contaner for the style of the html document or overall page*/
 html {
     width: 100%;
@@ -56,6 +32,7 @@ h6 {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
+    color: #ec971f;
 }
 
 /*Styles for the paragraphs*/
@@ -101,6 +78,13 @@ a:focus {
     background-color: #000;
 }
 
+/*Change the color of the main navigation bar at the top of the page*/
+nav.navbar {
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    background: #999;
+    padding: 0;    
+}
+
 .navbar-custom .navbar-brand {
     font-weight: 700;
 }
@@ -112,7 +96,7 @@ a:focus {
 .navbar-custom .navbar-brand .navbar-toggle {
     padding: 4px 6px;
     font-size: 16px;
-    color: #fff;
+    color: #d5d5d5;
 }
 
 .navbar-custom .navbar-brand .navbar-toggle:focus,
@@ -120,8 +104,9 @@ a:focus {
     outline: 0;
 }
 
+/*Change the font color of the links*/
 .navbar-custom a {
-    color: #fff;
+    color: #f0ad4e;
 }
 
 .navbar-custom .nav li a {
@@ -154,6 +139,7 @@ a:focus {
     color: #fff;
 }
 
+/*Control the display of the navigation bar on desktop screen and transition as the page is scrolled down*/
 @media(min-width:768px) {
     .navbar-custom {
         padding: 20px 0;
@@ -164,11 +150,12 @@ a:focus {
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
-
+    
+/*Change the color of the navigation bar as the page is scrolled down*/
     .navbar-custom.top-nav-collapse {
         padding: 0;
         border-bottom: 1px solid rgba(255,255,255,.3);
-        background: #000;
+        background: #999;
     }
 }
 
@@ -311,15 +298,14 @@ a:focus {
 .download-section {
     width: 100%;
     padding: 50px 0;
-    color: #fff;
-    background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
-    background-color: #000;
+    color: #000;    
+    background-color: #d5d5d5;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
-
+/* CHange the display of the map from the Google API */
 #map {
     width: 100%;
     height: 200px;
@@ -328,7 +314,7 @@ a:focus {
 
 @media(min-width:767px) {
     .content-section {
-        padding-top: 250px;
+        padding-top: 140px;
     }
 
     .download-section {
@@ -353,26 +339,32 @@ a:focus {
 }
 
 .btn-default {
-    border: 1px solid #42dca3;
-    color: #42dca3;
+    border: 1px solid #f0ad4e;
+    color: #f0ad4e;
     background-color: transparent;
+   margin-top: 10px;
+   margin-bottom: 10px;
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #42dca3;
+    border: 1px solid #f0ad4e;
     outline: 0;
-    color: #000;
-    background-color: #42dca3;
+    color: #fff;
+    background-color: #f0ad4e;
 }
 
 ul.banner-social-buttons {
     margin-top: 0;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 @media(max-width:1199px) {
     ul.banner-social-buttons {
         margin-top: 15px;
+        margin-right: 5px;
+        margin-left: 5px;
     }
 }
 
@@ -380,11 +372,15 @@ ul.banner-social-buttons {
     ul.banner-social-buttons li {
         display: block;
         margin-bottom: 20px;
+        margin-right: 5px;
+        margin-left: 5px;
         padding: 0;
     }
 
     ul.banner-social-buttons li:last-child {
         margin-bottom: 0;
+        margin-right: 5px;
+        margin-left: 5px;
     }
 }
 
