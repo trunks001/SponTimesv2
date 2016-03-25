@@ -37,7 +37,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <!-- Main header navigation button-->
-                <a class="navbar-brand page-scroll" href="Spon_Times_Home.html">
+                <a class="navbar-brand page-scroll" href="index.jsp">
                     <!-- The span keep the image inline with the text in the navigation bar-->
                     <span class="light"><img src="img/Spontaneous Times Icon-HR.png" alt="" height="auto" width="55"/>Spon</span>Times                  
                 </a>
@@ -48,11 +48,7 @@
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 
                 <!--Seach bar for searching for articles-->
-                <form role="search" class="navbar-form navbar-left">
-                    <div class="form-group">
-                    <input type="text" placeholder="Search" class="form-control">
-                    </div>
-                </form>
+                
                 
                 <!-- The other navigational buttons -->
                 <ul class="nav navbar-nav">
@@ -60,19 +56,17 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="Spon_Times_Write_Article.html">Write Article</a>
-                    </li>                  
-                    <li>
-                        <a class="page-scroll" href="#GlobalPaper">Global Paper</a>
-                    </li>
-                    <li>
-                        
-                        <a class="page-scroll" href="Spon_Times_Login.html">Login</a>
-                    </li> 
-                    <li>
-                        <a class="page-scroll" href="Spon_Times_UserRegistration.html">Register</a>
-                    </li> 
+                    <%
+                        boolean loggedin;
+                        if(session.getAttribute("UserID") == null)
+                            loggedin = false;
+                        else
+                            loggedin = true;
+                        if (loggedin) 
+                            out.print("<li><a class=\"page-scroll\" href=\"Spon_Times_Write_Article.html\">Write Article</a></li><li><a class=\"page-scroll\" href=\"#GlobalPaper\">Global Paper</a></li><li><a class=\"page-scroll\" href=\"logout.jsp\">Logout</a></li>");
+                        else
+                            out.print("<li><a class=\"page-scroll\" href=\"Spon_Times_UserRegistration.html\">Register</a></li> <li><form action=\"login.jsp\" class=\"page-scroll\" role=\"UsernameLogin\"><table><tr><td style=\"vertical-align:center\"><input type=\"text\" placeholder=\"Username\" name=\"username\" class=\"form-control\"></td><td style=\"vertical-align: center\"><input type=\"text\" placeholder=\"Password\" name=\"password\" class=\"form-control\"></td><td  style=\"vertical-align:center\"><input type=\"submit\" class=\"btn btn-default btn-lg\" value=\"login\"></td></tr></table></form></li>");
+                    %>
                 </ul>                
             </div>
             <!-- /.navbar-collapse -->
