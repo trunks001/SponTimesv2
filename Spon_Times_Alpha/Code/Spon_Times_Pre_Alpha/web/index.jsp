@@ -14,7 +14,7 @@ private void fulllist()
     list = new String[9];
     list[0] = "<p><strong>Hello</strong> thisd is a relkadgfkjsfljgnbsadolfjbadifhsadikhblndadjadhdfnaidhiksfoadjfosaikdjpifhfafiushiuah    ioadhjfosaujfdhgasidhgfpi aishfdd owrighoisafjhgsdofighpasfu a</p>";
     list[1] = "<p>Happy days oh happy days!!!! bjbj9jh8fhui98ghu87thyi9oguhf78hi98h7ygt789o0kpj-0h9ih8 k,obkmv mk b,l b,mkl ,kl ,k m,kl ,l ,l ;l , nm.;[pkjho9gu8thyi9gyuutyuho0hgi8gu8tuhjo9gh</p> <img class=\"img-responsive img-circle\" src=\"img/Spontaneous Times Logo-HR.png\"/>";
-    list[2] = "Isfjsewjfejkfdglfdgljgkldfjkglfdjgkldfjgkldfjglfdjkglfdjkgldfjgkldgjkdlkredgkdlgdl";
+    list[2] = "Isfjsewjfejkfd glfdgljgk ldfjkglfdjgkl dfjgkld fjglfdjkglfdjk gldfjgkl dgjkdlk redgkd lgdl";
     list[3] = "A";
     list[4] = "Test";
     list[5] = "Dide";
@@ -92,9 +92,9 @@ fulllist();
 
                      for (String s : list) 
                      {
-                      html += "<div class=\"col-lg-4\" style=\"overflow:hidden; height:250px\"><h3>Header</h3>";
+                      html += "<a href=\"readarticle.jsp\"><div class=\"col-lg-4\" style=\"overflow:hidden; height:250px\"><h3>Header</h3>";
                       html += s;
-                      html += "</div>";
+                      html += "</div></a>";
                       i++;
                      }
 
