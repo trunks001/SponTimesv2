@@ -65,7 +65,7 @@
                         if (loggedin) 
                             out.print("<li><a class=\"page-scroll\" href=\"Spon_Times_Write_Article.html\">Write Article</a></li><li><a class=\"page-scroll\" href=\"#GlobalPaper\">Global Paper</a></li><li><a class=\"page-scroll\" href=\"logout.jsp\">Logout</a></li>");
                         else
-                            out.print("<li><a class=\"page-scroll\" href=\"Spon_Times_UserRegistration.html\">Register</a></li> <li><form action=\"login.jsp\" class=\"page-scroll\" role=\"UsernameLogin\"><table><tr><td style=\"vertical-align:center\"><input type=\"text\" placeholder=\"Username\" name=\"username\" class=\"form-control\"></td><td style=\"vertical-align: center\"><input type=\"text\" placeholder=\"Password\" name=\"password\" class=\"form-control\"></td><td  style=\"vertical-align:center\"><input type=\"submit\" class=\"btn btn-default btn-lg\" value=\"login\"></td></tr></table></form></li>");
+                            out.print("<li><input type=\"submit\" class=\"btn btn-default btn-lg\" value=\"Register\"></li> <li><form action=\"login.jsp\" class=\"page-scroll\" role=\"UsernameLogin\"><table><tr><td style=\"vertical-align:center\"><input type=\"text\" placeholder=\"Username\" name=\"username\" class=\"form-control\"></td><td style=\"vertical-align: center\"><input type=\"text\" placeholder=\"Password\" name=\"password\" class=\"form-control\"></td><td  style=\"vertical-align:center\"><input type=\"submit\" class=\"btn btn-default btn-lg\" value=\"login\"></td></tr></table></form></li>");
                     %>
                 </ul>                
             </div>
