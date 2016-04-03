@@ -1,0 +1,45 @@
+CREATE DATABASE SpontaneousDatabase;
+
+USE SpontaneousDatabase;
+SHOW ENGINE INNODB STATUS;
+
+CREATE TABLE accounts(
+pkAccountID INT AUTO_INCREMENT NOT NULL,
+userName VARCHAR(50) NOT NULL,
+password VARCHAR(255) NOT NULL,
+screenName VARCHAR(50) NOT NULL,
+firstNames VARCHAR(255) NOT NULL,
+lastName VARCHAR(255) NOT NULL,
+createdDate DATETIME DEFAULT NOW() NOT NULL,
+modifiedDate DATETIME DEFAULT NOW() NOT NULL,
+CONSTRAINT pkAccount PRIMARY KEY(pkAccountID)
+);
+
+CREATE TABLE aliases(
+pkAliasID INT AUTO_INCREMENT NOT NULL,
+penName VARCHAR(50) NOT NULL,
+fkAccountID INT NOT NULL,
+CONSTRAINT pkAlias PRIMARY KEY(pkAliasID)
+);
+
+CREATE TABLE article(
+pkArticleID INT AUTO_INCREMENT NOT NULL,
+articleHeader VARCHAR(511) NOT NULL,
+articleBody LONGTEXT NOT NULL,
+CONSTRAINT pkArticle PRIMARY KEY(pkArticleID)
+);
+
+CREATE TABLE articleTrailer(
+pkArticleTrailerID INT  AUTO_INCREMENT NOT NULL,
+trailerHeader VARCHAR(511) NOT NULL,
+trailerBody VARCHAR(255) NOT NULL,
+fkArticleID INT NOT NULL,
+CONSTRAINT pkArticleTrailer PRIMARY KEY(pkArticleTrailerID)
+);
+
+CREATE TABLE authorship(
+pkAuthorshipID INT AUTO_INCREMENT NOT NULL,
+fkAliasID INT NOT NULL,
+fkArticleID INT NOT NULL,
+CONSTRAINT pkAuthorship PRIMARY KEY(pkAuthorshipID)
+);

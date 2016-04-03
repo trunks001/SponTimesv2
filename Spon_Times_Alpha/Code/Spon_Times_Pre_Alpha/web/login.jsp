@@ -4,12 +4,36 @@
     Author     : trunks
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<%@page import="mypackage.dataFunctions" %>
 <!DOCTYPE html>
 <%
-    session.setAttribute("UserID", "1");
-    response.setStatus(response.SC_MOVED_TEMPORARILY);
-    response.setHeader("Location", "index.jsp"); 
+    String user = request.getParameter("username");
+    String pword = request.getParameter("password");
+    
+    dataFunctions dat = new dataFunctions();
+    try{
+        ResultSet rs = dat.runQuery("SELECT password FROM accounts WHERE username = '" + user + "'");
+        
+        if(rs != null && rs.next()){
+            String s = rs.getString("password");
+            if(s.equals(pword)){
+                session.setAttribute("UserID", "1");
+                response.setStatus(response.SC_MOVED_TEMPORARILY);
+                response.setHeader("Location", "index.jsp"); 
+            }
+        }
+    }
+    catch(SQLException ex){
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", "error.jsp?message=" + ex.toString()); 
+    }
+    catch(ClassNotFoundException ex){
+        response.setStatus(response.SC_MOVED_TEMPORARILY);
+        response.setHeader("Location", "error.jsp?message=" + ex.toString()); 
+    }
 %>
 <html>
     <head>

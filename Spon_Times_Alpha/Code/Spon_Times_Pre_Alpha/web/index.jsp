@@ -5,27 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="mypackage.dataFunctions" %>
+<%@page import="java.sql.*" %>
 <!DOCTYPE html>
-<%!
-String[] list;
-
-private void fulllist()
-{
-    list = new String[9];
-    list[0] = "<p><strong>Hello</strong> thisd is a relkadgfkjsfljgnbsadolfjbadifhsadikhblndadjadhdfnaidhiksfoadjfosaikdjpifhfafiushiuah    ioadhjfosaujfdhgasidhgfpi aishfdd owrighoisafjhgsdofighpasfu a</p>";
-    list[1] = "<p>Happy days oh happy days!!!! bjbj9jh8fhui98ghu87thyi9oguhf78hi98h7ygt789o0kpj-0h9ih8 k,obkmv mk b,l b,mkl ,kl ,k m,kl ,l ,l ;l , nm.;[pkjho9gu8thyi9gyuutyuho0hgi8gu8tuhjo9gh</p> <img class=\"img-responsive img-circle\" src=\"img/Spontaneous Times Logo-HR.png\"/>";
-    list[2] = "Isfjsewjfejkfd glfdgljgk ldfjkglfdjgkl dfjgkld fjglfdjkglfdjk gldfjgkl dgjkdlk redgkd lgdl";
-    list[3] = "A";
-    list[4] = "Test";
-    list[5] = "Dide";
-    list[6] = "It";
-    list[7] = "Work";
-    list[8] = "?????";
-}
-%>
-<%
-fulllist();
-%>
 
 <html>
     <head>
@@ -87,19 +69,21 @@ fulllist();
                 <div class="row">
                 
                     <%
-                     String html = "";
-                     int i = 0;
+                    dataFunctions dat = new dataFunctions();
+                    ResultSet res = dat.runQuery("SELECT * FROM ArticleTrailers");
+                    String html = "";
+                    int i = 0;
 
-                     for (String s : list) 
-                     {
-                      html += "<a href=\"readarticle.jsp\"><div class=\"col-lg-4\" style=\"overflow:hidden; height:250px\"><h3>Header</h3>";
-                      html += s;
-                      html += "</div></a>";
-                      i++;
-                     }
+                    while(res.next()) 
+                    {
+                     html += "<a href=\"readarticle.jsp?articleID=" + res.getInt("fkArticleID") + "\"><div class=\"col-lg-4\" style=\"overflow:hidden; height:250px\"><h3>" + res.getString("trailerHeader") + "</h3>";
+                     html += res.getString("trailerBody");
+                     html += "</div></a>";
+                     i++;
+                    }
 
 
-                     out.print(html);
+                    out.print(html);
 
                     %>
                 </div>
