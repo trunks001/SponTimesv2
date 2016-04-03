@@ -4,7 +4,7 @@
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>890</x>
+      <x>870</x>
       <y>150</y>
       <w>220</w>
       <h>180</h>
@@ -27,7 +27,7 @@ lastName:String
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>1430</x>
+      <x>1410</x>
       <y>150</y>
       <w>220</w>
       <h>110</h>
@@ -45,7 +45,7 @@ fkAliasTypeID:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1080</x>
+      <x>1060</x>
       <y>130</y>
       <w>370</w>
       <h>50</h>
@@ -56,7 +56,7 @@ fkAliasTypeID:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>1790</x>
+      <x>1770</x>
       <y>150</y>
       <w>220</w>
       <h>80</h>
@@ -74,7 +74,7 @@ aliasTypeName:String
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1620</x>
+      <x>1600</x>
       <y>130</y>
       <w>190</w>
       <h>50</h>
@@ -85,7 +85,7 @@ aliasTypeName:String
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>880</x>
+      <x>860</x>
       <y>660</y>
       <w>230</w>
       <h>110</h>
@@ -102,7 +102,7 @@ articleBody:String
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>1420</x>
+      <x>1400</x>
       <y>660</y>
       <w>200</w>
       <h>100</h>
@@ -119,7 +119,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1080</x>
+      <x>1060</x>
       <y>640</y>
       <w>360</w>
       <h>50</h>
@@ -130,7 +130,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1410</x>
+      <x>1390</x>
       <y>210</y>
       <w>50</w>
       <h>470</h>
@@ -141,7 +141,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>540</x>
+      <x>520</x>
       <y>670</y>
       <w>240</w>
       <h>110</h>
@@ -160,7 +160,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>750</x>
+      <x>730</x>
       <y>650</y>
       <w>150</w>
       <h>50</h>
@@ -171,7 +171,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>570</x>
+      <x>550</x>
       <y>0</y>
       <w>220</w>
       <h>100</h>
@@ -189,7 +189,7 @@ fkRoleId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>570</x>
+      <x>550</x>
       <y>150</y>
       <w>220</w>
       <h>90</h>
@@ -207,7 +207,7 @@ fkUserTypeId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>760</x>
+      <x>740</x>
       <y>130</y>
       <w>150</w>
       <h>50</h>
@@ -218,7 +218,7 @@ fkUserTypeId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>550</x>
+      <x>530</x>
       <y>50</y>
       <w>50</w>
       <h>120</h>
@@ -229,7 +229,7 @@ fkUserTypeId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>1410</x>
+      <x>1390</x>
       <y>770</y>
       <w>230</w>
       <h>110</h>
@@ -246,7 +246,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>2080</x>
+      <x>2060</x>
       <y>500</y>
       <w>200</w>
       <h>50</h>
@@ -257,7 +257,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1050</x>
+      <x>1030</x>
       <y>660</y>
       <w>380</w>
       <h>150</h>
@@ -268,7 +268,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1610</x>
+      <x>1590</x>
       <y>150</y>
       <w>160</w>
       <h>660</h>
@@ -279,7 +279,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>560</x>
+      <x>540</x>
       <y>450</y>
       <w>230</w>
       <h>110</h>
@@ -296,7 +296,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>560</x>
+      <x>540</x>
       <y>270</y>
       <w>230</w>
       <h>110</h>
@@ -313,7 +313,7 @@ fkPublicationId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>540</x>
+      <x>520</x>
       <y>290</y>
       <w>50</w>
       <h>180</h>
@@ -324,7 +324,7 @@ fkPublicationId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>880</x>
+      <x>860</x>
       <y>440</y>
       <w>200</w>
       <h>100</h>
@@ -341,7 +341,7 @@ fkPublicationId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>2100</x>
+      <x>2080</x>
       <y>160</y>
       <w>200</w>
       <h>50</h>
@@ -352,7 +352,7 @@ fkPublicationId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>860</x>
+      <x>840</x>
       <y>490</y>
       <w>50</w>
       <h>190</h>
@@ -363,7 +363,7 @@ fkPublicationId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>760</x>
+      <x>740</x>
       <y>430</y>
       <w>140</w>
       <h>50</h>
@@ -374,7 +374,7 @@ fkPublicationId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>730</x>
+      <x>710</x>
       <y>310</y>
       <w>460</w>
       <h>160</h>
@@ -385,7 +385,7 @@ fkPublicationId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>1160</x>
+      <x>1140</x>
       <y>380</y>
       <w>200</w>
       <h>110</h>
@@ -402,7 +402,7 @@ fkAliasId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1320</x>
+      <x>1300</x>
       <y>140</y>
       <w>130</w>
       <h>260</h>
@@ -413,7 +413,7 @@ fkAliasId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>1140</x>
+      <x>1120</x>
       <y>440</y>
       <w>50</w>
       <h>130</h>
@@ -424,7 +424,7 @@ fkAliasId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>1150</x>
+      <x>1130</x>
       <y>550</y>
       <w>230</w>
       <h>90</h>
@@ -441,7 +441,7 @@ fkAuthorRoleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>860</x>
+      <x>840</x>
       <y>710</y>
       <w>50</w>
       <h>230</h>
@@ -452,7 +452,7 @@ fkAuthorRoleId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>870</x>
+      <x>850</x>
       <y>920</y>
       <w>220</w>
       <h>110</h>
@@ -470,7 +470,7 @@ fkArticleIDId:int
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>20</x>
+      <x>0</x>
       <y>1020</y>
       <w>1100</w>
       <h>920</h>
@@ -484,7 +484,7 @@ layer=-1</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>240</x>
+      <x>220</x>
       <y>1550</y>
       <w>360</w>
       <h>50</h>
@@ -495,7 +495,7 @@ layer=-1</panel_attributes>
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>580</x>
+      <x>560</x>
       <y>1570</y>
       <w>200</w>
       <h>100</h>
@@ -512,7 +512,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>570</x>
+      <x>550</x>
       <y>1120</y>
       <w>50</w>
       <h>470</h>
@@ -523,7 +523,7 @@ fkArticleId:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>590</x>
+      <x>570</x>
       <y>1060</y>
       <w>220</w>
       <h>110</h>
@@ -541,7 +541,7 @@ fkAliasTypeID:int
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>50</x>
+      <x>30</x>
       <y>1060</y>
       <w>220</w>
       <h>180</h>
@@ -564,7 +564,7 @@ lastName:String
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>40</x>
+      <x>20</x>
       <y>1570</y>
       <w>230</w>
       <h>110</h>
@@ -581,7 +581,7 @@ articleBody:String
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>20</x>
+      <x>0</x>
       <y>1620</y>
       <w>50</w>
       <h>230</h>
@@ -592,7 +592,7 @@ articleBody:String
   <element>
     <type>com.baselet.element.old.element.EER_Entity</type>
     <coordinates>
-      <x>30</x>
+      <x>10</x>
       <y>1830</y>
       <w>220</w>
       <h>110</h>
@@ -610,7 +610,7 @@ fkArticleIDId:int
   <element>
     <type>com.baselet.element.old.element.Relation</type>
     <coordinates>
-      <x>240</x>
+      <x>220</x>
       <y>1040</y>
       <w>370</w>
       <h>50</h>
