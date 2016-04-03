@@ -56,7 +56,9 @@
             <div class="intro-body">
                 <div class="container">
                     <%@include file="Spon_Times_NavBar.jsp"  %>
-                    <textarea style="height: 100%">Edit your article here!</textarea>
+                    <form method="post" action="saveArticle.jsp">
+                        <textarea name="content" style="height: 100%">Edit your article here!</textarea>
+                    </form>
                 </div>
             </div>
         </header>

@@ -26,12 +26,14 @@
                     String html = "";                                      
                     
                     dataFunctions dat = new dataFunctions();
-                    ResultSet res = dat.runQuery("SELECT * FROM articles WHERE pkArticleID = " + request.getParameter("articleID"));
+                    ResultSet res = dat.getData("SELECT * FROM articles WHERE pkArticleID = " + request.getParameter("articleID"));
                     
                     while(res.next()){
                         html += res.getString("articleHeader") + "</br>";
                         html += res.getString("articleBody");
                     }
+                    
+                    dat.closeConnection();
                     
                     out.print(html);
                     

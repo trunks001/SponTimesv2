@@ -70,7 +70,7 @@
                 
                     <%
                     dataFunctions dat = new dataFunctions();
-                    ResultSet res = dat.runQuery("SELECT * FROM ArticleTrailers");
+                    ResultSet res = dat.getData("SELECT * FROM ArticleTrailers");
                     String html = "";
                     int i = 0;
 
@@ -81,10 +81,9 @@
                      html += "</div></a>";
                      i++;
                     }
-
-
+                    
+                    dat.closeConnection();
                     out.print(html);
-
                     %>
                 </div>
             </div>

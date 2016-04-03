@@ -31,16 +31,25 @@ public class dataFunctions {
     }
     
     public void closeConnection() throws SQLException{
-        res.close();
+        if(res != null)
+            res.close();
         stmt.close();
         conn.close();
     }
     
-    public ResultSet runQuery(String sql) throws SQLException, ClassNotFoundException{
+    public ResultSet getData(String sql) throws SQLException, ClassNotFoundException{
         getConnection(); 
         
         res = stmt.executeQuery(sql);
          
         return res;
+    }
+    
+    public void runQuery(String sql) throws SQLException, ClassNotFoundException{
+        getConnection(); 
+        
+        stmt.execute(sql);
+        
+        closeConnection();
     }
 }

@@ -15,7 +15,7 @@
     
     dataFunctions dat = new dataFunctions();
     try{
-        ResultSet rs = dat.runQuery("SELECT password FROM accounts WHERE username = '" + user + "'");
+        ResultSet rs = dat.getData("SELECT password FROM accounts WHERE username = '" + user + "'");
         
         if(rs != null && rs.next()){
             String s = rs.getString("password");

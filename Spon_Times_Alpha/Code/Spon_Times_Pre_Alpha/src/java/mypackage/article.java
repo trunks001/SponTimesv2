@@ -10,6 +10,8 @@ package mypackage;
  *
  * @author Bones
  */
+import java.sql.*;
+
 public class article {
     private String header;
     private String body;
@@ -50,6 +52,24 @@ public class article {
         return rating.getRating();
     }
     
+    public int save() throws SQLException, ClassNotFoundException{
+            dataFunctions dat = new dataFunctions();
+            String sql = "INSERT INTO Articles (articleHeader, articleBody) VALUES ('" + header + "','" + body +"')";
+            dat.runQuery(sql);
+            ResultSet res = dat.getData("SELECT MAX(pkArticleID) as pkArticleID FROM articles;");
+            int id = -1;
+            if(res.next())
+                id = res.getInt("pkArticleID");
+            dat.closeConnection();
+            
+            if(id > 0)
+            {
+                trailer.save(id);
+            }
+            
+            return id;
+        }
+    
     private class articleTrailer{
         private String header;
         private String body;
@@ -61,6 +81,12 @@ public class article {
         
         public String print(){
             return header + "</br>" + body;
+        }
+        
+        public void save(int articleID) throws SQLException, ClassNotFoundException{
+            dataFunctions dat = new dataFunctions();
+            String sql = "INSERT INTO articleTrailers (fkArticleID, trailerHeader, trailerBody) VALUES ("+ articleID +", '" + header + "', '" + body +"')";
+            dat.runQuery(sql);
         }
     }
     
@@ -88,6 +114,6 @@ public class article {
         public void vote(double stars){
             double rating = (this.rating + stars/noOfVotes);
             setRating(rating);
-        }
+        }    
     }
 }
