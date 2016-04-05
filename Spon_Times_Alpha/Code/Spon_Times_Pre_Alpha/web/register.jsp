@@ -21,56 +21,31 @@
         <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h1>Register</h1>
-                    <p>Enter your MyPaper Name</p>
-                    <form role="UserRegistration" class="">
-                        <div class="form-group">
-                            <input type="text" placeholder="Username" class="form-control">
-                        </div>
-                    </form>                    
+                                     
+                        <form role="UserRegistration" class="">
+                            <div class="form-group">
+                                <p>Enter your Username</p>
+                                <input type="text" placeholder="Username" class="form-control">
+                                <br>
+                                <p>Enter your password</p> 
+                                <input type="text" placeholder="Password" class="form-control">
+                                <br>
+                                <p>Confirm your password</p>
+                                <input type="text" placeholder="Confirm Password" class="form-control">
+                                <br>
+                                <p>Enter your email address</p>
+                                <input type="text" placeholder="Email Address" class="form-control">  
+                                <a href="#"><button type="submit" class="btn btn-default btn-lg" >Register</button> </a>                
+                            </div>
+                        </form>    
                 </div>
-        </div>    
-        
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <p>Enter your password</p>    
-                <form role="PasswordLogin" class="">                        
-                        <div class="form-group" >
-                             <input type="text" placeholder="Password" class="form-control">                                
-                        </div>                        
-                    </form>
-              </div>
-            </div>
-        
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <p>Confirm your password</p>    
-                <form role="PasswordLogin" class="">                        
-                        <div class="form-group" >
-                             <input type="text" placeholder="Confirm Password" class="form-control">                                
-                        </div>                        
-                    </form>
-              </div>
-            </div>
-        
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <p>Enter your email address</p>     
-                <form role="EmailAddress" class="">                        
-                        <div class="form-group">
-                             <input type="text" placeholder="Email Address" class="form-control">                                
-                        </div>                        
-                    </form>
-                <a href="Spon_Times_Build_My_Paper.html"><button type="submit" class="btn btn-default btn-lg" >Register</button> </a>                
-            </div>
         </div>
-        <br>
+            <br>
         
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Sign Up with an existing account</h2>                                       
+        <h2>Sign Up with an existing account</h2>                                       
                     <ul class="list-inline banner-social-buttons">
                         <li>                       
-                            <a href="Spon_Times_Build_My_Paper.html" class="btn btn-default btn-lg"><span class="network-name"><i class="fa fa-facebook-square"></i>&nbsp;Login via Facebook</span></a>
+                            <a href="#" class="btn btn-default btn-lg"><span class="network-name"><i class="fa fa-facebook-square"></i>&nbsp;Register via Facebook</span></a>
                         </li>
                     </ul>
             </div>
@@ -80,7 +55,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <ul class="list-inline banner-social-buttons">
                     <li>
-                        <a href="#" class="btn btn-default btn-lg"><span class="network-name"><i class="fa fa-twitter"></i>&nbsp;Login via Twitter</span></a>
+                        <a href="#" class="btn btn-default btn-lg"><span class="network-name"><i class="fa fa-twitter"></i>&nbsp;Register via Twitter</span></a>
                     </li>
                 </ul>
             </div>
@@ -90,7 +65,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                 <ul class="list-inline banner-social-buttons">
                     <li>
-                        <a href="#" class="btn btn-default btn-lg"><span class="network-name"><i class="fa fa-google-plus"></i>&nbsp;Login via Google+</span></a>
+                        <a href="#" class="btn btn-default btn-lg"><span class="network-name"><i class="fa fa-google-plus"></i>&nbsp;Register via Google+</span></a>
                     </li>
                 </ul>
                 </div>
