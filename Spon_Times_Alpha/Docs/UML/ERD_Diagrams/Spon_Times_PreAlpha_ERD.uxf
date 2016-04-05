@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>870</x>
+      <y>150</y>
+      <w>220</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Accounts
+--
+pkUserId:int
+userName:String
+password:String
+emailAddress:String
+screenName:String
+alias:String
+fIrstName:String
+lastName:String
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>1410</x>
+      <y>150</y>
+      <w>220</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Aliases
+--
+pkAliasId:int
+penName:String
+fkUserId:int
+fkAliasTypeID:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1060</x>
+      <y>130</y>
+      <w>370</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>350;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>1770</x>
+      <y>150</y>
+      <w>220</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>AliasTypes
+--
+
+pkAliasTypeId:int
+aliasTypeName:String
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1600</x>
+      <y>130</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>30;30;170;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>860</x>
+      <y>660</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Articles
+--
+pkArticleId:int
+articleHeader:String
+articleBody:String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>1400</x>
+      <y>660</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Authorship
+--
+pkAuthorshipId:int
+fkAliasId:int
+fkArticleId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1060</x>
+      <y>640</y>
+      <w>360</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>340;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1390</x>
+      <y>210</y>
+      <w>50</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;450;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>520</x>
+      <y>670</y>
+      <w>240</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>SearchCategories
+--
+pkSearchCategoryId:int
+searchCategoryName:String
+sectionCategoryName:String
+fkArticleId:int
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>730</x>
+      <y>650</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;30;130;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>550</x>
+      <y>0</y>
+      <w>220</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>UserTypes
+--
+pkUserTypeId:int
+surname:String
+fkRoleId:int
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>550</x>
+      <y>150</y>
+      <w>220</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Roles
+--
+pkRoleId:int
+fkUserId:int
+fkUserTypeId:int
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>740</x>
+      <y>130</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>130;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>530</x>
+      <y>50</y>
+      <w>50</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>30;30;30;100</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>1390</x>
+      <y>770</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Comments
+--
+pkCommentId:int
+commentBody:String
+fkAliasId:int
+fkArticleId:int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>2060</x>
+      <y>500</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>180;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1030</x>
+      <y>660</y>
+      <w>380</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>30;30;30;130;360;130</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1590</x>
+      <y>150</y>
+      <w>160</w>
+      <h>660</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;640;130;640;140;160;30;160;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>540</x>
+      <y>450</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Publications
+--
+pkPublicationId:int
+publicationName:String
+fkArticleId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>540</x>
+      <y>270</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>PublicationTypes
+--
+pkPublicationTypeId:int
+publicationTypeName:String
+fkPublicationId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>520</x>
+      <y>290</y>
+      <w>50</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;30;30;160</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>860</x>
+      <y>440</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>PublishedWorks
+--
+pkPublishedWorksId:int
+fkArticleId:int
+fkPublicationId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>2080</x>
+      <y>160</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>180;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>840</x>
+      <y>490</y>
+      <w>50</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;30;30;170</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>740</x>
+      <y>430</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>120;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>710</x>
+      <y>310</y>
+      <w>460</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>440;70;440;30;30;30;30;140</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>1140</x>
+      <y>380</y>
+      <w>200</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>AuthorRoles
+--
+pkAuthorRoleId:int
+fkAuthorRoleName:String
+fkPublicationsId:int
+fkAliasId:int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1300</x>
+      <y>140</y>
+      <w>130</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;240;30;180;30;30;110;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>1120</x>
+      <y>440</y>
+      <w>50</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;110;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>1130</x>
+      <y>550</y>
+      <w>230</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>AuthorRoleTypes
+--
+pkAuthorRoleTypeId:int
+authorRoleTypeName:String
+fkAuthorRoleId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>840</x>
+      <y>710</y>
+      <w>50</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;210;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>850</x>
+      <y>920</y>
+      <w>220</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>ArticleTrailers
+--
+pkarticleTtailerID:int
+articleBody:String
+articleHeader:String
+fkArticleIDId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>1020</y>
+      <w>1100</w>
+      <h>920</h>
+    </coordinates>
+    <panel_attributes>Pre Alpha
+--
+bg=orange
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>1550</y>
+      <w>360</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>340;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>560</x>
+      <y>1570</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Authorship
+--
+pkAuthorshipId:int
+fkAliasId:int
+fkArticleId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>550</x>
+      <y>1120</y>
+      <w>50</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;450;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>570</x>
+      <y>1060</y>
+      <w>220</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Aliases
+--
+pkAliasId:int
+penName:String
+fkUserId:int
+fkAliasTypeID:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>30</x>
+      <y>1060</y>
+      <w>220</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Accounts
+--
+pkUserId:int
+userName:String
+password:String
+emailAddress:String
+screenName:String
+alias:String
+fIrstName:String
+lastName:String
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>20</x>
+      <y>1570</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Articles
+--
+pkArticleId:int
+articleHeader:String
+articleBody:String
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>0</x>
+      <y>1620</y>
+      <w>50</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>30;210;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.EER_Entity</type>
+    <coordinates>
+      <x>10</x>
+      <y>1830</y>
+      <w>220</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>ArticleTrailers
+--
+pkarticleTtailerID:int
+articleBody:String
+articleHeader:String
+fkArticleIDId:int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>220</x>
+      <y>1040</y>
+      <w>370</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=EER&gt;</panel_attributes>
+    <additional_attributes>350;30;30;30</additional_attributes>
+  </element>
+</diagram>
