@@ -68,8 +68,9 @@
             <div class="container">
                 <div class="row">
                 
-                    <%
-                    dataFunctions dat = new dataFunctions();
+                  <%
+                  /**
+                  dataFunctions dat = new dataFunctions();
                     ResultSet res = dat.getData("SELECT * FROM ArticleTrailers");
                     String html = "";
                     int i = 0;
@@ -84,9 +85,11 @@
                     
                     dat.closeConnection();
                     out.print(html);
-                    %>
+                  **/  
+                  %>
+                    
                 </div>
             </div>
-        </div>
+        </section>
     </body>
 </html>

@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : login
     Created on : Mar 25, 2016, 12:26:05 PM
@@ -13,10 +14,10 @@
     String user = request.getParameter("username");
     String pword = request.getParameter("password");
     
-    dataFunctions dat = new dataFunctions();
-    try{
-        ResultSet rs = dat.getData("SELECT password FROM accounts WHERE username = '" + user + "'");
-        
+ /**   dataFunctions dat = new dataFunctions();
+  try{
+       ResultSet rs = dat.getData("SELECT password FROM accounts WHERE username = '" + user + "'");
+      
         if(rs != null && rs.next()){
             String s = rs.getString("password");
             if(s.equals(pword)){
@@ -33,8 +34,14 @@
     catch(ClassNotFoundException ex){
         response.setStatus(response.SC_MOVED_TEMPORARILY);
         response.setHeader("Location", "error.jsp?message=" + ex.toString()); 
-    }
+
+}
+* **/
+   session.setAttribute("UserID", "1");
+   response.setStatus(response.SC_MOVED_TEMPORARILY);
+   response.setHeader("Location", "index.jsp"); 
 %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
