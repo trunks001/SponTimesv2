@@ -21,7 +21,7 @@
         <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h1>Register</h1>
-<<<<<<< HEAD
+
                                      
                         <form role="UserRegistration" class="">
                             <div class="form-group">
@@ -44,7 +44,7 @@
             <br>
         
         <h2>Sign Up with an existing account</h2>                                       
-=======
+
                     
                     <form role="UserRegistration" class="">
                         <div class="form-group">
@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Sign Up with an existing account</h2>                                       
->>>>>>> origin/master
+
                     <ul class="list-inline banner-social-buttons">
                         <li>                       
                             <a href="#" class="btn btn-default btn-lg"><span class="network-name"><i class="fa fa-facebook-square"></i>&nbsp;Register via Facebook</span></a>
