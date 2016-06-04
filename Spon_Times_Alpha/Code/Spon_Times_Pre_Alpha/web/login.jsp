@@ -14,7 +14,7 @@
     String user = request.getParameter("username");
     String pword = request.getParameter("password");
     
- /**   dataFunctions dat = new dataFunctions();
+    dataFunctions dat = new dataFunctions();
   try{
        ResultSet rs = dat.getData("SELECT password FROM accounts WHERE username = '" + user + "'");
       
@@ -36,7 +36,7 @@
         response.setHeader("Location", "error.jsp?message=" + ex.toString()); 
 
 }
-* **/
+  
    session.setAttribute("UserID", "1");
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "index.jsp"); 
