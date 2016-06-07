@@ -11,6 +11,14 @@
 *******Typography******
 **************************/
 
+
+.anchor{
+  display: block;
+  height: 115px; /*same height as header*/
+  margin-top: -115px; /*same height as header*/
+  visibility: hidden;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
@@ -25,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 {
   font-size: 30px;
-  margin-bottom: 20px;
+  margin-top: 0px;
 }
 
 h3 {
