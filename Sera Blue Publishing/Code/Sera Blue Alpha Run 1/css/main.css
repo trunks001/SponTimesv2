@@ -294,9 +294,9 @@ section {
   color: #fff;
   display: inline-block;
   font-size: 36px;
-  height: 90px;
+  height: 150px;
   line-height: 90px;
-  width: 90px;  
+  width: 150px;  
   -webkit-transition: background-color 0.2s ease;
   transition: background-color 0.2s ease;
 }
@@ -308,7 +308,7 @@ section {
 .our-services .col-sm-4 {
   border-right:1px solid #f2f2f2;
   border-bottom:1px solid #f2f2f2;
-  padding-bottom: 50px;
+  padding-bottom: 70px;
 }
 
 .our-services .col-sm-4:nth-child(4), 
@@ -324,7 +324,7 @@ section {
 }
 
 .service-info h3 {
-  margin-top: 35px;
+  margin-top: 70px;
 }
 
 /*************************
@@ -373,6 +373,48 @@ section {
   transition:  width 2s ease-in-out;
 }
 
+/****************
+New Responsive Video******
+********************************/
+
+.responsive-video {
+position: relative;
+padding-bottom: 56.25%;
+padding-top: 60px; overflow: hidden;
+}
+
+
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+.videoWrapperOuter {
+  max-width:640px; 
+  margin-left:auto;
+  margin-right:auto;
+}
+.videoWrapperInner {
+  float: none;
+  clear: both;
+  width: 100%;
+  position: relative;
+  padding-bottom: 50%;
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapperInner iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 /********
 New Portfolio Hover effect*****
