@@ -1,1 +1,7 @@
-stuff...
+To run this:
+
+1) npm install -g http-server
+2) cd to Sera Blue Publishing/Code
+3) run http-server in command line
+4) navigate to http:// 127.0.0.1:8080/
+4) enjoy
