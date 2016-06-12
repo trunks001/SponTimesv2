@@ -159,11 +159,11 @@ section {
 .logo-icon {
   border-radius: 4px;
   color: #fff;
-  display: inline-block;
+  
   font-size: 36px;
-  height: 150px;
+  height: 65px;
   line-height: 90px;
-  width: 150px;  
+  width: 65px;  
   -webkit-transition: background-color 0.2s ease;
   transition: background-color 0.2s ease;
 }
