@@ -1,0 +1,1 @@
+﻿Test document to see if git is integrated to redmine
