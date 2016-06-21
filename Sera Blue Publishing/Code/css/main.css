@@ -1088,6 +1088,16 @@ ul.address {
   margin-top: 40px;
 }
 
+.btn-submit:disabled{
+  display: block;
+  padding: 12px;
+  width: 100%;
+  color: #fff;
+  border:0;
+  margin-top: 40px;
+  opacity:0.3;
+}
+
 #footer {
   color:#fff;
 }
