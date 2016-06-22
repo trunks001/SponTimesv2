@@ -1,12 +1,3 @@
-/*
-  Theme Name: Oxygen
-  Theme Uri: http://www.themeum.com
-  Author: Themeum
-  Author Uri: http://www.themeum.com
-  Description: Onepage Site Template
-  Version: 1.0
-*/
-
 /*************************
 *******Typography******
 **************************/
@@ -243,7 +234,7 @@ section {
 }
 
 .left-control {
-  left: -51px
+  left: -51px;
 } 
 
 .right-control {
@@ -256,11 +247,11 @@ section {
 }
 
 #home-slider:hover .left-control {
-  left:30px
+  left:30px;
 } 
 
 #home-slider:hover .right-control {
-  right:30px
+  right:30px;
 }
 
 #home-slider .fa-angle-down {
