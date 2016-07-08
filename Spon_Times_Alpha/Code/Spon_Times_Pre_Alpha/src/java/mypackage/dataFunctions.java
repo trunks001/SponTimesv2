@@ -17,12 +17,12 @@ public class dataFunctions {
     Statement stmt = null;
     ResultSet res = null;
     
-    static final String USER = "root";
-    static final String PASS = "K@miTh3Pr0t3ct0r";
+    static final String USER = "checkers";
+    static final String PASS = "Trunkswilltry001!";
 
     
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-    static final String DB_URL = "jdbc:mysql://localhost:3306/SpontaneousDatabase";
+    static final String DB_URL = "jdbc:mysql://41.185.26.152:3306/SpontaneousDatabase";
     
     public void getConnection() throws SQLException, ClassNotFoundException{
         Class.forName("com.mysql.jdbc.Driver");
