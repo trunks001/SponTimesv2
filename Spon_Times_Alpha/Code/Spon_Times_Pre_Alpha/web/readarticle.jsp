@@ -26,7 +26,7 @@
                     String html = "";                                      
                     
                     dataFunctions dat = new dataFunctions();
-                    ResultSet res = dat.getData("SELECT * FROM articles WHERE pkArticleID = " + request.getParameter("articleID"));
+                    ResultSet res = dat.getData("SELECT * FROM article WHERE pkArticleID = " + request.getParameter("articleID"));
                     
                     while(res.next()){
                         html += res.getString("articleHeader") + "</br>";

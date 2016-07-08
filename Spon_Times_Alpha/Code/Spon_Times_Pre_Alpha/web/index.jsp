@@ -18,9 +18,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Social Media News">
         <meta name="author" content="Spontaneous Times">
+        <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.js"></script>
+        <!-- or -->
+        <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+        <script src="/home/checkers/Documents/SponTimesv2/Spon_Times_Alpha/Code/Spon_Times_Pre_Alpha/web/js/masonry.pkgd.min.js"></script>
+
+
 
         <title>Spontaneous Times Landing Page</title>
-
+        
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 

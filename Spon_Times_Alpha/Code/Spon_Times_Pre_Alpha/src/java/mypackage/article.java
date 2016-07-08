@@ -54,9 +54,9 @@ public class article {
     
     public int save() throws SQLException, ClassNotFoundException{
             dataFunctions dat = new dataFunctions();
-            String sql = "INSERT INTO Articles (articleHeader, articleBody) VALUES ('" + header + "','" + body +"')";
+            String sql = "INSERT INTO article (articleHeader, articleBody) VALUES ('" + header + "','" + body +"')";
             dat.runQuery(sql);
-            ResultSet res = dat.getData("SELECT MAX(pkArticleID) as pkArticleID FROM articles;");
+            ResultSet res = dat.getData("SELECT MAX(pkArticleID) as pkArticleID FROM article;");
             int id = -1;
             if(res.next())
                 id = res.getInt("pkArticleID");
@@ -85,7 +85,7 @@ public class article {
         
         public void save(int articleID) throws SQLException, ClassNotFoundException{
             dataFunctions dat = new dataFunctions();
-            String sql = "INSERT INTO articleTrailers (fkArticleID, trailerHeader, trailerBody) VALUES ("+ articleID +", '" + header + "', '" + body +"')";
+            String sql = "INSERT INTO ArticleTrailers (fkArticleID, trailerHeader, trailerBody) VALUES ("+ articleID +", '" + header + "', '" + body +"')";
             dat.runQuery(sql);
         }
     }
