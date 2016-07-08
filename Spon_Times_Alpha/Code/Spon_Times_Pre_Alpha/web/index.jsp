@@ -53,13 +53,13 @@
             <div class="intro-body">
 
                 <div class="container">
-
                     <div class="row">
                         <div> 
-                                <img class="img-responsive img-circle" src="img/Spontaneous Times Logo-HR.png" alt=""/>
-                            </div>
+                            <img class="img-responsive img-circle" src="img/Spontaneous Times Logo-HR.png" alt=""/>
+                        </div>
+                    </div>
+                    <div class='row'>
                         <div class="col-md-8 col-md-offset-2">
-
                             <p class="intro-text">A community of writers<br>Read the news that matters to you</p>
                             <a href="#GlobalPaper" class="btn btn-circle page-scroll">
                                 <i class="fa fa-angle-double-down animated"></i>
