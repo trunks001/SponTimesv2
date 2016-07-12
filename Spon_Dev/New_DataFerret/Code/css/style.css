@@ -151,6 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #fh5co-header #navbar li.call-to-action a {
   border: 2px solid #5291b9;
+  background-color: #5291b9;
   padding: 5px 10px 3px 10px;
   margin: 12px 0 0 0px;
   -webkit-border-radius: 30px;
@@ -159,7 +160,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 30px;
 }
 #fh5co-header #navbar li.call-to-action a:hover {
-  background-color: #5291b9;
+  background: rgba(119,136,153, 0.8);
   color: #fff;
 }
 #fh5co-header #navbar li.call-to-action a span:before {
@@ -195,30 +196,30 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
 }
 #fh5co-header.navbar-fixed-top .navbar-brand {
-  color: #535659;
+  color: #fff;
 }
 #fh5co-header.navbar-fixed-top #navbar li a {
-  color: rgba(0, 0, 0, 0.5) !important;
+  color: #fff !important;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
 #fh5co-header.navbar-fixed-top #navbar li a:hover {
-  color: #ff3b30;
+  color: #fff;
 }
 #fh5co-header.navbar-fixed-top #navbar li.active a {
-  color: #ff3b30 !important;
+  color: #fff !important;
 }
 @media screen and (max-width: 768px) {
   #fh5co-header.navbar-fixed-top #navbar li.active a {
-    color: #ff3b30 !important;
+    color: #fff !important;
   }
 }
 #fh5co-header.navbar-fixed-top #navbar li.active a span:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
-  background-color: #ff3b30;
+  background-color: #5291b9;
 }
 @media screen and (max-width: 768px) {
   #fh5co-header.navbar-fixed-top #navbar li.active a span:before {
@@ -226,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 #fh5co-header.navbar-fixed-top #navbar li.call-to-action a {
-  border: 2px solid #ff3b30;
+  border: 2px solid #5291b9;
   padding: 5px 10px 3px 10px;
   margin: 12px 0 0 0px;
   -webkit-border-radius: 30px;
@@ -235,7 +236,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 30px;
 }
 #fh5co-header.navbar-fixed-top #navbar li.call-to-action a:hover {
-  background-color: #ff3b30;
+  background: rgba(119,136,153, 0.8);
   color: #fff !important;
 }
 #fh5co-header.navbar-fixed-top #navbar li.call-to-action a span:before {
@@ -354,8 +355,9 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.19);
 }
 #fh5co-home .text-inner .call-to-action a.demo {
-  border: 2px solid #fff;
-  text-decoration: none !important;
+    border: 2px solid #5291b9;
+    background: #5291b9;
+    text-decoration: none !important;
 }
 @media screen and (max-width: 768px) {
   #fh5co-home .text-inner .call-to-action a.demo {
@@ -363,12 +365,16 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 #fh5co-home .text-inner .call-to-action a.demo:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(119,136,153, 0.8);
 }
 #fh5co-home .text-inner .call-to-action a.download {
   border: 2px solid #5291b9;
   background: #5291b9;
   text-decoration: none !important;
+}
+
+#fh5co-home .text-inner .call-to-action a.download:hover {
+  background: rgba(119,136,153, 0.8);
 }
 
 #fh5co-services, #fh5co-testimony, #fh5co-explore, #fh5co-faq, #fh5co-team, #fh5co-trusted, #fh5co-footer {
@@ -564,7 +570,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 .getting-started .call-to-action a.sign-up:hover {
-  background: #393e46;
+  background: #5291b9;
 }
 
 .fh5co-pricing {
@@ -1220,3 +1226,4 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
