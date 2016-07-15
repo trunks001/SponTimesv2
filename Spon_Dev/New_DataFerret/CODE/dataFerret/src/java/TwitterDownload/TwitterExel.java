@@ -6,10 +6,12 @@
 
 package TwitterDownload;
 
+import com.sun.corba.se.spi.ior.Writeable;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.net.URL;
 
 import jxl.*;
 import jxl.read.biff.BiffException;
@@ -17,6 +19,7 @@ import jxl.write.*;
 import jxl.write.Boolean;
 import jxl.write.Number;
 import jxl.write.biff.RowsExceededException;
+import twitter4j.GeoLocation;
 
 import twitter4j.Paging;
 import twitter4j.ResponseList;
@@ -164,12 +167,20 @@ public class TwitterExel {
                 Label date = new Label(1, 0, "Tweeted Date");
                 Label reTweets = new Label(2, 0, "ReTweet Count");
                 Label favor = new Label(3, 0, "Favourite Count");
+                Label place = new Label(4, 0, "Place");
+                Label geo = new Label(5, 0, "GeoLocation");
+                Label link = new Label(6, 0, "Link");
+                Label user = new Label(7, 0, "User");
 
                 //Add the created Cells to the sheet
                 writableSheet.addCell(text);
                 writableSheet.addCell(date);
                 writableSheet.addCell(reTweets);
                 writableSheet.addCell(favor);
+                writableSheet.addCell(place);
+                writableSheet.addCell(geo);
+                writableSheet.addCell(link);
+                writableSheet.addCell(user);
                 
                 i = 1;
             }
@@ -184,12 +195,25 @@ public class TwitterExel {
                     DateTime date = new DateTime(1, i + j, s.getCreatedAt());
                     Number reTweets = new Number(2, i + j, s.getRetweetCount());
                     Number favor = new Number(3, i + j, s.getFavoriteCount());
+                    Label place = new Label(4, j + 1, s.getPlace()!= null?s.getPlace().toString():"");
+                    Label geo = new Label(5, j + 1, s.getGeoLocation() != null?s.getGeoLocation().toString():"");
+                    
+                    String link = "https://twitter.com/" + s.getUser().getScreenName() + "/status/" + s.getId();
+                    URL url = new URL(link);
+                    
+                    WritableHyperlink hl = new WritableHyperlink(6, j + 1, url);
+                    
+                    Label user = new Label(7, j + 1, s.getUser().getScreenName());
                     
                     //Add the created Cells to the sheet
                     writableSheet.addCell(text);
                     writableSheet.addCell(date);
                     writableSheet.addCell(reTweets);
                     writableSheet.addCell(favor);
+                    writableSheet.addCell(place);
+                    writableSheet.addCell(geo);
+                    writableSheet.addHyperlink(hl);
+                    writableSheet.addCell(user);
                 }
 
             //Write and close the workbook

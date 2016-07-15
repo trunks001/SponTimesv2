@@ -33,9 +33,14 @@
             
             int limit = tweeter.getRemainingRateLimit();
             
-            String handel = "@" + tweeter.getScreenName();
+            String handel = tweeter.getScreenName();
+            
+            if(request.getParameter("twiterhandel") != null)
+                handel = request.getParameter("twiterhandel");
             
             List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
+            
+            limit = tweeter.getRemainingRateLimit();
             
             if(userTweets != null)
             {
@@ -65,10 +70,10 @@
                 Date d = new Date();
                 d.toString();
                 
-                DateFormat dateFormat = new SimpleDateFormat("yyMMdd");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HHmmss");
                 
                 response.setContentType("application/vnd.ms-excel");
-                response.setHeader("Content-Disposition", "attachment; filename=twitterReport" + dateFormat.format(d) + ".xls");
+                response.setHeader("Content-Disposition", "attachment; filename=" + handel + ":" + dateFormat.format(d) + ".xls");
                 
                 File excelFile = new File(filePath);
                 

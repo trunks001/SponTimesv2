@@ -83,6 +83,9 @@ public class TwitterHandler {
     {   
         if(!userName.contains(" "))
         {
+            if(!userName.startsWith("@"))
+                userName = '@' + userName;
+            
             long lastID = Long.MAX_VALUE;
             ArrayList<Status> tweets = new ArrayList<Status>();
             int count = 200;
@@ -133,7 +136,7 @@ public class TwitterHandler {
                 return null;
             }
         }
-        else
+        //else
             return getSearchTweets(userName, pageSize);
     }
     

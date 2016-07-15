@@ -109,8 +109,8 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#" data-nav-section="home"><span>Home</span></a></li>
+                            <li><a href="#" data-nav-section="pricing"><span>Pricing</span></a></li>  
                             <li><a href="#" data-nav-section="explore"><span>Demo Report</span></a></li>                       
-                            <li><a href="#" data-nav-section="pricing"><span>Pricing</span></a></li>                         
                             <li><a href="#" data-nav-section="faq"><span>FAQ</span></a></li>
                             <li><a href="#" data-nav-section="footer"><span>Contact Us</span></a></li>
                             
@@ -121,7 +121,7 @@
                                 }
                                 else
                                 {
-                                    out.println("<li><span><i class=\"icon-twitter\"></i>Welcom " + tweeter.getUserName() + " to Data Ferret!</span></li>");
+                                    out.println("<li><span><i class=\"icon-twitter\"></i>Welcome " + tweeter.getUserName() + "!</span></li>");
                                 }
                             %>   
                             
@@ -131,7 +131,7 @@
             </div>
         </header>
 
-        <section id="fh5co-home" data-section="home" style="background-image: url(images/DataFerretHomeBG.jpg);" data-stellar-background-ratio="0.5">
+        <section id="fh5co-home" data-section="home" style="background-image: url(images/twitterdata.png);" data-stellar-background-ratio="0.5">
             <div class="gradient">
             <div class="container">
                 <div class="text-wrap">
@@ -147,8 +147,13 @@
                                         {
                                             out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign Up with Twitter</a>");
                                         }
+                                        else
+                                        {
+                                            out.println("<p>Fill in the detail of the Twitter timeline or a Search Phrase you wish to export to Excel and get the last 50 tweets for FREE</p><form action=\"download.jsp\"><fieldset><legend>Input Form</legend><label for=\"Handel\">Twitter Handel<input id=\"twitterhandel\" name=\"twiterhandel\" type=\"text\" value=\"amstelSA\" /></label><p><input id=\"submitform\" name=\"submitform\" type=\"submit\" value=\"Submit\" />&nbsp;<input id=\"resetform\" name=\"resetform\" type=\"reset\" value=\"Reset\" /></p></fieldset></form>");
+                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a>");
+                                        }
                                     %>
-                                    <a href="download.jsp" class="download to-animate">Download Your Twitter Feed</a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -158,90 +163,7 @@
                 </div>
               
         </section>
-        
-        <section id="fh5co-explore" data-section="explore">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 section-heading text-center">
-                        <h2 class="to-animate">What is Data Ferret?</h2>
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 subtext to-animate">
-                                <h3>Ever been in the frustrating situation where you need to download a Twitter timeline? Ever wanted all of those Tweets infront of you in Excel? Ever tried to copy tweets from Twitter into Excel? We have, and we know the frustration. We made Data Ferret to help you.</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img src="" alt=""/>
-            <div class="fh5co-explore">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-md-push-5 to-animate-2">
-                            <img class="img-responsive" src="images/DataFerretEg.png" alt="Sample csv image">
-                        </div>
-                        <div class="col-md-4 col-md-pull-8 to-animate-2">
-                            <div class="mt">
-                                <h3>Twitter timelines in an instant!</h3>
-                                <p>Data Ferret lets you enter your credit card details and purchase a Twitter timeline, up to the last 3,200 tweets are pulled and placed into a CSV or Excel spreadsheet for you.</p>
-                                <ul class="list-nav">
-                                    <li><i class="icon-check2"></i>No more time wasted trying to copy and past from Twitter into Excel</li>
-                                    <li><i class="icon-check2"></i>Simply download the timeline and do the analysis that you need</li>
-                                    <li><i class="icon-check2"></i>Simple, fast and convenient.</li>
-                                    <li><i class="icon-check2"></i>Just what you need</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <img src="" alt=""/>
-            <div class="fh5co-explore fh5co-explore-bg-color">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-md-pull-1 to-animate-3">
-                            <img class="img-responsive" src="images/clock.gif" alt="work"/>
-                        </div>
-                        <div class="col-md-4 to-animate-3">
-                            <div class="mt">
-                                <h3>How long does it take?</h3>
-                                <div>
-                                   
-                                    <p>After you'r purchase has been approved, our servers quickly starting pull the data directly from Twitter. As fresh and up to date as can be. As soon as your data is ready we send you an e-mail to let you know your Excel spreadsheet has arrived.</p>
-                                </div>
-                                <div>
                                     
-                                    <p>One click of the download link and your data is on the way to you. No more difficult copying and pasting, toiling for hours to get your data.</p>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <%
-            if(tweeter.getAccessToken() == null)
-            {
-                out.println("<div class=\"getting-started getting-started-1\">"
-             + "<div class=\"container\">"
-                + "<div class=\"row\">"
-                    + "<div class=\"col-md-6 to-animate\">"
-                        + "<h3>Get Started Here</h3>"
-                        + "<p>Sign up with Data Ferret today and start downloading Tweets</p>"
-                    + "</div>"
-                    + "<div class=\"col-md-6 to-animate-2\">"
-                        + "<div class=\"call-to-action text-right\">"
-                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up For Free</a>"
-                        + "</div>"
-                    + "</div>"
-                + "</div>"
-            + "</div>"
-        + "</div>");
-            }
-        %>
-        
         <section id="fh5co-pricing" data-section="pricing">
             <div class="fh5co-pricing">
                 <div class="container">
@@ -316,7 +238,90 @@
 
                 </div>
             </div>
-        </section>  
+        </section>
+                   
+        <%
+            if(tweeter.getAccessToken() == null)
+            {
+                out.println("<div class=\"getting-started getting-started-1\">"
+             + "<div class=\"container\">"
+                + "<div class=\"row\">"
+                    + "<div class=\"col-md-6 to-animate\">"
+                        + "<h3>Get Started Here</h3>"
+                        + "<p>Sign up with Data Ferret today and start downloading Tweets</p>"
+                    + "</div>"
+                    + "<div class=\"col-md-6 to-animate-2\">"
+                        + "<div class=\"call-to-action text-right\">"
+                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up For Free</a>"
+                        + "</div>"
+                    + "</div>"
+                + "</div>"
+            + "</div>"
+        + "</div>");
+            }
+        %>
+                                    
+        <section id="fh5co-explore" data-section="explore">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 section-heading text-center">
+                        <h2 class="to-animate">What is Data Ferret?</h2>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                                <h3>Ever been in the frustrating situation where you need to download a Twitter timeline? Ever wanted all of those Tweets infront of you in Excel? Ever tried to copy tweets from Twitter into Excel? We have, and we know the frustration. We made Data Ferret to help you.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="" alt=""/>
+            <div class="fh5co-explore">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-push-5 to-animate-2">
+                            <img class="img-responsive" src="images/DataFerretEg.png" alt="Sample csv image">
+                        </div>
+                        <div class="col-md-4 col-md-pull-8 to-animate-2">
+                            <div class="mt">
+                                <h3>Twitter timelines in an instant!</h3>
+                                <p>Data Ferret lets you enter your credit card details and purchase a Twitter timeline, up to the last 3,200 tweets are pulled and placed into a CSV or Excel spreadsheet for you.</p>
+                                <ul class="list-nav">
+                                    <li><i class="icon-check2"></i>No more time wasted trying to copy and past from Twitter into Excel</li>
+                                    <li><i class="icon-check2"></i>Simply download the timeline and do the analysis that you need</li>
+                                    <li><i class="icon-check2"></i>Simple, fast and convenient.</li>
+                                    <li><i class="icon-check2"></i>Just what you need</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <img src="" alt=""/>
+            <div class="fh5co-explore fh5co-explore-bg-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-pull-1 to-animate-3">
+                            <img class="img-responsive" src="images/clock.gif" alt="work"/>
+                        </div>
+                        <div class="col-md-4 to-animate-3">
+                            <div class="mt">
+                                <h3>How long does it take?</h3>
+                                <div>
+                                   
+                                    <p>After you'r purchase has been approved, our servers quickly starting pull the data directly from Twitter. As fresh and up to date as can be. As soon as your data is ready we send you an e-mail to let you know your Excel spreadsheet has arrived.</p>
+                                </div>
+                                <div>
+                                    
+                                    <p>One click of the download link and your data is on the way to you. No more difficult copying and pasting, toiling for hours to get your data.</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="fh5co-faq" data-section="faq">
             <div class="fh5co-faq">
@@ -407,14 +412,11 @@
                             <li><i class="icon-map-marker"></i>193 Bryanston Drive, Johannesburg, 2194</li>
                             <li><i class="icon-phone"></i>+ 27 XX XXX XXXX</li>
                             <li><i class="icon-envelope"></i><a href="#">info@domain.com</a></li>
-                            <li><i class="icon-linkedin"></i><a href="#">Data Ferret LinkedIn</a></li>
                         </ul>
                         <h3 class="section-title">Connect with Us</h3>
                         <ul class="social-media">
                             <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>
                             <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" class="reddit"><i class="icon-reddit"></i></a></li>
-                            <li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>
                         </ul>
                     </div>                   
                 </div>
