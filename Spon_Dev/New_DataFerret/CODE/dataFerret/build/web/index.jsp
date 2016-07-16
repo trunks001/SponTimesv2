@@ -116,7 +116,7 @@
                             
                             <%
                                 if(tweeter.getAccessToken() == null)
-                                {
+                                {                                   
                                     out.println("<li class=\"call-to-action\"><a href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Login with Twitter</span></a></li>");
                                 }
                                 else
@@ -149,7 +149,7 @@
                                         }
                                         else
                                         {
-                                            out.println("<p>Fill in the detail of the Twitter timeline or a Search Phrase you wish to export to Excel and get the last 50 tweets for FREE</p><form action=\"download.jsp\"><fieldset><legend>Input Form</legend><label for=\"Handel\">Twitter Handel<input id=\"twitterhandel\" name=\"twiterhandel\" type=\"text\" value=\"amstelSA\" /></label><p><input id=\"submitform\" name=\"submitform\" type=\"submit\" value=\"Download Twitter Feed\" /></p></fieldset></form>");
+                                            out.println("<form class=\"contact-form\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" value=\"amstelSA\" /><p><input class=\"form-control\" id=\"submitform\" name=\"submitform\" type=\"submit\" value=\"Download Twitter Feed\" /></p></fieldset></form>");
                                             out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a>");
                                         }
                                     %>
