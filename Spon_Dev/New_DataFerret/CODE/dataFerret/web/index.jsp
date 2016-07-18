@@ -27,8 +27,8 @@
 
 <%!
     TwitterHandler tweeter;
-    private static String a;
-    private static AccessToken accessToken = null;
+    private String a;
+    private AccessToken accessToken = null;
     String pin;
 %>
 
