@@ -431,6 +431,7 @@
                     </div>                   
                 </div>
             </div>
+            <p style="float: right">version 0.4</p>
         </div>
         
 
