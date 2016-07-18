@@ -28,33 +28,14 @@ import twitter4j.RateLimitStatus;
 public class TwitterHandler {
     private final static String CONSUMER_KEY = "Me7OF5Vmi6ON6SCIjoHBGuYqD";
     private final static String CONSUMER_SECRET_KEY = "wH526KHHOc4e98Z0FicLqDuVFphHyP3BuYkTo8AYgDrApaknhI";
-    private static TwitterHandler instance = null;
+    //private static TwitterHandler instance = null;
     private static RequestToken requestToken;
     private static Twitter twitter;
     private static AccessToken accessToken = null;
     private static String callback = "";
-
-    public static TwitterHandler getInstance()
-    {
-        callback = "http://localhost:8080/dataFerret";
-        if(instance == null)
-            instance = new TwitterHandler(callback);
-        
-        return instance;
-    }
     
-    public static TwitterHandler getInstance(String callString)
-    {
-        callback = callString;
-        if(instance == null)
-            instance = new TwitterHandler(callback);
-        
-        return instance;
-    }
-    
-    private TwitterHandler(String callback)
-    {
-        
+    public TwitterHandler(String callback)
+    { 
         twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET_KEY);
         try

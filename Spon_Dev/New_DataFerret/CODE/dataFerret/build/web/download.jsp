@@ -27,7 +27,7 @@
     <body>
         <p>Your download  will begin shortly, please be patient</p>
         <%
-            TwitterHandler tweeter = TwitterHandler.getInstance();
+            TwitterHandler tweeter = (TwitterHandler)session.getAttribute("tweeter");
             
             int pageSize = 1500;
             

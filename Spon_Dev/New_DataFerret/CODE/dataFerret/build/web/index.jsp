@@ -26,13 +26,23 @@
 <%@page import="jxl.write.*" %>
 
 <%!
-    TwitterHandler tweeter = TwitterHandler.getInstance("http://localhost:8080/dataFerret");
+    TwitterHandler tweeter;
     private static String a;
     private static AccessToken accessToken = null;
     String pin;
 %>
 
 <%
+    String str = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp";
+    
+    tweeter = (TwitterHandler)session.getAttribute("tweeter");
+    
+    if(tweeter == null)
+    {
+        tweeter = new TwitterHandler(str);
+        session.setAttribute("tweeter", tweeter);
+    }
+    
     pin = request.getParameter("oauth_verifier");
     if(pin != null  && !pin.equals("null"))
         tweeter.getAccessToken(pin);
@@ -149,7 +159,7 @@
                                         }
                                         else
                                         {
-                                            out.println("<form class=\"contact-form\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" value=\"amstelSA\" /><p><input class=\"form-control\" id=\"submitform\" name=\"submitform\" type=\"submit\" value=\"Download Twitter Feed\" /></p></fieldset></form>");
+                                            out.println("<form class=\"contact-form\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"form-control\" id=\"submitform\" name=\"submitform\" type=\"submit\" value=\"Download Twitter Feed\" /></p></fieldset></form>");
                                             out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a>");
                                         }
                                     %>
