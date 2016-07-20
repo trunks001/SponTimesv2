@@ -6,7 +6,6 @@
 
 package TwitterDownload;
 
-import com.sun.corba.se.spi.ior.Writeable;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -31,17 +30,18 @@ import twitter4j.Status;
  */
 public class TwitterExel {
     
-    static String AbsolutePath = new File(".").getAbsolutePath() + "/Tweets";
     
-    public static String writeTweets(long ID, ResponseList<Status> tweets)
+    public static String writeTweets(long ID, ResponseList<Status> tweets, String path)
     {
-        return writeTweets(ID, (List<Status>)tweets);
+        return writeTweets(ID, (List<Status>)tweets, path);
     }
     
-    public static String writeTweets(long ID, List<Status> tweets)
+    public static String writeTweets(long ID, List<Status> tweets, String path)
     {
         try {            
-            File theDir = new File(AbsolutePath);
+            path = path + "/Tweets";
+            
+            File theDir = new File(path);
 
             // if the directory does not exist, create it
             if (!theDir.exists())
@@ -49,7 +49,7 @@ public class TwitterExel {
               theDir.mkdir();
             }
             
-            String exlPath = AbsolutePath + "/" + ID + ".xls";           
+            String exlPath = path + "/" + ID + ".xls";           
             
             File exlFile = new File(exlPath);
             WritableWorkbook writableWorkbook = null;
@@ -59,7 +59,7 @@ public class TwitterExel {
             {
                 i++;
                 
-                exlPath = AbsolutePath + "/" + ID + "_" + i + ".xls";
+                exlPath = path + "/" + ID + "_" + i + ".xls";
                 
                 exlFile = new File(exlPath);
             }

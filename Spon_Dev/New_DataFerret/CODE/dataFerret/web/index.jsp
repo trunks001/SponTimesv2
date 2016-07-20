@@ -34,8 +34,11 @@
 <%
     String callBack = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp";
     
-    tweeter = TwitterHandler.getInstance(false);
-    
+    if(session.getAttribute("tweeter") == null)
+        session.setAttribute("tweeter", tweeter = new TwitterHandler());
+    else
+        tweeter = (TwitterHandler)session.getAttribute("tweeter");
+        
     pin = request.getParameter("oauth_verifier");
     
     if(session.getAttribute("accessToken") == null)
@@ -47,7 +50,6 @@
         }
         else
         {
-            tweeter = TwitterHandler.getInstance(true);
             a = tweeter.auth(callBack);
         }
     }
@@ -434,7 +436,7 @@
                     </div>                   
                 </div>
             </div>
-            <p style="float: right">version 0.5</p>
+            <p style="float: right">version 0.6</p>
         </div>
         
 

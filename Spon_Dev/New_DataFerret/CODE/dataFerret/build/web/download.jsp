@@ -27,7 +27,7 @@
     <body>
         <p>Your download  will begin shortly, please be patient</p>
         <%
-            TwitterHandler tweeter = TwitterHandler.getInstance(false);
+            TwitterHandler tweeter = (TwitterHandler)session.getAttribute("tweeter");
             
             int pageSize = 1500;
             
@@ -42,11 +42,13 @@
             
             limit = tweeter.getRemainingRateLimit();
             
+            String webRootPath = getServletContext().getRealPath("/").replace('\\', '/');
+            
             if(userTweets != null)
             {
                 String filePath;
 
-                filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets);
+                filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
                 /*
                 String filename = "Report_" + handel + ".xls";
 

@@ -20,8 +20,6 @@ import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.List;
 import java.util.ArrayList;
-import javax.servlet.jsp.PageContext;
-import sun.security.jca.GetInstance;
 import twitter4j.RateLimitStatus;
 
 /**
@@ -31,21 +29,10 @@ import twitter4j.RateLimitStatus;
 public class TwitterHandler {
     private final static String CONSUMER_KEY = "Me7OF5Vmi6ON6SCIjoHBGuYqD";
     private final static String CONSUMER_SECRET_KEY = "wH526KHHOc4e98Z0FicLqDuVFphHyP3BuYkTo8AYgDrApaknhI";
-    private static TwitterHandler instance = null;
     private RequestToken requestToken;
     private Twitter twitter;
     
-    public static TwitterHandler getInstance(boolean reset)
-    {
-        if(instance != null && !reset)
-            return instance;
-        else
-        {
-            return instance = new TwitterHandler();
-        }
-    }
-    
-    private TwitterHandler()
+    public TwitterHandler()
     { 
         try
         {
