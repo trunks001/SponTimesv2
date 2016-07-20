@@ -16,9 +16,12 @@ import twitter4j.auth.RequestToken;
 import twitter4j.Status;
 import twitter4j.Query;
 import twitter4j.QueryResult;
+import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.List;
 import java.util.ArrayList;
+import javax.servlet.jsp.PageContext;
+import sun.security.jca.GetInstance;
 import twitter4j.RateLimitStatus;
 
 /**
@@ -28,40 +31,82 @@ import twitter4j.RateLimitStatus;
 public class TwitterHandler {
     private final static String CONSUMER_KEY = "Me7OF5Vmi6ON6SCIjoHBGuYqD";
     private final static String CONSUMER_SECRET_KEY = "wH526KHHOc4e98Z0FicLqDuVFphHyP3BuYkTo8AYgDrApaknhI";
-    //private static TwitterHandler instance = null;
-    private static RequestToken requestToken;
-    private static Twitter twitter;
-    private static AccessToken accessToken = null;
-    private static String callback = "";
+    private static TwitterHandler instance = null;
+    private RequestToken requestToken;
+    private Twitter twitter;
     
-    public TwitterHandler(String callback)
+    public static TwitterHandler getInstance(boolean reset)
+    {
+        if(instance != null && !reset)
+            return instance;
+        else
+        {
+            return instance = new TwitterHandler();
+        }
+    }
+    
+    private TwitterHandler()
     { 
-        twitter = TwitterFactory.getSingleton();
-        twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET_KEY);
         try
         {
-            requestToken = twitter.getOAuthRequestToken(callback);
+            ConfigurationBuilder cb = new ConfigurationBuilder();
+            cb.setDebugEnabled(true)
+                    .setOAuthConsumerKey(CONSUMER_KEY)
+                    .setOAuthConsumerSecret(CONSUMER_SECRET_KEY)
+                    .setOAuthAccessToken(null)
+                    .setOAuthAccessTokenSecret(null);
+            TwitterFactory tf = new TwitterFactory(cb.build());
+            twitter = tf.getInstance();
+        }
+        catch(IllegalStateException ex)
+        {
+            String s = ex.toString();
+        }
+        catch(Exception ex)
+        {
+            String s = ex.toString();
+        }
+    }
+    
+    public String auth(String callBack)
+    {
+        try
+        {
+            requestToken = twitter.getOAuthRequestToken(callBack);
+            return requestToken.getAuthorizationURL();
         }
         catch(TwitterException ex)
         {
-            
+            String s = ex.toString();
         }
+        catch(Exception ex)
+        {
+            String s = ex.toString();
+        }
+        return null;
     }
     
-    public String auth()
+    public AccessToken getAccessToken(String verifier)
     {
-            return requestToken.getAuthorizationURL();
+        try
+        {
+            return twitter.getOAuthAccessToken(requestToken, verifier);
+        }
+        catch(TwitterException ex)
+        {
+            String s = ex.toString();
+        }
+        catch(Exception ex)
+        {
+            String s = ex.toString();
+        }
+        return null;
     }
     
-    public AccessToken getAccessToken(String verifier) throws TwitterException
-    {
-        if(accessToken == null)
-            accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
-        return accessToken;
-    }
-    
-    public List<Status> getUserTimeline(String userName, int pageSize) throws TwitterException
+    public List<Status> getUserTimeline(String searchPhrase, int pageSize) throws TwitterException
     {   
+        String userName = searchPhrase;
+        
         if(!userName.contains(" "))
         {
             if(!userName.startsWith("@"))
@@ -109,7 +154,8 @@ public class TwitterHandler {
             {
                 String s = ex.toString();
                 //needs to be refined to only include user not found exception
-                return getSearchTweets(userName, pageSize);
+                if(ex.resourceNotFound())
+                    return getSearchTweets(searchPhrase, pageSize);
             }
             catch(Exception ex)
             {
@@ -121,10 +167,8 @@ public class TwitterHandler {
             return getSearchTweets(userName, pageSize);
     }
     
-    public List<Status> getSearchTweets(String searchPhrase, int pageSize) throws TwitterException
+    public List<Status> getSearchTweets(String searchPhrase, int pageSize)
     {
-        
-        
         long lastID = Long.MAX_VALUE;
         ArrayList<Status> tweets = new ArrayList<Status>();
         boolean last = false;
@@ -135,7 +179,7 @@ public class TwitterHandler {
             
             while(tweets.size() < pageSize && !last)
             {   
-                if (pageSize - tweets.size() > 100)
+                if (pageSize - tweets.size() > 180)
                     query.setCount(100);
                 else
                     query.setCount(pageSize - tweets.size());
@@ -171,27 +215,50 @@ public class TwitterHandler {
         catch(TwitterException ex)
         {
             String s = ex.toString();
-            return null;
+            if(ex.exceededRateLimitation())
+                return null;       
         }
+        catch(IllegalStateException ex)
+        {
+            String s = ex.toString();
+        }
+        return null;
     }
     
-    public long getUserID() throws TwitterException
+    public long getUserID()
     {
-        if(accessToken != null)
+        try
         {
             return twitter.getId();
+        }
+        catch(TwitterException ex)
+        {
+            String s = ex.toString();
+        }
+        catch(IllegalStateException ex)
+        {
+            String s = ex.toString();
         }
         return -1;
     }
     
-    public String getUserName() throws TwitterException
+    public String getUserName()
     {
-        if(accessToken != null)
+        try
         {
             long userID = twitter.getId();
             return twitter.showUser(userID).getName();
         }
+        catch(TwitterException ex)
+        {
+            String s = ex.toString();
+        }
+        catch(IllegalStateException ex)
+        {
+            String s = ex.toString();
+        }
         return null;
+        
     }
     
     public static String[] getKeys()
@@ -204,9 +271,6 @@ public class TwitterHandler {
         return requestToken;
     }
     
-    public AccessToken getAccessToken(){
-        return accessToken;
-    }
     
     public String getScreenName(){
         try
@@ -215,15 +279,45 @@ public class TwitterHandler {
         }
         catch(TwitterException ex)
         {
-            return null;
+            String s = ex.toString();
         }
+        catch(IllegalStateException ex)
+        {
+            String s = ex.toString();
+        }
+        return null;
     }
     
-    public int getRemainingRateLimit() throws TwitterException
+    public int getRemainingRateLimit()
     {
-        RateLimitStatus rateLimit = twitter.getRateLimitStatus("statuses").get("/statuses/user_timeline");
-        int restTime = rateLimit.getSecondsUntilReset();
-        return rateLimit.getRemaining();
+        try
+        {
+            RateLimitStatus rateLimit = twitter.getRateLimitStatus("statuses").get("/statuses/user_timeline");
+            int restTime = rateLimit.getSecondsUntilReset();
+            return rateLimit.getRemaining();
+        }
+        catch(TwitterException ex)
+        {
+            String s = ex.toString();
+        }
+        catch(IllegalStateException ex)
+        {
+            String s = ex.toString();
+        }
+        return  -1;
+    }
+    
+    public  boolean  testAccess()
+    {
+        try 
+        {
+            twitter.getOAuthAccessToken();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
 }

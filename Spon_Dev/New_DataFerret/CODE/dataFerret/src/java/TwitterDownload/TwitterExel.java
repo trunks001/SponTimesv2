@@ -33,89 +33,6 @@ public class TwitterExel {
     
     static String AbsolutePath = new File(".").getAbsolutePath() + "/Tweets";
     
-    public static void WriteTest(){
-        try {
-            File exlFile = new File(AbsolutePath + "/write_test.xls");
-            WritableWorkbook writableWorkbook = null;
-            WritableSheet writableSheet = null;
-            if(!exlFile.exists())
-            {
-                writableWorkbook = Workbook.createWorkbook(exlFile);
-
-                writableSheet= writableWorkbook.createSheet("Sheet1", 0);
-            }
-            else
-            {
-                try{
-                    Workbook existing = Workbook.getWorkbook(exlFile);
-                    writableWorkbook = Workbook.createWorkbook(exlFile, existing);
-
-                    writableSheet = writableWorkbook.getSheet(0);
-                }
-                catch(BiffException be)
-                {
-                    
-                }
-            }
- 
-            //Create Cells with contents of different data types.
-            //Also specify the Cell coordinates in the constructor
-            
-            int i = writableSheet.getRows();
-            
-            Label label = new Label(0, i, "Label (String)");
-            DateTime date = new DateTime(1, i, new Date());
-            Boolean bool = new Boolean(2, i, true);
-            Number num = new Number(3, i, 9.99);
- 
-            
-            
-            //Add the created Cells to the sheet
-            writableSheet.addCell(label);
-            writableSheet.addCell(date);
-            writableSheet.addCell(bool);
-            writableSheet.addCell(num);
-            
-            
-            
-//            label = new Label(0, 1, "Label (String)");
-//            date = new DateTime(1, 1, new Date());
-//            bool = new Boolean(2, 1, true);
-//            num = new Number(3, 1, 9.99);
-//            writableSheet.addCell(label);
-//            writableSheet.addCell(date);
-//            writableSheet.addCell(bool);
-//            writableSheet.addCell(num);
-//            
-//            i = writableSheet.getRows();
-            
-            writableWorkbook.write();
-            
-            
-            
-            //Write and close the workbook
-            
-            writableWorkbook.close();
- 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (RowsExceededException e) {
-            e.printStackTrace();
-        } catch (WriteException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void clearBuffer(long ID)
-    {
-        String exlPath = AbsolutePath + "/" + ID + ".xls";
-        File exlFile = new File(exlPath);
-        if(exlFile.exists())
-        {
-            exlFile.delete();
-        }
-    }
-    
     public static String writeTweets(long ID, ResponseList<Status> tweets)
     {
         return writeTweets(ID, (List<Status>)tweets);
@@ -132,18 +49,24 @@ public class TwitterExel {
               theDir.mkdir();
             }
             
-            String exlPath = AbsolutePath + "/" + ID + ".xls";
+            String exlPath = AbsolutePath + "/" + ID + ".xls";           
+            
             File exlFile = new File(exlPath);
             WritableWorkbook writableWorkbook = null;
             WritableSheet writableSheet = null;
+            int i = 0;
             if(exlFile.exists())
             {
-                exlFile.delete();
+                i++;
+                
+                exlPath = AbsolutePath + "/" + ID + "_" + i + ".xls";
+                
+                exlFile = new File(exlPath);
             }
 
             writableWorkbook = Workbook.createWorkbook(exlFile);
 
-            writableSheet= writableWorkbook.createSheet("Sheet1", 0);
+            writableSheet= writableWorkbook.createSheet("FerretData", 0);
 
             try{
                 Workbook existing = Workbook.getWorkbook(exlFile);
@@ -159,7 +82,8 @@ public class TwitterExel {
             //Create Cells with contents of different data types.
             //Also specify the Cell coordinates in the constructor
             
-            int i = writableSheet.getRows();
+            i = 0;
+            i = writableSheet.getRows();
             
             if(i == 0)
             {
@@ -191,11 +115,15 @@ public class TwitterExel {
                 {
                     Status s = tweets.get(j);
                     
+                    String placeString = s.getPlace()!= null?s.getPlace().toString():"";
+                    if(placeString.contains("{"))
+                        placeString = placeString.substring(placeString.indexOf("{"), placeString.length()-1);
+                    
                     Label text = new Label(0, i + j, s.getText());
                     DateTime date = new DateTime(1, i + j, s.getCreatedAt());
                     Number reTweets = new Number(2, i + j, s.getRetweetCount());
                     Number favor = new Number(3, i + j, s.getFavoriteCount());
-                    Label place = new Label(4, j + 1, s.getPlace()!= null?s.getPlace().toString():"");
+                    Label place = new Label(4, j + 1, placeString);
                     Label geo = new Label(5, j + 1, s.getGeoLocation() != null?s.getGeoLocation().toString():"");
                     
                     String link = "https://twitter.com/" + s.getUser().getScreenName() + "/status/" + s.getId();
