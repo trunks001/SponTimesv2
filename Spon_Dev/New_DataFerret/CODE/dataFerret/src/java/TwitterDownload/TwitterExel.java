@@ -39,7 +39,7 @@ public class TwitterExel {
     public static String writeTweets(long ID, List<Status> tweets, String path)
     {
         try {            
-            path = path + "/Tweets";
+            path = path + "Tweets";
             
             File theDir = new File(path);
 
@@ -55,7 +55,7 @@ public class TwitterExel {
             WritableWorkbook writableWorkbook = null;
             WritableSheet writableSheet = null;
             int i = 0;
-            if(exlFile.exists())
+            while(exlFile.exists())
             {
                 i++;
                 

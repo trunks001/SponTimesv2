@@ -72,10 +72,10 @@
                 Date d = new Date();
                 d.toString();
                 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HHmmss");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd_HHmmss");
                 
                 response.setContentType("application/vnd.ms-excel");
-                response.setHeader("Content-Disposition", "attachment; filename=" + handel + ":" + dateFormat.format(d) + ".xls");
+                response.setHeader("Content-Disposition", "attachment; filename=" + handel + "_" + dateFormat.format(d) + ".xls");
                 
                 File excelFile = new File(filePath);
                 

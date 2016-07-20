@@ -32,10 +32,13 @@
 %>
 
 <%
-    String callBack = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp";
+    String callBack = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp?logged=1";
     
-    if(session.getAttribute("tweeter") == null)
+    if(request.getParameter("logged") == null || session.getAttribute("tweeter") == null)
+    {
         session.setAttribute("tweeter", tweeter = new TwitterHandler());
+        session.setAttribute("accessToken", null);
+    }
     else
         tweeter = (TwitterHandler)session.getAttribute("tweeter");
         
@@ -46,7 +49,7 @@
         if(pin != null  && !pin.equals("null"))
         {
             session.setAttribute("accessToken", tweeter.getAccessToken(pin));
-            response.sendRedirect("/dataFerret/index.jsp");
+            response.sendRedirect("/dataFerret/index.jsp?logged=1");
         }
         else
         {
@@ -436,7 +439,7 @@
                     </div>                   
                 </div>
             </div>
-            <p style="float: right">version 0.6</p>
+            <p style="float: right">version 0.7</p>
         </div>
         
 
