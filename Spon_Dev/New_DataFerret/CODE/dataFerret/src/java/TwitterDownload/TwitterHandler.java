@@ -21,14 +21,17 @@ import twitter4j.conf.ConfigurationBuilder;
 import java.util.List;
 import java.util.ArrayList;
 import twitter4j.RateLimitStatus;
+import twitter4j.User;
+import twitter4j.IDs;
+import twitter4j.PagableResponseList;
 
 /**
  *
  * @author Bradley
  */
 public class TwitterHandler {
-    private final static String CONSUMER_KEY = "Me7OF5Vmi6ON6SCIjoHBGuYqD";
-    private final static String CONSUMER_SECRET_KEY = "wH526KHHOc4e98Z0FicLqDuVFphHyP3BuYkTo8AYgDrApaknhI";
+    private final static String CONSUMER_KEY = "SPGrmq9uRGQ4EGFP03L0scUpR";
+    private final static String CONSUMER_SECRET_KEY = "RDgn8wdVf8E1PSjccCKeHnaP7UdtpJSomNRRuqUU8pvy2Hsdja";
     private RequestToken requestToken;
     private Twitter twitter;
     
@@ -89,6 +92,42 @@ public class TwitterHandler {
         }
         return null;
     }
+    
+    public  List<User> getUserFollowers(String searchPhrase, int pageSize) throws TwitterException
+    {        
+        ArrayList<User> listFollowers = new ArrayList<User>();
+        
+        long cursor = -1;
+        
+        PagableResponseList<User> pagableFollowers;
+        do {
+            pagableFollowers = twitter.getFollowersList (searchPhrase, cursor, 15);
+            for (User user : pagableFollowers) {
+                listFollowers.add(user); // ArrayList<User>
+            }
+        } while ((cursor = pagableFollowers.getNextCursor()) != 0);
+
+        
+        
+        return listFollowers;
+    }
+    
+    public  List<User> getUserFriends(String searchPhrase, int pageSize) throws TwitterException
+    {       
+        ArrayList<User> listFriends = new ArrayList<User>();
+        
+        long cursor = -1;
+        
+        PagableResponseList<User> pagableFollowings;
+        do {
+            pagableFollowings = twitter.getFriendsList(searchPhrase, cursor, 15);
+            for (User user : pagableFollowings) {
+                listFriends.add(user); // ArrayList<User>
+            }
+        } while ((cursor = pagableFollowings.getNextCursor()) != 0);
+
+        return listFriends;
+    }      
     
     public List<Status> getUserTimeline(String searchPhrase, int pageSize) throws TwitterException
     {   

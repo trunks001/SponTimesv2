@@ -23,6 +23,7 @@ import twitter4j.GeoLocation;
 import twitter4j.Paging;
 import twitter4j.ResponseList;
 import twitter4j.Status;
+import twitter4j.User;
 
 /**
  *
@@ -142,6 +143,118 @@ public class TwitterExel {
                     writableSheet.addCell(geo);
                     writableSheet.addHyperlink(hl);
                     writableSheet.addCell(user);
+                }
+
+            //Write and close the workbook
+            writableWorkbook.write();
+            writableWorkbook.close();
+            
+            return exlPath;
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (RowsExceededException e) {
+            e.printStackTrace();
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }      
+        return null;
+    }
+    
+    public static String writeFollowers(long ID, List<User> followers, String path)
+    {
+        try {            
+            path = path + "Tweets";
+            
+            File theDir = new File(path);
+
+            // if the directory does not exist, create it
+            if (!theDir.exists())
+            {
+              theDir.mkdir();
+            }
+            
+            String exlPath = path + "/" + ID + ".xls";           
+            
+            File exlFile = new File(exlPath);
+            WritableWorkbook writableWorkbook = null;
+            WritableSheet writableSheet = null;
+            int i = 0;
+            while(exlFile.exists())
+            {
+                i++;
+                
+                exlPath = path + "/" + ID + "_" + i + ".xls";
+                
+                exlFile = new File(exlPath);
+            }
+
+            writableWorkbook = Workbook.createWorkbook(exlFile);
+
+            writableSheet= writableWorkbook.createSheet("FerretData", 0);
+
+            try{
+                Workbook existing = Workbook.getWorkbook(exlFile);
+                writableWorkbook = Workbook.createWorkbook(exlFile, existing);
+
+                writableSheet = writableWorkbook.getSheet(0);
+            }
+            catch(BiffException be)
+            {
+
+            }
+ 
+            //Create Cells with contents of different data types.
+            //Also specify the Cell coordinates in the constructor
+            
+            i = 0;
+            i = writableSheet.getRows();
+            
+            if(i == 0)
+            {
+                Label userName = new Label(0, 0, "User Name");
+                Label name = new Label(1, 0, "Name");
+                Label desc = new Label(2, 0, "Description");
+                Label date = new Label(3, 0, "Created Date");
+                Label uID = new Label(4, 0, "Twitter ID");
+                Label link = new Label(5, 0, "Link");
+
+                //Add the created Cells to the sheet
+                writableSheet.addCell(userName);
+                writableSheet.addCell(name);
+                writableSheet.addCell(desc);
+                writableSheet.addCell(date);
+                writableSheet.addCell(uID);
+                writableSheet.addCell(link);
+                
+                i = 1;
+            }
+            
+            
+            
+            for(int j = 0; j < followers.size(); j++)
+                {
+                    User u = followers.get(j);
+                    
+                    Label userName = new Label(0, i + j, u.getScreenName());
+                    Label name = new Label(1, i + j, u.getName());
+                    Label desc = new Label(2, i + j, u.getDescription());
+                    DateTime date = new DateTime(3, i + j, u.getCreatedAt());
+                    Label uID = new Label(4, i + j, Long.toString(u.getId()));
+                    
+                    String link = "https://twitter.com/" + u.getScreenName();
+                    URL url = new URL(link);
+                    
+                    WritableHyperlink hl = new WritableHyperlink(5, j + 1, url);
+                    
+                    
+                    //Add the created Cells to the sheet
+                    writableSheet.addCell(userName);
+                    writableSheet.addCell(name);
+                    writableSheet.addCell(desc);
+                    writableSheet.addCell(date);
+                    writableSheet.addCell(uID);
+                    writableSheet.addHyperlink(hl);
                 }
 
             //Write and close the workbook

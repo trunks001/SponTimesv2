@@ -4,6 +4,12 @@
     Author     : Bradley
 --%>
 
+<%@page import="twitter4j.TwitterException"%>
+<%@page import="twitter4j.User"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.io.ByteArrayOutputStream"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="TwitterDownload.TwitterHandler" %>
 <%@page import="TwitterDownload.TwitterExel" %>
@@ -17,6 +23,8 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="jxl.*" %>
 <%@page import="jxl.write.*" %>
+<%@page import="javax.servlet.ServletOutputStream" %>
+<%@page import="javax.servlet.http.HttpServletResponse" %>
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +39,10 @@
             
             int pageSize = 1500;
             
+            String filePath = null;
+            
+            String webRootPath = getServletContext().getRealPath("/").replace('\\', '/');
+            
             int limit = tweeter.getRemainingRateLimit();
             
             String handel = tweeter.getScreenName();
@@ -38,51 +50,77 @@
             if(request.getParameter("twiterhandel") != null)
                 handel = request.getParameter("twiterhandel");
             
-            List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
-            
-            limit = tweeter.getRemainingRateLimit();
-            
-            String webRootPath = getServletContext().getRealPath("/").replace('\\', '/');
-            
-            if(userTweets != null)
+            try
             {
-                String filePath;
-
-                filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
-                /*
-                String filename = "Report_" + handel + ".xls";
-
-                response.setContentType("application/octet-stream");
-                response.setHeader("Content-Disposition","attachment;filename="+ filename);
-
-                File file = new File(filePath);
-                FileInputStream fileIn = new FileInputStream(file);
-
-                int i;
-                //copy binary contect to output stream
-                while((i=fileIn.read())!=-1)
+                if(request.getParameter("submitFollowers") != null)
                 {
-                        out.write(i);
+                    List<User> userFollowers = tweeter.getUserFollowers(handel, pageSize);
+
+                    if(userFollowers != null)
+                    {
+                        filePath =  TwitterExel.writeFollowers(tweeter.getUserID(), userFollowers, webRootPath);
+                    }
                 }
-                fileIn.close();
-                out.flush();
-                out.close();
-                */
-                
+                else if(request.getParameter("submitFeed") != null)
+                {
+                    List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
+
+                    limit = tweeter.getRemainingRateLimit();
+
+                    if(userTweets != null)
+                    {
+                        filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
+                    }
+                }
+            }
+            catch(TwitterException ex)
+            {
+                String s = ex.toString();
+            }
+            
+            if(filePath != null)
+            {
+                File file = null;
+                FileInputStream fis = null;
+                ByteArrayOutputStream bos = null;
+
                 Date d = new Date();
                 d.toString();
-                
+
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd_HHmmss");
-                
-                response.setContentType("application/vnd.ms-excel");
-                response.setHeader("Content-Disposition", "attachment; filename=" + handel + "_" + dateFormat.format(d) + ".xls");
-                
-                File excelFile = new File(filePath);
-                
-                Workbook workbook = Workbook.getWorkbook(excelFile);
-                WritableWorkbook w = Workbook.createWorkbook(response.getOutputStream(), workbook);
-                w.write();
-                w.close();
+
+                try {
+                    response.setContentType("application/vnd.ms-excel");            
+                    response.setHeader("Content-disposition", "attachment; filename=" + handel + "_" + dateFormat.format(d) + ".xls");
+                    file = new File(filePath);
+                    fis = new FileInputStream(file);
+                    bos = new ByteArrayOutputStream();
+                    int readNum;
+                    byte[] buf = new byte[1024];
+                    try {
+
+                        for (; (readNum = fis.read(buf)) != -1;) {
+                            bos.write(buf, 0, readNum);
+                        }
+                    } catch (IOException ex) {
+
+                    }
+                    ServletOutputStream outs = response.getOutputStream();
+                    bos.writeTo(outs);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                } finally {
+                    if (file != null) {
+                        file = null;
+                    }
+                    if (fis != null) {
+                        fis.close();
+                    }
+                    if (bos.size() <= 0) {
+                        bos.flush();
+                        bos.close();
+                    }
+                }
             }
         %>
     </body>

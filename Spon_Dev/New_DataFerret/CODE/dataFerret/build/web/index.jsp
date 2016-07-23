@@ -167,7 +167,8 @@
                                         }
                                         else
                                         {
-                                            out.println("<form class=\"contact-form\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"form-control\" id=\"submitform\" name=\"submitform\" type=\"submit\" value=\"Download Twitter Feed\" /></p></fieldset></form>");
+                                            out.println("<form class=\"contact-form\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"form-control\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Feed\" /><input class=\"form-control\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form>");
+                                            
                                             out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a>");
                                         }
                                     %>
@@ -439,7 +440,7 @@
                     </div>                   
                 </div>
             </div>
-            <p style="float: right">version 0.7</p>
+            <p style="float: right">version 0.8</p>
         </div>
         
 
