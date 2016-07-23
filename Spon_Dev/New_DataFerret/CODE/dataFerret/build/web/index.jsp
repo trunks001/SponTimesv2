@@ -135,7 +135,7 @@
                             <%
                                 if(session.getAttribute("accessToken") == null)
                                 {                                   
-                                    out.println("<li class=\"call-to-action\"><a href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Login with Twitter</span></a></li>");
+                                    out.println("<li class=\"call-to-action\"><a href=\" + a + \"><span><i class=\"icon-twitter\"></i>Login with Twitter</span></a></li>");
                                 }
                                 else
                                 {
@@ -167,9 +167,9 @@
                                         }
                                         else
                                         {
-                                            out.println("<div class=\"col-md-6 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"TwitterHandle\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Feed\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Followers\"></div></form></div>");
+                                            out.println("<form class=\"contact-form\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"form-control\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Feed\" /><input class=\"form-control\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form>");
                                             
-                                            out.println("<div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a></div>");
+                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a>");
                                         }
                                     %>
                                     
