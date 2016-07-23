@@ -139,7 +139,7 @@
                                 }
                                 else
                                 {
-                                    out.println("<li><span><i class=\"icon-twitter\"></i class=\"nav navbar-nav navbar-right\">Welcome " + tweeter.getUserName() + "!</span></li>");
+                                    out.println("<li><span><i class=\"icon-twitter\"></i>Welcome " + tweeter.getUserName() + "!</span></li>");
                                 }
                             %>   
                             
@@ -167,7 +167,7 @@
                                         }
                                         else
                                         {
-                                            out.println("<div class=\"col-md-6-offset-2 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"TwitterHandle\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Feed\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Followers\"></div></form></div>");
+                                            out.println("<div class=\"col-md-6 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"TwitterHandle\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Feed\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Followers\"></div></form></div>");
                                             
                                             out.println("<div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a></div>");
                                         }
@@ -251,7 +251,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3 to-animate">
-                            <p>Don't believe us? Give our FREE download a try to see how it works.<a href="#"> Free Demo Download</a></p>
+                            <p>Don't believe us? Give our FREE download a try to see how it works.<a href="#">Free Demo Download</a></p>
                         </div>
                     </div>
 
@@ -305,7 +305,7 @@
                                 <h3>Twitter timelines in an instant!</h3>
                                 <p>Data Ferret lets you enter your credit card details and purchase a Twitter timeline, up to the last 3,200 tweets are pulled and placed into a CSV or Excel spreadsheet for you.</p>
                                 <ul class="list-nav">
-                                    <li><i class="icon-check2"></i>No more time wasted trying to copy and paste from Twitter into Excel</li>
+                                    <li><i class="icon-check2"></i>No more time wasted trying to copy and past from Twitter into Excel</li>
                                     <li><i class="icon-check2"></i>Simply download the timeline and do the analysis that you need</li>
                                     <li><i class="icon-check2"></i>Simple, fast and convenient.</li>
                                     <li><i class="icon-check2"></i>Just what you need</li>
