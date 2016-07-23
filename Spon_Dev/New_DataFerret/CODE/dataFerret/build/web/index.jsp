@@ -167,9 +167,9 @@
                                         }
                                         else
                                         {
-                                            out.println("<div class=\"col-md-6 to-animate\"><h3 class=\"section-title\">Drop us a line</h3><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"TwitterHandle\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Feed\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Followers\"></div></form></div>");
+                                            out.println("<div class=\"col-md-6 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"TwitterHandle\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Feed\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-submit\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Followers\"></div></form></div>");
                                             
-                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a>");
+                                            out.println("<div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a></div>");
                                         }
                                     %>
                                     
