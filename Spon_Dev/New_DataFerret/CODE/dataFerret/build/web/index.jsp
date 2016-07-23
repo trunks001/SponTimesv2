@@ -135,7 +135,7 @@
                             <%
                                 if(session.getAttribute("accessToken") == null)
                                 {                                   
-                                    out.println("<li class=\"call-to-action\"><a href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Login with Twitter</span></a></li>");
+                                    out.println("<li class=\"call-to-action\"><a href=\" + a + \"><span><i class=\"icon-twitter\"></i>Login with Twitter</span></a></li>");
                                 }
                                 else
                                 {
