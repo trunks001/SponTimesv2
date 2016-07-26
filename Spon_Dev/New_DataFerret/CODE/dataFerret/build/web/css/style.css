@@ -339,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 #fh5co-home .text-inner .call-to-action a {
-  width: 230px;
+  width: 350px;
   display: inline-block;
   font-size: 20px;
   padding: 15px 0;
@@ -359,6 +359,12 @@ h1, h2, h3, h4, h5, h6 {
     background: #5291b9;
     text-decoration: none !important;
 }
+
+#fh5co-home .text-inner .call-to-action a.demo2 {
+    border: 2px solid #5291b9;  
+    text-decoration: none !important;
+}
+
 @media screen and (max-width: 768px) {
   #fh5co-home .text-inner .call-to-action a.demo {
     margin-bottom: 20px;
@@ -372,6 +378,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #5291b9;
   text-decoration: none !important;
 }
+
 
 #fh5co-home .text-inner .call-to-action a.download:hover {
   background: rgba(119,136,153, 0.8);
