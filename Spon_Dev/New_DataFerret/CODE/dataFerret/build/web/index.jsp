@@ -139,7 +139,7 @@
                                 }
                                 else
                                 {
-                                    out.println("<li>Welcome " + tweeter.getUserName() + "!</li>");
+                                    out.println("<li><a href=\"#\" <span><i class=\"icon-twitter\"> Welcome " + tweeter.getUserName() + "!</span></a></li>");
                                 }
                             %>   
                             
@@ -171,7 +171,7 @@
                                         }
                                         else
                                         {
-                                            out.println("<div id=\"fh5co-footer\" role=\"contentinfo\"><div class=\"col-md-6-offset-2 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"twitterhandle\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-form\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Data\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-form\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Followers List\"></div></form></div></div>");
+                                            out.println("<div class=\"fh5co-footer col-md-6-offset-2 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"twitterhandle\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-form\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Data\"></div><div class=\"form-group\"><input type=\"submit\" id=\"btn-form\" class=\"btn btn-send-message btn-md\" value=\"Download Twitter Followers List\"></div></form></div>");
                                             
                                             out.println("<div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a></div>");
                                         }
