@@ -892,33 +892,33 @@ h1, h2, h3, h4, h5, h6 {
 #fh5co-footer .social-media li a:hover, #fh5co-footer .social-media li a:focus, #fh5co-footer .social-media li a:active {
   text-decoration: none;
 }
-#fh5co-footer .contact-form .form-group input[type="name"],
+#fh5co-footer .contact-form .form-group input[type="twitterhandle"],
 #fh5co-footer .contact-form .form-group input[type="text"],
 #fh5co-footer .contact-form .form-group input[type="email"],
 #fh5co-footer .contact-form .form-group textarea {
   font-size: 16px;
 }
-#fh5co-footer .contact-form .form-group input[type="name"]::-webkit-input-placeholder,
+#fh5co-footer .contact-form .form-group input[type="twitterhandle"]::-webkit-input-placeholder,
 #fh5co-footer .contact-form .form-group input[type="text"]::-webkit-input-placeholder,
 #fh5co-footer .contact-form .form-group input[type="email"]::-webkit-input-placeholder,
 #fh5co-footer .contact-form .form-group textarea::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
-#fh5co-footer .contact-form .form-group input[type="name"]:-moz-placeholder,
+#fh5co-footer .contact-form .form-group input[type="twitterhandle"]:-moz-placeholder,
 #fh5co-footer .contact-form .form-group input[type="text"]:-moz-placeholder,
 #fh5co-footer .contact-form .form-group input[type="email"]:-moz-placeholder,
 #fh5co-footer .contact-form .form-group textarea:-moz-placeholder {
   /* Firefox 18- */
   color: rgba(255, 255, 255, 0.5);
 }
-#fh5co-footer .contact-form .form-group input[type="name"]::-moz-placeholder,
+#fh5co-footer .contact-form .form-group input[type="twitterhandle"]::-moz-placeholder,
 #fh5co-footer .contact-form .form-group input[type="text"]::-moz-placeholder,
 #fh5co-footer .contact-form .form-group input[type="email"]::-moz-placeholder,
 #fh5co-footer .contact-form .form-group textarea::-moz-placeholder {
   /* Firefox 19+ */
   color: rgba(255, 255, 255, 0.5);
 }
-#fh5co-footer .contact-form .form-group input[type="name"]:-ms-input-placeholder,
+#fh5co-footer .contact-form .form-group input[type="twitterhandle"]:-ms-input-placeholder,
 #fh5co-footer .contact-form .form-group input[type="text"]:-ms-input-placeholder,
 #fh5co-footer .contact-form .form-group input[type="email"]:-ms-input-placeholder,
 #fh5co-footer .contact-form .form-group textarea:-ms-input-placeholder {
@@ -938,9 +938,10 @@ h1, h2, h3, h4, h5, h6 {
   background: #485b71;
   box-shadow: none;
 }
-#fh5co-footer #btn-submit {
+
+#fh5co-footer #btn-form {
   color: rgba(255, 255, 255, 0.9) !important;
-  background: #ff3b30 !important;
+  background: #5291b9 !important;
 }
 
 .btn {
