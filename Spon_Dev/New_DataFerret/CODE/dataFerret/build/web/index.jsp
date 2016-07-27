@@ -158,7 +158,7 @@
                             <div class="col-md-12">
                                 <h1 class="to-animate">Welcome To Data Ferret</h1>
                                 <img src="images/ferret.png" alt=""/>
-                                <br>
+                                <p></p>
                                 <div class="call-to-action">
                                     <div style="border: 2px solid #5291b9; font-size: 20px; width: 350px; display: inline-block; padding: 15px 0; text-align: center;">Easily Get Twitter Timelines in Excel</div> 
                                 </div>
@@ -173,7 +173,7 @@
                                         {
                                             out.println("<div id=\"twitterform\" role=\"contentinfo\"><div class=\"container\"><div class=\"row\"><div class=\"col-md-4 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"twitterhandle\"></div></form></div></div></div>");
                                             
-                                            out.println("<div class=\"row\"><div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a></div></div><div class=\"row\"><div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Followers List</a></div></div>");
+                                            out.println("<div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a></div></div></br></br><div class=\"col-md-12 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Followers List</a></div></div>");
                                         }
                                     %>
                                     
