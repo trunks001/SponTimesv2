@@ -171,7 +171,7 @@
                                         }
                                         else
                                         {
-                                            out.println("<div id=\"twitterform\" role=\"contentinfo\"><div class=\"row\"><div class=\"col-md-4 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"twitterhandle\"></div></form></div></div>");
+                                            out.println("<div id=\"twitterform\" role=\"contentinfo\"><div class=\"row\"><div class=\"col-md-12 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"twitterhandle\"></div></form></div></div>");
                                             
                                             out.println("<div class=\"col-md-6 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a></div><div class=\"col-md-6 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Followers List</a></div>");
                                         }
