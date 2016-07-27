@@ -121,6 +121,11 @@ h1, h2, h3, h4, h5, h6 {
 #fh5co-header #navbar li a:hover {
   color: #cacaca;
 }
+
+#fh5co-header #navbar2 li a:hover {
+  color: #fff;
+}
+
 #fh5co-header #navbar li a:hover span:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
