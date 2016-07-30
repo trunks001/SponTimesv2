@@ -48,6 +48,11 @@ public class dataFunctions {
     public void saveUser(int twitterId, String screenName) throws SQLException, ClassNotFoundException {
         getConnection(); 
         
+        ResultSet result = stmt.executeQuery("SELECT * FROM User WHERE twitterId = '" + twitterId + "'");
+        if(result != null || result.next()){ 
+            return;
+        }
+                
         stmt.executeQuery("INSERT INTO Users VALUES ('" + screenName + "', '" + twitterId + "')");
     }
     
