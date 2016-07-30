@@ -1,0 +1,7 @@
+CREATE TABLE Users
+(
+userId int NOT NULL AUTO_INCREMENT,
+screenName varchar(255) NOT NULL,
+twitterIdAsString varchar(255) NOT NULL,
+CONSTRAINT pk_UserId PRIMARY KEY (userId)
+)

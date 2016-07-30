@@ -1,0 +1,9 @@
+CREATE TABLE Login
+(
+loginId int NOT NULL AUTO_INCREMENT,
+ipAddress varchar(255),
+date datetime NOT NULL,
+userId int,
+CONSTRAINT pk_LoginId PRIMARY KEY (loginId)
+CONSTRAINT fk_Login_Users FOREIGN KEY (userId) REFERENCES Users(userId) //TODO not sure if 'Users(userId)' should be 'Users(pk_UserId)'
+)
