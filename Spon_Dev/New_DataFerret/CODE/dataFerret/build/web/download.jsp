@@ -30,22 +30,6 @@
 
 <%!
     dataFunctions data = new dataFunctions();
-    String ip = request.getHeader("X-Forwarded-For");  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("Proxy-Client-IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("WL-Proxy-Client-IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("HTTP_CLIENT_IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getRemoteAddr();  
-    }
 %>
 <!DOCTYPE html>
 <html>
@@ -56,6 +40,23 @@
     <body>
         <p>Your download  will begin shortly, please be patient</p>
         <%
+            String ip = request.getHeader("X-Forwarded-For");  
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+                ip = request.getHeader("Proxy-Client-IP");  
+            }  
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+                ip = request.getHeader("WL-Proxy-Client-IP");  
+            }  
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+                ip = request.getHeader("HTTP_CLIENT_IP");  
+            }  
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+                ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
+            }  
+            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+                ip = request.getRemoteAddr();  
+            }
+            
             TwitterHandler tweeter = (TwitterHandler)session.getAttribute("tweeter");
             
             int pageSize = 1500;
@@ -142,8 +143,8 @@
                 } catch (Exception e) {
                     // TODO: handle exception
                 } finally {
-                    int id = session.getAttribute("userId", user.getInt("userId"));
-                    dataFunctions.saveDownload(id, filePath);
+                    int id = (int)session.getAttribute("userId");
+                    data.saveDownload(id, filePath);
                     if (file != null) {
                         file = null;
                     }

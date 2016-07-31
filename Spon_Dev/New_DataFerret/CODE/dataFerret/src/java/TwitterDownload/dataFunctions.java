@@ -40,7 +40,7 @@ public class dataFunctions {
     public ResultSet getUser(String userId) throws SQLException, ClassNotFoundException {
         getConnection(); 
        
-        res = stmt.executeQuery("SELECT * FROM User WHERE userId = '" + userId + "'");
+        res = stmt.executeQuery("SELECT * FROM Users WHERE userId = '" + userId + "'");
          
         closeConnection();
         
@@ -50,13 +50,13 @@ public class dataFunctions {
     public ResultSet saveUser(int twitterId, String screenName) throws SQLException, ClassNotFoundException {
         getConnection(); 
         
-        ResultSet result = stmt.executeQuery("SELECT * FROM User WHERE twitterId = '" + twitterId + "'");
+        ResultSet result = stmt.executeQuery("SELECT * FROM Users WHERE twitterId = '" + twitterId + "'");
         if(result != null || result.next()){ 
             return result;
         }
                 
         stmt.executeQuery("INSERT INTO Users VALUES ('" + screenName + "', '" + twitterId + "')");
-        result = stmt.executeQuery("SELECT * FROM user WHERE twitterId = '" + twitterId + "'");
+        result = stmt.executeQuery("SELECT * FROM Users WHERE twitterId = '" + twitterId + "'");
         
         closeConnection();
         

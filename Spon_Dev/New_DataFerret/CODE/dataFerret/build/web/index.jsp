@@ -25,13 +25,16 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="jxl.*" %>
 <%@page import="jxl.write.*" %>
+<%@page import="java.sql.*" %>
 
 <%!
     TwitterHandler tweeter;
     private String a;
     String pin;
     dataFunctions data = new dataFunctions();
-    
+%>
+
+<%
     String ip = request.getHeader("X-Forwarded-For");  
     if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
         ip = request.getHeader("Proxy-Client-IP");  
@@ -48,9 +51,7 @@
     if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
         ip = request.getRemoteAddr();  
     }
-%>
-
-<%
+    
     String callBack = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp?logged=1";
     
     if(request.getParameter("logged") == null || session.getAttribute("tweeter") == null)
@@ -69,11 +70,11 @@
         {
             session.setAttribute("accessToken", tweeter.getAccessToken(pin));
             response.sendRedirect("/dataFerret/index.jsp?logged=1");
-            int twitterUserId = (int) tweeter.getUserId();
+            int twitterUserId = (int) tweeter.getUserID();
             session.setAttribute("twitterUserId", twitterUserId);
             String screenName = tweeter.getScreenName();
-            ResultSet user = dataFunctions.saveUser(twitterUserId, screenName);
-            dataFunctions.saveLogin(user.getInt("userId"), ip);
+            ResultSet user = data.saveUser(twitterUserId, screenName);
+            data.saveLogin(user.getInt("userId"), ip);
             session.setAttribute("userId", user.getInt("userId"));
         }
         else
