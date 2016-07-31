@@ -1,4 +1,4 @@
-package mypackage;
+package TwitterDownload;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,35 +42,45 @@ public class dataFunctions {
        
         res = stmt.executeQuery("SELECT * FROM User WHERE userId = '" + userId + "'");
          
+        closeConnection();
+        
         return res;
     }
     
-    public void saveUser(int twitterId, String screenName) throws SQLException, ClassNotFoundException {
+    public ResultSet saveUser(int twitterId, String screenName) throws SQLException, ClassNotFoundException {
         getConnection(); 
         
         ResultSet result = stmt.executeQuery("SELECT * FROM User WHERE twitterId = '" + twitterId + "'");
         if(result != null || result.next()){ 
-            return;
+            return result;
         }
                 
         stmt.executeQuery("INSERT INTO Users VALUES ('" + screenName + "', '" + twitterId + "')");
+        result = stmt.executeQuery("SELECT * FROM user WHERE twitterId = '" + twitterId + "'");
+        
+        closeConnection();
+        
+        return result;
     }
     
     public void saveLogin(int userId, String ipAddress) throws SQLException, ClassNotFoundException {
         getConnection(); 
         
-        //TODO not sure if my 'NOW()' syntax is correct. 
         stmt.executeQuery("INSERT INTO Login VALUES ('" + userId + "', NOW(), '" + ipAddress + "')");
+        
+        closeConnection();
     }
     
     public void saveDownload(int userId, String filePath) throws SQLException, ClassNotFoundException {
         getConnection(); 
         
-        //TODO I doubt my MAX() syntax here is correct. I basically just want the most recent login.
-        res = stmt.executeQuery("SELECT * FROM Login WHERE date = MAX(date)");
+        res = stmt.executeQuery("SELECT MAX(loginId) FROM Login WHERE userId = '" + userId + "'");
+        
         int loginId = res.getInt("userId");
         
         stmt.executeQuery("INSERT INTO Downloads VALUES ('" + userId + "', '" + loginId + "', '" + filePath + "')");
+        
+        closeConnection();
     }
     
     public ResultSet getData(String sql) throws SQLException, ClassNotFoundException{

@@ -378,14 +378,14 @@ h1, h2, h3, h4, h5, h6 {
 #fh5co-home .text-inner .call-to-action a.demo:hover {
   background: rgba(119,136,153, 0.8);
 }
-#fh5co-home .text-inner .call-to-action a.download {
+#fh5co-home .text-inner .call-to-action input.download {
   border: 2px solid #5291b9;
   background: #5291b9;
   text-decoration: none !important;
 }
 
 
-#fh5co-home .text-inner .call-to-action a.download:hover {
+#fh5co-home .text-inner .call-to-action input.download:hover {
   background: rgba(119,136,153, 0.8);
 }
 
