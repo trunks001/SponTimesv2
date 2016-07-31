@@ -72,6 +72,17 @@
                         filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
                     }
                 }
+                else
+                {
+                    List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
+
+                    limit = tweeter.getRemainingRateLimit();
+
+                    if(userTweets != null)
+                    {
+                        filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
+                    }
+                }
             }
             catch(TwitterException ex)
             {

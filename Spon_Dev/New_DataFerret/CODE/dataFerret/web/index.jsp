@@ -66,11 +66,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Data Ferret - Download Twitter Feeds</title>
+        <title>Data Ferret - Download Twitter Data</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Website for downloading Twitter feeds as MS Excel documents" />
-        <meta name="keywords" content="Twitter feed downloads as MS Excel documents" />
-        <meta name="author" content="Spontaneous D" />
+        <meta name="description" content="Website for downloading Twitter data as MS Excel documents" />
+        <meta name="keywords" content="Twitter data downloads as MS Excel documents" />
+        <meta name="author" content="Spontaneous Ventures" />
 
        
         <!-- Facebook and Twitter integration -->
@@ -135,11 +135,11 @@
                             <%
                                 if(session.getAttribute("accessToken") == null)
                                 {                                   
-                                    out.println("<li class=\"call-to-action\"><a href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Login with Twitter</span></a></li>");
+                                    out.println("<li class=\"call-to-action\"><a class=\"external\" href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Sign In With Twitter</span></a></li>");
                                 }
                                 else
                                 {
-                                    out.println("<li><span><i class=\"icon-twitter\"></i>Welcome " + tweeter.getUserName() + "!</span></li>");
+                                    out.println("<li class=\"navbar2\"><a href=\"#\"<span>Welcome " + tweeter.getUserName() + "!</span></a></li>");
                                 }
                             %>   
                             
@@ -158,18 +158,22 @@
                             <div class="col-md-12">
                                 <h1 class="to-animate">Welcome To Data Ferret</h1>
                                 <img src="images/ferret.png" alt=""/>
-                                <h2 class="to-animate">Easily Get Twitter Timelines in Excel</h2>                                        
+                                <p></p>
+                                <div class="call-to-action">
+                                    <div style="border: 2px solid #5291b9; font-size: 20px; width: 350px; display: inline-block; padding: 15px 0; text-align: center;">Easily Get Twitter Timelines in Excel</div> 
+                                </div>
+                                <p></p>
                                 <div class="call-to-action">
                                     <%
                                         if(session.getAttribute("accessToken") == null)
                                         {
-                                            out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign Up with Twitter</a>");
+                                            out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
                                         }
                                         else
                                         {
-                                            out.println("<form class=\"contact-form\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"form-control\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Feed\" /><input class=\"form-control\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form>");
+                                            out.println("<div class=\"col-md-6 to-animate\"><form class=\"download to-animate\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" /><input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form></div>");
                                             
-                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Feed</a>");
+                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a>");                                            
                                         }
                                     %>
                                     
@@ -199,59 +203,67 @@
 
                     <div class="row">
                         <div class="pricing">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Starter</h2>
-                                    <div class="price"><sup class="currency">$</sup>2.99<small>once-off</small><p>or</p> <sup class="currency">$</sup>1.99<small>/month</small> </div>
-                                    <ol>
-                                        <li>No. of Tweets = 500</li>
-                                        <li>Free Data = 50</li>
-                                    </ol>
+                                    <div class="price"><sup class="currency">$</sup>1.99</div>
+                                    <div class="price small"><p>No. of Tweets = 500</p></div>
                                     <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
                                 </div>
                             </div>
                             
-                            <div class="col-md-3">
+                            <div class="col-md-4">
+                                <div class="price-box to-animate-2">
+                                    <h2 class="pricing-plan">Beginner</h2>
+                                    <div class="price"><sup class="currency">$</sup>2.99</div>
+                                    <div class="price small"><p>No. of Tweets = 1500</p></div>
+                                    <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Basic</h2>
-                                    <div class="price"><sup class="currency">$</sup>3.99<small>once-off</small><p>or</p> <sup class="currency">$</sup>2.99<small>/month</small> </div>
-                                    <ol>
-                                        <li>No. of Tweets = 1500</li>
-                                        <li>Free Data = 50</li>
-                                    </ol>
-                                    <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <div class="price-box to-animate-2">
-                                    <h2 class="pricing-plan">Intermediate</h2>
-                                    <div class="price"><sup class="currency">$</sup>4.99<small>once-off</small> <p>or</p><sup class="currency">$</sup>3.99<small>/month</small> </div>
-                                    <ol>
-                                        <li>No. of Tweets = 2500</li>
-                                        <li>Free Data = 50</li>
-                                    </ol>
+                                    <div class="price"><sup class="currency">$</sup>3.99</div>
+                                    <div class="price small"><p>No. of Tweets = 3000</p></div> 
                                     <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
                                 </div>
                             </div>
                             
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="price-box to-animate-2">
-                                    <h2 class="pricing-plan">Expert</h2>
-                                    <div class="price"><sup class="currency">$</sup>5.99<small>once-off</small><p>or</p><sup class="currency">$</sup>4.99<small>/month</small> </div>
-                                    <ol>
-                                        <li>No. of Tweets = 3500</li>
-                                        <li>Free Data = 50</li>
-                                    </ol>
+                                    <h2 class="pricing-plan">Intermediate</h2>
+                                    <div class="price"><sup class="currency">$</sup>4.99</div>
+                                    <div class="price small"><p>No. of Tweets = 6000</p></div>                                       
                                     <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
                                 </div>
-                            </div>                         
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="price-box to-animate-2">
+                                    <h2 class="pricing-plan">Expert</h2>
+                                    <div class="price"><sup class="currency">$</sup>6.99</div>                                    
+                                    <div class="price small"><p>No. of Tweets = 12000</p></div>
+                                        <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="price-box to-animate-2">
+                                    <h2 class="pricing-plan">Buffet</h2>
+                                    <div class="price"><sup class="currency">$</sup>6.99</div>
+                                        <div class="price small"><p>Contact us for more than 12K Tweets</p></div>
+                                        <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                        </div>
+                            </div>
+                            
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3 to-animate">
-                            <p>Don't believe us? Give our FREE download a try to see how it works.<a href="#">Free Demo Download</a></p>
+                            <p>Don't believe us? Give our FREE download a try to see how it works.</p>
+                            <p><a href="#"> Free Demo Download</a></p>
                         </div>
                     </div>
 
@@ -267,11 +279,11 @@
                 + "<div class=\"row\">"
                     + "<div class=\"col-md-6 to-animate\">"
                         + "<h3>Get Started Here</h3>"
-                        + "<p>Sign up with Data Ferret today and start downloading Tweets</p>"
+                        + "<p>Sign in with your Twitter account and start downloading data from Twitter</p>"
                     + "</div>"
                     + "<div class=\"col-md-6 to-animate-2\">"
                         + "<div class=\"call-to-action text-right\">"
-                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up For Free</a>"
+                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up With Twitter</a>"
                         + "</div>"
                     + "</div>"
                 + "</div>"
@@ -287,7 +299,7 @@
                         <h2 class="to-animate">What is Data Ferret?</h2>
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 subtext to-animate">
-                                <h3>Ever been in the frustrating situation where you need to download a Twitter timeline? Ever wanted all of those Tweets infront of you in Excel? Ever tried to copy tweets from Twitter into Excel? We have, and we know the frustration. We made Data Ferret to help you.</h3>
+                                <h3>Ever been in the frustrating situation where you need to download a Twitter data and produce a report? Ever wanted all of those Tweets in front of you in Excel? Ever tried to copy tweets from Twitter into Excel? We have, and we know the frustration. We made Data Ferret to help you.</h3>
                             </div>
                         </div>
                     </div>
@@ -303,12 +315,12 @@
                         <div class="col-md-4 col-md-pull-8 to-animate-2">
                             <div class="mt">
                                 <h3>Twitter timelines in an instant!</h3>
-                                <p>Data Ferret lets you enter your credit card details and purchase a Twitter timeline, up to the last 3,200 tweets are pulled and placed into a CSV or Excel spreadsheet for you.</p>
+                                <p>Data Ferret lets you enter you choose how much you want to spend, just select your plan and use our secure payment portal to purchase the Twitter data that you need, safe easy and convenient with your download available in an Excel file</p>
                                 <ul class="list-nav">
-                                    <li><i class="icon-check2"></i>No more time wasted trying to copy and past from Twitter into Excel</li>
-                                    <li><i class="icon-check2"></i>Simply download the timeline and do the analysis that you need</li>
+                                    <li><i class="icon-check2"></i>No more time wasted trying to copy and paste from Twitter into Excel</li>
+                                    <li><i class="icon-check2"></i>Simply download the Twitter data and perform the analysis that you need</li>
                                     <li><i class="icon-check2"></i>Simple, fast and convenient.</li>
-                                    <li><i class="icon-check2"></i>Just what you need</li>
+                                    <li><i class="icon-check2"></i>Secure</li>
                                 </ul>
                             </div>
                         </div>
@@ -321,17 +333,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 col-md-pull-1 to-animate-3">
-                            <img class="img-responsive" src="images/clock.gif" alt="work"/>
+                            <img class="img-responsive" src="images/canstockphoto15306760.jpg" alt="work"/>
                         </div>
                         <div class="col-md-4 to-animate-3">
                             <div class="mt">
                                 <h3>How long does it take?</h3>
-                                <div>
-                                   
-                                    <p>After you'r purchase has been approved, our servers quickly starting pull the data directly from Twitter. As fresh and up to date as can be. As soon as your data is ready we send you an e-mail to let you know your Excel spreadsheet has arrived.</p>
-                                </div>
-                                <div>
+                                <div>                                   
+                                    <p>As soon as your purchase has been approved, our servers quickly jump to work and starting retrieving the data you need directly from Twitter. As fresh and up to date as can be. Depending on the size of your requested data it is either ready to download straight away, or as soon as your data is ready we send you an e-mail to let you know your Excel spreadsheet has arrived and is ready for download.</p>
                                     
+                                </div>
+                                <div>                                    
                                     <p>One click of the download link and your data is on the way to you. No more difficult copying and pasting, toiling for hours to get your data.</p>
                                 </div>
                                 
@@ -359,32 +370,40 @@
                         <div class="col-md-6">
                             <div class="box-faq to-animate-2">
                                 <h3>What is Data Ferret?</h3>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                <p>Data Ferret came out of our own frustrations of trying to get data out of Twitter, we looked at complex programs and other frustrating ways of getting information out for the reporting we were required to do. If you suffer from the same frustration, we really hope that this helps with your needs in an easy, convenient and affordable manner.</p>
                             </div>
                             <div class="box-faq to-animate-2">
                                 <h3>I have technical problem, who do I email? </h3>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                <p>Oops, we have tried our best to cover all of the bases, but sometime something slips. Drop us a line at info@dataferret.co.za and let us know what the problem is, we will get one of our team members to help you sort the problem out.</p>
                             </div>
                             <div class="box-faq to-animate-2">
-                                <h3>How do I use Data Ferret features?</h3>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                                <h3>How do I use Data Ferret's features?</h3>
+                                <p>We have tried to make the interface as easy to use as possible, simply select the plan you would like and enter your payment details. As soon as your plan is approved you simply enter the account details our search term you are interested in. Select the option on what sort of search you would like from an accounts timeline to it’s follower or following list. Depending on the Twitter rate limits or the size of the data your information will be ready for download straight away or we will send you a link to your data to download it when we receive it from Twitter.</p>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="box-faq to-animate-2">
-                                <h3>What languages are available?</h3>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                            </div>
-                            <div class="box-faq to-animate-2">
-                                <h3>Can I have a username that is already taken?</h3>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                            </div>
-                            <div class="box-faq to-animate-2">
-                                <h3>Is Data Ferret free?</h3>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                            </div>
+                                <h3>Can I select a username and password?</h3>
+                                <p>We work with the Twitter O-Auth system, all you need is a Twitter account, when you click the link to sign in you will be taken to Twitter to validate that you are happy to use our system. Once you have accepted you may proceed with your download. No need to remember usernames or passwords, just use your Twitter account, that easy.</p>
+                            </div>               
                         </div>
+                        
+                        <div class="col-md-6">
+                            <div class="box-faq to-animate-2">
+                                <h3>is Data Ferret free?</h3>
+                                <p>You are able to download your own Twitter timeline if it is publicly available, just enter your Twitter ID in the search parameters and we will download your Twitter data into an MS Excel file for you. Free of charge.</p>
+                            </div>               
+                        </div>           
+                        
+                        <div class="col-md-6">
+                            <div class="box-faq to-animate-2">
+                                <h3>How do I access the advanced options on Data Ferret?</h3>
+                                <p>If you would like to take advantage of Data Ferret's advanced options such as searching Twitter for hash tags, key words or Twitter IDs you can take advantage of our easy payment plans to get your data in an MS Excel file.</p>
+                                <p>It is as simple as pay, request, and download.</p>
+                            </div>               
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -401,11 +420,11 @@
                 + "<div class=\"row\">"
                     + "<div class=\"col-md-6 to-animate\">"
                         + "<h3>Get Started Here</h3>"
-                        + "<p>Sign up with Data Ferret today and start downloading Tweets</p>"
+                        + "<p>Sign up with Data Ferret today and start downloading Twitter data as an MS Excel report</p>"
                     + "</div>"
                     + "<div class=\"col-md-6 to-animate-2\">"
                         + "<div class=\"call-to-action text-right\">"
-                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up For Free</a>"
+                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up with Twitter</a>"
                         + "</div>"
                     + "</div>"
                 + "</div>"
@@ -419,28 +438,25 @@
                 <div class="row">
                     <div class="col-md-6 to-animate">
                         <h3 class="section-title">About Us</h3>
-                        <p>Data Ferret lets you enter your credit card details and purchase a Twitter timeline, up to the last 3,200 tweets are pulled and placed into a CSV or Excel spreadsheet for you.</p>
-                        <p class="copy-right">&copy; 2015 Data Ferret. <br>All Rights Reserved. <br>
-                            Designed by <a href="http://spondev.co.za/" target="_blank">Spontaneous Disruption</a>            
+                        <p>Data Ferret lets you purchase Twitter Data in a secure, convenient and easy manner. The data is presented in an easy to use Excel format that assists you with meeting your reporting requirements.</p>
+                        <p class="copy-right">&copy; 2016 Data Ferret. <br>All Rights Reserved. <br>
+                            Designed by <a href="#" target="_blank">Spontaneous Ventures</a>            
                         </p>
                     </div>
 
                     <div class="col-md-6 to-animate">
                         <h3 class="section-title">Contact Us</h3>
-                        <ul class="contact-info">
-                            <li><i class="icon-map-marker"></i>193 Bryanston Drive, Johannesburg, 2194</li>
-                            <li><i class="icon-phone"></i>+ 27 XX XXX XXXX</li>
-                            <li><i class="icon-envelope"></i><a href="#">info@domain.com</a></li>
+                        <ul class="contact-info">                           
+                            <li><i class="icon-envelope"></i><a href="#">info@dataferret.co.za</a></li>
                         </ul>
                         <h3 class="section-title">Connect with Us</h3>
                         <ul class="social-media">
-                            <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>
+                            <li><a href="https://www.facebook.com/DataFerret" class="facebook"><i class="icon-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/Ferret_Data" class="twitter"><i class="icon-twitter"></i></a></li>
                         </ul>
                     </div>                   
                 </div>
             </div>
-            <p style="float: right">version 0.8</p>
         </div>
         
 

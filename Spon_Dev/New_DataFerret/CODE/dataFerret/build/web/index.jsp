@@ -135,7 +135,7 @@
                             <%
                                 if(session.getAttribute("accessToken") == null)
                                 {                                   
-                                    out.println("<li class=\"call-to-action\"><a class=\"external\" href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Sign Up With Twitter</span></a></li>");
+                                    out.println("<li class=\"call-to-action\"><a class=\"external\" href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Sign In With Twitter</span></a></li>");
                                 }
                                 else
                                 {
@@ -167,13 +167,13 @@
                                     <%
                                         if(session.getAttribute("accessToken") == null)
                                         {
-                                            out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign Up with Twitter</a>");
+                                            out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
                                         }
                                         else
                                         {
-                                            out.println("<div id=\"twitterform\" role=\"contentinfo\"><div class=\"row\"><div class=\"col-md-12 to-animate\"><form class=\"contact-form\"><div class=\"form-group\"><label for=\"twitterhandle\" class=\"sr-only\">Name</label><input type=\"twitterhandle\" class=\"form-control\" id=\"name\" placeholder=\"twitterhandle\"></div></form></div></div>");
+                                            out.println("<div class=\"col-md-6 to-animate\"><form class=\"download to-animate\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" /><input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form></div>");
                                             
-                                            out.println("<div class=\"col-md-6 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a></div><div class=\"col-md-6 to-animate\"><a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Followers List</a></div>");
+                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a>");                                            
                                         }
                                     %>
                                     
