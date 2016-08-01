@@ -73,9 +73,9 @@
             int twitterUserId = (int) tweeter.getUserID();
             session.setAttribute("twitterUserId", twitterUserId);
             String screenName = tweeter.getScreenName();
-            ResultSet user = data.saveUser(twitterUserId, screenName);
-            data.saveLogin(user.getInt("userId"), ip);
-            session.setAttribute("userId", user.getInt("userId"));
+            //ResultSet user = data.saveUser(twitterUserId, screenName);
+            //data.saveLogin(user.getInt("userId"), ip);
+            //session.setAttribute("userId", user.getInt("userId"));
         }
         else
         {
@@ -175,7 +175,7 @@
             </div>
         </header>
 
-        <section id="fh5co-home" data-section="home" style="background-image: url(images/twitterdata.png);" data-stellar-background-ratio="0.5">
+        <section id="fh5co-home" data-section="home" style="background-image: url(images/DataFerretHome.jpg);" data-stellar-background-ratio="0.5">
             <div class="gradient">
             <div class="container">
                 <div class="text-wrap">

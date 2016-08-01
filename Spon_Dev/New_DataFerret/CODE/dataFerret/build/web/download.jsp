@@ -143,8 +143,8 @@
                 } catch (Exception e) {
                     // TODO: handle exception
                 } finally {
-                    int id = (int)session.getAttribute("userId");
-                    data.saveDownload(id, filePath);
+                    //int id = (int)session.getAttribute("userId");
+                    //data.saveDownload(id, filePath);
                     if (file != null) {
                         file = null;
                     }
