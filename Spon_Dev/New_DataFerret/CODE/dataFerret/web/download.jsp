@@ -27,10 +27,6 @@
 <%@page import="javax.servlet.ServletOutputStream" %>
 <%@page import="javax.servlet.http.HttpServletResponse" %>
 
-
-<%!
-    dataFunctions data = new dataFunctions();
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -143,8 +139,8 @@
                 } catch (Exception e) {
                     // TODO: handle exception
                 } finally {
-                    //int id = (int)session.getAttribute("userId");
-                    //data.saveDownload(id, filePath);
+                    int id = Integer.parseInt(session.getAttribute("userId").toString());
+                    dataFunctions.saveDownload(id, filePath);
                     if (file != null) {
                         file = null;
                     }

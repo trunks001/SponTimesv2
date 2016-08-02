@@ -31,7 +31,6 @@
     TwitterHandler tweeter;
     private String a;
     String pin;
-    dataFunctions data = new dataFunctions();
 %>
 
 <%
@@ -68,14 +67,22 @@
     {   
         if(pin != null  && !pin.equals("null"))
         {
-            session.setAttribute("accessToken", tweeter.getAccessToken(pin));
-            response.sendRedirect("/dataFerret/index.jsp?logged=1");
-            int twitterUserId = (int) tweeter.getUserID();
-            session.setAttribute("twitterUserId", twitterUserId);
-            String screenName = tweeter.getScreenName();
-            //ResultSet user = data.saveUser(twitterUserId, screenName);
-            //data.saveLogin(user.getInt("userId"), ip);
-            //session.setAttribute("userId", user.getInt("userId"));
+            AccessToken access = tweeter.getAccessToken(pin);
+            if(access != null)
+            {
+                session.setAttribute("accessToken", access);
+                response.sendRedirect("/dataFerret/index.jsp?logged=1");
+                long twitterUserId = tweeter.getUserID();
+                session.setAttribute("twitterUserId", twitterUserId);
+                String screenName = tweeter.getScreenName();
+                String userName = tweeter.getUserName();
+                int user = dataFunctions.saveUser(twitterUserId, screenName, userName);
+                if(user > 0)
+                {
+                    dataFunctions.saveLogin(user, ip);
+                    session.setAttribute("userId", user);
+                }
+            }
         }
         else
         {
@@ -159,7 +166,7 @@
                             <li><a href="#" data-nav-section="footer"><span>Contact Us</span></a></li>
                             
                             <%
-                                if(session.getAttribute("accessToken") == null)
+                                if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
                                 {                                   
                                     out.println("<li class=\"call-to-action\"><a class=\"external\" href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Sign In With Twitter</span></a></li>");
                                 }
@@ -191,7 +198,7 @@
                                 <p></p>
                                 <div class="call-to-action">
                                     <%
-                                        if(session.getAttribute("accessToken") == null)
+                                        if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
                                         {
                                             out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
                                         }
@@ -308,23 +315,23 @@
         </section>
                    
         <%
-            if(session.getAttribute("accessToken") == null)
+            if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
             {
                 out.println("<div class=\"getting-started getting-started-1\">"
-             + "<div class=\"container\">"
-                + "<div class=\"row\">"
-                    + "<div class=\"col-md-6 to-animate\">"
-                        + "<h3>Get Started Here</h3>"
-                        + "<p>Sign in with your Twitter account and start downloading data from Twitter</p>"
-                    + "</div>"
-                    + "<div class=\"col-md-6 to-animate-2\">"
-                        + "<div class=\"call-to-action text-right\">"
-                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up With Twitter</a>"
-                        + "</div>"
-                    + "</div>"
-                + "</div>"
-            + "</div>"
-        + "</div>");
+                    + "<div class=\"container\">"
+                       + "<div class=\"row\">"
+                           + "<div class=\"col-md-6 to-animate\">"
+                               + "<h3>Get Started Here</h3>"
+                               + "<p>Sign in with your Twitter account and start downloading data from Twitter</p>"
+                           + "</div>"
+                           + "<div class=\"col-md-6 to-animate-2\">"
+                               + "<div class=\"call-to-action text-right\">"
+                                   + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up With Twitter</a>"
+                               + "</div>"
+                           + "</div>"
+                       + "</div>"
+                   + "</div>"
+               + "</div>");
             }
         %>
                                     
@@ -449,7 +456,7 @@
 
         
         <%
-            if(session.getAttribute("accessToken") == null)
+            if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
             {
                 out.println("<div class=\"getting-started getting-started-1\">"
              + "<div class=\"container\">"

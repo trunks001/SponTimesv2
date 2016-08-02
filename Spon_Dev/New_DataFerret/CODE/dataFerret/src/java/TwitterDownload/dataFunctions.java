@@ -13,89 +13,105 @@ package TwitterDownload;
 import java.sql.*;
 
 public class dataFunctions {
-    Connection conn = null;
-    Statement stmt = null;
-    ResultSet res = null;
+    
+//    static final String USER = "root";
+//    static final String PASS = "root";
+//
+//    
+//    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+//    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dataferret";
     
     static final String USER = "checkers";
     static final String PASS = "Trunkswilltry001!";
 
     
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-    static final String DB_URL = "jdbc:mysql://41.185.26.152:3306/SpontaneousDatabase";
+    static final String DB_URL = "jdbc:mysql://41.185.26.152:3306/dataferret";
     
-    public void getConnection() throws SQLException, ClassNotFoundException{
+    public static Statement getConnection() throws SQLException, ClassNotFoundException{
         Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection(DB_URL,USER,PASS);
-        stmt = conn.createStatement();
+        Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+        Statement stmt = conn.createStatement();
+        return  stmt;
     }
     
-    public void closeConnection() throws SQLException{
-        if(res != null)
-            res.close();
-        stmt.close();
-        conn.close();
-    }
     
-    public ResultSet getUser(String userId) throws SQLException, ClassNotFoundException {
-        getConnection(); 
+    public static ResultSet getUser(String userId) throws SQLException, ClassNotFoundException {
        
-        res = stmt.executeQuery("SELECT * FROM Users WHERE userId = '" + userId + "'");
-         
-        closeConnection();
+        ResultSet res = getData("SELECT * FROM Users WHERE userId = '" + userId + "'");
         
         return res;
     }
     
-    public ResultSet saveUser(int twitterId, String screenName) throws SQLException, ClassNotFoundException {
-        getConnection(); 
+    public static int saveUser(long twitterId, String screenName, String userName) throws SQLException, ClassNotFoundException {
+        ResultSet result = null;
+        try
+        {      
+        int ret = -1;
         
-        ResultSet result = stmt.executeQuery("SELECT * FROM Users WHERE twitterId = '" + twitterId + "'");
-        if(result != null || result.next()){ 
-            return result;
+        result = getData("SELECT userId FROM Users WHERE twitterId = " + twitterId);
+        if(result == null || !result.next())
+        {    
+            runQuery("INSERT INTO Users (screenName, twitterId, userName) VALUES ('" + screenName + "', " + twitterId + ", '" + userName + "')");
+            result = getData("SELECT userId FROM Users WHERE twitterId = '" + twitterId + "'");
+
+            if(result.next())
+                ret = result.getInt("userId");
         }
-                
-        stmt.executeQuery("INSERT INTO Users VALUES ('" + screenName + "', '" + twitterId + "')");
-        result = stmt.executeQuery("SELECT * FROM Users WHERE twitterId = '" + twitterId + "'");
+        else
+            ret = result.getInt("userId");
         
-        closeConnection();
-        
-        return result;
+        return ret;
+        }
+        catch(Exception ex)
+        {
+            return -1;
+        }
+        finally
+        {
+            result.close();
+        }
     }
     
-    public void saveLogin(int userId, String ipAddress) throws SQLException, ClassNotFoundException {
-        getConnection(); 
-        
-        stmt.executeQuery("INSERT INTO Login VALUES ('" + userId + "', NOW(), '" + ipAddress + "')");
-        
-        closeConnection();
+    public static void saveLogin(int userId, String ipAddress) throws SQLException, ClassNotFoundException {
+        runQuery("INSERT INTO Logins (userId, ipAddress) VALUES ('" + userId + "', '" + ipAddress + "')");
     }
     
-    public void saveDownload(int userId, String filePath) throws SQLException, ClassNotFoundException {
-        getConnection(); 
+    public static void saveDownload(int userId, String filePath) throws SQLException, ClassNotFoundException {
+        ResultSet res = getData("SELECT MAX(loginId) FROM Logins WHERE userId = " + userId);
+        try
+        {
+            res.next();
+            
+            int loginId = res.getInt("MAX(loginId)");
         
-        res = stmt.executeQuery("SELECT MAX(loginId) FROM Login WHERE userId = '" + userId + "'");
-        
-        int loginId = res.getInt("userId");
-        
-        stmt.executeQuery("INSERT INTO Downloads VALUES ('" + userId + "', '" + loginId + "', '" + filePath + "')");
-        
-        closeConnection();
+            runQuery("INSERT INTO Downloads (userId, loginId, filePath) VALUES ('" + userId + "', " + loginId + ", '" + filePath + "')");
+        }
+        catch(Exception ex)
+        {
+            int i = 0;
+        }
+        finally
+        {
+            res.close();
+        }
     }
     
-    public ResultSet getData(String sql) throws SQLException, ClassNotFoundException{
-        getConnection(); 
+    public static ResultSet getData(String sql) throws SQLException, ClassNotFoundException{
+        Statement stmt = getConnection(); 
         
-        res = stmt.executeQuery(sql);
-         
+        ResultSet res = stmt.executeQuery(sql);
+        
+        stmt.closeOnCompletion();
+        
         return res;
     }
     
-    public void runQuery(String sql) throws SQLException, ClassNotFoundException{
-        getConnection(); 
+    public static void runQuery(String sql) throws SQLException, ClassNotFoundException{
+        Statement stmt = getConnection(); 
         
         stmt.execute(sql);
         
-        closeConnection();
+        stmt.closeOnCompletion();
     }
 }
