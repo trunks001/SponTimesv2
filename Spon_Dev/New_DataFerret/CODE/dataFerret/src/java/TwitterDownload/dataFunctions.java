@@ -21,7 +21,7 @@ public class dataFunctions {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
     
     public static Statement getConnection() throws SQLException, ClassNotFoundException, IOException{
-        Scanner scanner = new Scanner(new File("settings.config"));
+        Scanner scanner = new Scanner(new File("../../../web/settings/settings.config"));
         String DB_Username = "";
         String DB_Password = "";
         String DB_URL = "";
@@ -143,7 +143,7 @@ public class dataFunctions {
     
      public static void logError(Exception ex) {
         try {
-            FileWriter writer = new FileWriter(new File("error.log"));
+            FileWriter writer = new FileWriter(new File("../../../web/log/error.log"));
             writer.write("Error while writing to database at time " + System.currentTimeMillis() + ", message: " + ex.getLocalizedMessage());
             writer.flush();
             writer.close();
