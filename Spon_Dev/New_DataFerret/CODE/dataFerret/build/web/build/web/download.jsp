@@ -13,7 +13,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="TwitterDownload.TwitterHandler" %>
 <%@page import="TwitterDownload.TwitterExel" %>
-<%@page import="TwitterDownload.dataMethods" %>
 <%@page import="twitter4j.Status" %>
 <%@page import="twitter4j.ResponseList" %>
 <%@page import="java.io.File" %>
@@ -36,23 +35,6 @@
     <body>
         <p>Your download  will begin shortly, please be patient</p>
         <%
-            String ip = request.getHeader("X-Forwarded-For");  
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-                ip = request.getHeader("Proxy-Client-IP");  
-            }  
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-                ip = request.getHeader("WL-Proxy-Client-IP");  
-            }  
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-                ip = request.getHeader("HTTP_CLIENT_IP");  
-            }  
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-                ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
-            }  
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-                ip = request.getRemoteAddr();  
-            }
-            
             TwitterHandler tweeter = (TwitterHandler)session.getAttribute("tweeter");
             
             int pageSize = 1500;
@@ -133,14 +115,12 @@
                         }
                     } catch (IOException ex) {
 
-                    } 
+                    }
                     ServletOutputStream outs = response.getOutputStream();
                     bos.writeTo(outs);
                 } catch (Exception e) {
                     // TODO: handle exception
                 } finally {
-                    int id = Integer.parseInt(session.getAttribute("userId").toString());
-                    dataMethods.saveDownload(id, filePath);
                     if (file != null) {
                         file = null;
                     }

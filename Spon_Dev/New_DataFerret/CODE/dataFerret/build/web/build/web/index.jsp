@@ -15,7 +15,6 @@
 <%@page import="twitter4j.Status"%>
 <%@page import="TwitterDownload.TwitterHandler" %>
 <%@page import="TwitterDownload.TwitterExel" %>
-<%@page import="TwitterDownload.dataMethods" %>
 <%@page import="java.io.*" %>
 <%@page import="java.io.File" %>
 <%@page import="java.io.FileInputStream" %>
@@ -25,7 +24,6 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="jxl.*" %>
 <%@page import="jxl.write.*" %>
-<%@page import="java.sql.*" %>
 
 <%!
     TwitterHandler tweeter;
@@ -34,23 +32,6 @@
 %>
 
 <%
-    String ip = request.getHeader("X-Forwarded-For");  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("Proxy-Client-IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("WL-Proxy-Client-IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("HTTP_CLIENT_IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getRemoteAddr();  
-    }
-    
     String callBack = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp?logged=1";
     
     if(request.getParameter("logged") == null || session.getAttribute("tweeter") == null)
@@ -67,22 +48,8 @@
     {   
         if(pin != null  && !pin.equals("null"))
         {
-            AccessToken access = tweeter.getAccessToken(pin);
-            if(access != null)
-            {
-                session.setAttribute("accessToken", access);
-                response.sendRedirect("/dataFerret/index.jsp?logged=1");
-                long twitterUserId = tweeter.getUserID();
-                session.setAttribute("twitterUserId", twitterUserId);
-                String screenName = tweeter.getScreenName();
-                String userName = tweeter.getUserName();
-                int user = dataMethods.saveUser(twitterUserId, screenName, userName);
-                if(user > 0)
-                {
-                    dataMethods.saveLogin(user, ip);
-                    session.setAttribute("userId", user);
-                }
-            }
+            session.setAttribute("accessToken", tweeter.getAccessToken(pin));
+            response.sendRedirect("/dataFerret/index.jsp?logged=1");
         }
         else
         {
@@ -166,7 +133,7 @@
                             <li><a href="#" data-nav-section="footer"><span>Contact Us</span></a></li>
                             
                             <%
-                                if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+                                if(session.getAttribute("accessToken") == null)
                                 {                                   
                                     out.println("<li class=\"call-to-action\"><a class=\"external\" href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Sign In With Twitter</span></a></li>");
                                 }
@@ -182,7 +149,7 @@
             </div>
         </header>
 
-        <section id="fh5co-home" data-section="home" style="background-image: url(images/DataFerretHome.jpg);" data-stellar-background-ratio="0.5">
+        <section id="fh5co-home" data-section="home" style="background-image: url(images/twitterdata.png);" data-stellar-background-ratio="0.5">
             <div class="gradient">
             <div class="container">
                 <div class="text-wrap">
@@ -198,25 +165,15 @@
                                 <p></p>
                                 <div class="call-to-action">
                                     <%
-                                        if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+                                        if(session.getAttribute("accessToken") == null)
                                         {
                                             out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
                                         }
                                         else
                                         {
-                                            out.println("<div class=\"col-md-12 to-animate\">");                                      
-                                                out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
-                                                    out.println("<fieldset>");
-                                                        out.println("<div class=\"row\">");
-                                                            out.println("<input id=\"twitterhandel\" style=\"width: 600px; display: inline-block; \" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" />");
-                                                            out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
-                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
-                                                            out.println("</div>");
-                                                        out.println("</div>");
-                                                    out.println("</fieldset>");
-                                                out.println("</form>");
-                                            out.println("</div>");
+                                            out.println("<div class=\"col-md-6 to-animate\"><form class=\"download to-animate\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" /><input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form></div>");
+                                            
+                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a>");                                            
                                         }
                                     %>
                                     
@@ -315,23 +272,23 @@
         </section>
                    
         <%
-            if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+            if(session.getAttribute("accessToken") == null)
             {
                 out.println("<div class=\"getting-started getting-started-1\">"
-                    + "<div class=\"container\">"
-                       + "<div class=\"row\">"
-                           + "<div class=\"col-md-6 to-animate\">"
-                               + "<h3>Get Started Here</h3>"
-                               + "<p>Sign in with your Twitter account and start downloading data from Twitter</p>"
-                           + "</div>"
-                           + "<div class=\"col-md-6 to-animate-2\">"
-                               + "<div class=\"call-to-action text-right\">"
-                                   + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up With Twitter</a>"
-                               + "</div>"
-                           + "</div>"
-                       + "</div>"
-                   + "</div>"
-               + "</div>");
+             + "<div class=\"container\">"
+                + "<div class=\"row\">"
+                    + "<div class=\"col-md-6 to-animate\">"
+                        + "<h3>Get Started Here</h3>"
+                        + "<p>Sign in with your Twitter account and start downloading data from Twitter</p>"
+                    + "</div>"
+                    + "<div class=\"col-md-6 to-animate-2\">"
+                        + "<div class=\"call-to-action text-right\">"
+                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up With Twitter</a>"
+                        + "</div>"
+                    + "</div>"
+                + "</div>"
+            + "</div>"
+        + "</div>");
             }
         %>
                                     
@@ -456,7 +413,7 @@
 
         
         <%
-            if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+            if(session.getAttribute("accessToken") == null)
             {
                 out.println("<div class=\"getting-started getting-started-1\">"
              + "<div class=\"container\">"

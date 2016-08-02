@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
-public class dataFunctions {
+public class dataMethods {
     
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
     
@@ -60,14 +60,18 @@ public class dataFunctions {
     }
     
     
-    public static ResultSet getUser(String userId) throws SQLException, ClassNotFoundException {
-       
+    public static ResultSet getUser(String userId) {
+       try {
         ResultSet res = getData("SELECT * FROM Users WHERE userId = '" + userId + "'");
         
         return res;
+       } catch(Exception ex) {
+           logError(ex);
+           return null;
+       }
     }
     
-    public static int saveUser(long twitterId, String screenName, String userName) throws SQLException, ClassNotFoundException {
+    public static int saveUser(long twitterId, String screenName, String userName) {
         ResultSet result = null;
         try
         {      
@@ -85,6 +89,7 @@ public class dataFunctions {
         else
             ret = result.getInt("userId");
         
+        result.close();
         return ret;
         }
         catch(Exception ex)
@@ -92,53 +97,60 @@ public class dataFunctions {
             logError(ex);
             return -1;
         }
-        finally
-        {
-            result.close();
-        }
     }
      
-    public static void saveLogin(int userId, String ipAddress) throws SQLException, ClassNotFoundException {
-        runQuery("INSERT INTO Logins (userId, ipAddress) VALUES ('" + userId + "', '" + ipAddress + "')");
+    public static void saveLogin(int userId, String ipAddress) {
+        try {
+            runQuery("INSERT INTO Logins (userId, ipAddress) VALUES ('" + userId + "', '" + ipAddress + "')");
+        } catch(Exception ex) {
+            logError(ex);
+        }
+        
     }
     
-    public static void saveDownload(int userId, String filePath) throws SQLException, ClassNotFoundException {
-        ResultSet res = getData("SELECT MAX(loginId) FROM Logins WHERE userId = " + userId);
+    public static void saveDownload(int userId, String filePath) {
+        ResultSet res;
         try
         {
+            res = getData("SELECT MAX(loginId) FROM Logins WHERE userId = " + userId);
             res.next();
             
             int loginId = res.getInt("MAX(loginId)");
         
             runQuery("INSERT INTO Downloads (userId, loginId, filePath) VALUES ('" + userId + "', " + loginId + ", '" + filePath + "')");
+            res.close();
         }
         catch(Exception ex)
         {
             logError(ex);
-            int i = 0;
-        }
-        finally
-        {
-            res.close();
         }
     }
     
-    public static ResultSet getData(String sql) throws SQLException, ClassNotFoundException{
-        Statement stmt = getConnection(); 
-        
-        ResultSet res = stmt.executeQuery(sql);
-        
-        stmt.closeOnCompletion();
-        
-        return res;
+    public static ResultSet getData(String sql) {
+        try {
+            Statement stmt = getConnection(); 
+
+            ResultSet res = stmt.executeQuery(sql);
+
+            stmt.closeOnCompletion();
+
+            return res;
+        } catch(Exception ex) {
+            logError(ex);
+            return null;
+        }
     }
     
-    public static void runQuery(String sql) throws SQLException, ClassNotFoundException{
-        Statement stmt = getConnection(); 
-        
-        stmt.execute(sql);
-        
-        stmt.closeOnCompletion();
+    public static void runQuery(String sql) {
+        try {
+            Statement stmt = getConnection(); 
+
+            stmt.execute(sql);
+
+            stmt.closeOnCompletion();
+        } catch(Exception ex) {
+            logError(ex);
+        }
     }
     
      public static void logError(Exception ex) {
