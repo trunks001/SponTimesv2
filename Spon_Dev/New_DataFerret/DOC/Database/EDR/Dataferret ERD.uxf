@@ -4,56 +4,57 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>290</y>
+      <x>40</x>
+      <y>340</y>
       <w>210</w>
-      <h>90</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Users
 --
-id: int PRIMARY
+userId: int PRIMARY
+twitterId: long
 screenName: string
-twitterId: int</panel_attributes>
+userName: string
+email: String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>70</y>
+      <x>200</x>
+      <y>120</y>
       <w>210</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>Downloads
 --
-id: int PRIMARY
-userId: int SECONDARY
-login: int SECONDARY
-excelFilePath: string</panel_attributes>
+downloadId: int PRIMARY
+userId: int FOREIGN
+login: int FOREIGN
+filePath: string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>300</y>
+      <x>350</x>
+      <y>350</y>
       <w>210</w>
-      <h>100</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Login
 --
-id: int PRIMARY
-userId: int SECONDARY
+loginId: int PRIMARY
+userId: int FOREIGN
 time: date
-ipAddress: string
-</panel_attributes>
+ipAddress: string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>200</y>
+      <x>220</x>
+      <y>250</y>
       <w>50</w>
       <h>110</h>
     </coordinates>
@@ -65,8 +66,8 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>200</y>
+      <x>370</x>
+      <y>250</y>
       <w>50</w>
       <h>120</h>
     </coordinates>
@@ -78,8 +79,8 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>330</y>
+      <x>240</x>
+      <y>380</y>
       <w>130</w>
       <h>40</h>
     </coordinates>

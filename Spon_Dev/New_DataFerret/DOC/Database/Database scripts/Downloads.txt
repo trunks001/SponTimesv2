@@ -1,9 +1,0 @@
-CREATE TABLE Downloads
-(
-downloadId int NOT NULL AUTO_INCREMENT,
-userId int,
-loginId int,
-CONSTRAINT pk_DownloadId PRIMARY KEY (downloadId)
-CONSTRAINT fk_Downloads_Users FOREIGN KEY (userId) REFERENCES Users(userId) //TODO not sure if 'Users(userId)' should be 'Users(pk_UserId)'
-CONSTRAINT fk_Downloads_Login FOREIGN KEY (loginId) REFERENCES Users(loginId) //TODO not sure if 'Users(loginId)' should be 'Users(pk_LoginId)'
-)
