@@ -10,27 +10,51 @@ package TwitterDownload;
  *
  * @author Bones
  */
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Scanner;
 
 public class dataFunctions {
     
-//    static final String USER = "root";
-//    static final String PASS = "root";
-//
-//    
-//    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-//    static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/dataferret";
-    
-    static final String USER = "checkers";
-    static final String PASS = "Trunkswilltry001!";
-
-    
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-    static final String DB_URL = "jdbc:mysql://41.185.26.152:3306/dataferret";
     
-    public static Statement getConnection() throws SQLException, ClassNotFoundException{
+    public static Statement getConnection() throws SQLException, ClassNotFoundException, IOException{
+        Scanner scanner = new Scanner(new File("settings.config"));
+        String DB_Username = "";
+        String DB_Password = "";
+        String DB_URL = "";
+        String DB_Name = "";
+        
+        while(scanner.hasNext()) {
+            String line = scanner.nextLine();
+            int index = line.indexOf(":");
+            String key = line.substring(0, index).trim();
+            String value = line.substring(index + 1, line.length()).trim();
+            
+            switch(key) {
+                case "databaseURL": 
+                    DB_URL = value;
+                    if(DB_URL.charAt(DB_URL.length() - 1) != '/') {
+                        DB_URL += "/";
+                    }
+                    break;
+                case "databaseName":
+                    DB_Name = value;
+                    break;
+                case "databaseUsername":
+                    DB_Username = value;
+                    break;
+                case "databasePassword":
+                    DB_Password = value;
+                    break;
+            }
+        }
+        scanner.close();
+        
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+        Connection conn = DriverManager.getConnection(DB_URL + DB_Name, DB_Username, DB_Password);
         Statement stmt = conn.createStatement();
         return  stmt;
     }
@@ -65,6 +89,7 @@ public class dataFunctions {
         }
         catch(Exception ex)
         {
+            logError(ex);
             return -1;
         }
         finally
@@ -72,7 +97,7 @@ public class dataFunctions {
             result.close();
         }
     }
-    
+     
     public static void saveLogin(int userId, String ipAddress) throws SQLException, ClassNotFoundException {
         runQuery("INSERT INTO Logins (userId, ipAddress) VALUES ('" + userId + "', '" + ipAddress + "')");
     }
@@ -89,6 +114,7 @@ public class dataFunctions {
         }
         catch(Exception ex)
         {
+            logError(ex);
             int i = 0;
         }
         finally
@@ -113,5 +139,16 @@ public class dataFunctions {
         stmt.execute(sql);
         
         stmt.closeOnCompletion();
+    }
+    
+     public static void logError(Exception ex) {
+        try {
+            FileWriter writer = new FileWriter(new File("error.log"));
+            writer.write("Error while writing to database at time " + System.currentTimeMillis() + ", message: " + ex.getLocalizedMessage());
+            writer.flush();
+            writer.close();
+        } catch(IOException e) {
+            System.out.println("IOException occured while trying to log error, message: " + e.getLocalizedMessage());
+        }
     }
 }
