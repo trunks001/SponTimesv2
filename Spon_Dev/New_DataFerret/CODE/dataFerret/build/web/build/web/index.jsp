@@ -15,7 +15,6 @@
 <%@page import="twitter4j.Status"%>
 <%@page import="TwitterDownload.TwitterHandler" %>
 <%@page import="TwitterDownload.TwitterExel" %>
-<%@page import="TwitterDownload.dataFunctions" %>
 <%@page import="java.io.*" %>
 <%@page import="java.io.File" %>
 <%@page import="java.io.FileInputStream" %>
@@ -25,33 +24,14 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="jxl.*" %>
 <%@page import="jxl.write.*" %>
-<%@page import="java.sql.*" %>
 
 <%!
     TwitterHandler tweeter;
     private String a;
     String pin;
-    dataFunctions data = new dataFunctions();
 %>
 
 <%
-    String ip = request.getHeader("X-Forwarded-For");  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("Proxy-Client-IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("WL-Proxy-Client-IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("HTTP_CLIENT_IP");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
-    }  
-    if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
-        ip = request.getRemoteAddr();  
-    }
-    
     String callBack = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp?logged=1";
     
     if(request.getParameter("logged") == null || session.getAttribute("tweeter") == null)
@@ -70,12 +50,6 @@
         {
             session.setAttribute("accessToken", tweeter.getAccessToken(pin));
             response.sendRedirect("/dataFerret/index.jsp?logged=1");
-            int twitterUserId = (int) tweeter.getUserID();
-            session.setAttribute("twitterUserId", twitterUserId);
-            String screenName = tweeter.getScreenName();
-            //ResultSet user = data.saveUser(twitterUserId, screenName);
-            //data.saveLogin(user.getInt("userId"), ip);
-            //session.setAttribute("userId", user.getInt("userId"));
         }
         else
         {
@@ -175,7 +149,7 @@
             </div>
         </header>
 
-        <section id="fh5co-home" data-section="home" style="background-image: url(images/DataFerretHome.jpg);" data-stellar-background-ratio="0.5">
+        <section id="fh5co-home" data-section="home" style="background-image: url(images/twitterdata.png);" data-stellar-background-ratio="0.5">
             <div class="gradient">
             <div class="container">
                 <div class="text-wrap">
@@ -197,19 +171,9 @@
                                         }
                                         else
                                         {
-                                            out.println("<div class=\"col-md-12 to-animate\">");                                      
-                                                out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
-                                                    out.println("<fieldset>");
-                                                        out.println("<div class=\"row\">");
-                                                            out.println("<input id=\"twitterhandel\" style=\"width: 600px; display: inline-block; \" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" />");
-                                                            out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
-                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
-                                                            out.println("</div>");
-                                                        out.println("</div>");
-                                                    out.println("</fieldset>");
-                                                out.println("</form>");
-                                            out.println("</div>");
+                                            out.println("<div class=\"col-md-6 to-animate\"><form class=\"download to-animate\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" /><input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form></div>");
+                                            
+                                            out.println("<a href=\"download.jsp\" class=\"download to-animate\">Download Your Twitter Data</a>");                                            
                                         }
                                     %>
                                     

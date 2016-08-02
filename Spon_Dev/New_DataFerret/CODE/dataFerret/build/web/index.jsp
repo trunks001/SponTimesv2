@@ -197,7 +197,19 @@
                                         }
                                         else
                                         {
-                                            out.println("<div class=\"col-md-12 to-animate\"><form class=\"download to-animate\" action=\"download.jsp\"><fieldset><input id=\"twitterhandel\" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" /><p><input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" /><input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" /></p></fieldset></form></div>");                                      
+                                            out.println("<div class=\"col-md-12 to-animate\">");                                      
+                                                out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
+                                                    out.println("<fieldset>");
+                                                        out.println("<div class=\"row\">");
+                                                            out.println("<input id=\"twitterhandel\" style=\"width: 600px; display: inline-block; \" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" />");
+                                                            out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
+                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
+                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
+                                                            out.println("</div>");
+                                                        out.println("</div>");
+                                                    out.println("</fieldset>");
+                                                out.println("</form>");
+                                            out.println("</div>");
                                         }
                                     %>
                                     
