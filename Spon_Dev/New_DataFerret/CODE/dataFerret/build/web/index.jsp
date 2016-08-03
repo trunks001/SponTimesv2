@@ -71,7 +71,6 @@
             if(access != null)
             {
                 session.setAttribute("accessToken", access);
-                response.sendRedirect("/dataFerret/index.jsp?logged=1");
                 long twitterUserId = tweeter.getUserID();
                 session.setAttribute("twitterUserId", twitterUserId);
                 String screenName = tweeter.getScreenName();
@@ -82,6 +81,7 @@
                     dataMethods.saveLogin(user, ip);
                     session.setAttribute("userId", user);
                 }
+                response.sendRedirect("?logged=1");
             }
         }
         else
@@ -166,7 +166,7 @@
                             <li><a href="#" data-nav-section="footer"><span>Contact Us</span></a></li>
                             
                             <%
-                                if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+                                if(session.getAttribute("accessToken") == null)
                                 {                                   
                                     out.println("<li class=\"call-to-action\"><a class=\"external\" href=\"" + a + "\"><span><i class=\"icon-twitter\"></i>Sign In With Twitter</span></a></li>");
                                 }
@@ -198,7 +198,7 @@
                                 <p></p>
                                 <div class="call-to-action">
                                     <%
-                                        if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+                                        if(session.getAttribute("accessToken") == null)
                                         {
                                             out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
                                         }
@@ -315,7 +315,7 @@
         </section>
                    
         <%
-            if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+            if(session.getAttribute("accessToken") == null)
             {
                 out.println("<div class=\"getting-started getting-started-1\">"
                     + "<div class=\"container\">"
@@ -456,7 +456,7 @@
 
         
         <%
-            if(session.getAttribute("accessToken") == null || request.getParameter("logged") == null)
+            if(session.getAttribute("accessToken") == null)
             {
                 out.println("<div class=\"getting-started getting-started-1\">"
              + "<div class=\"container\">"

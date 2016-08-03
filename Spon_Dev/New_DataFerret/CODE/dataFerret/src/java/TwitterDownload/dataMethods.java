@@ -13,48 +13,59 @@ package TwitterDownload;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import jxl.write.DateTime;
+import java.util.Date;
 
 public class dataMethods {
     
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
     
     public static Statement getConnection() throws SQLException, ClassNotFoundException, IOException{
-        Scanner scanner = new Scanner(new File("../../../web/settings/settings.config"));
-        String DB_Username = "";
-        String DB_Password = "";
-        String DB_URL = "";
-        String DB_Name = "";
+//        String path = "/settings/dataferret.config";
+//        
+//        File test = new File(path);
+//        String testPath = test.getAbsolutePath();
+//        
+//        Scanner scanner = new Scanner(new File(path));
+        String DB_Username = "checkers";
+        String DB_Password = "Trunkswilltry001!";
+        String DB_URL = "41.185.26.152";
+        String DB_Name = "dataferret";
         
-        while(scanner.hasNext()) {
-            String line = scanner.nextLine();
-            int index = line.indexOf(":");
-            String key = line.substring(0, index).trim();
-            String value = line.substring(index + 1, line.length()).trim();
-            
-            switch(key) {
-                case "databaseURL": 
-                    DB_URL = value;
-                    if(DB_URL.charAt(DB_URL.length() - 1) != '/') {
-                        DB_URL += "/";
-                    }
-                    break;
-                case "databaseName":
-                    DB_Name = value;
-                    break;
-                case "databaseUsername":
-                    DB_Username = value;
-                    break;
-                case "databasePassword":
-                    DB_Password = value;
-                    break;
-            }
-        }
-        scanner.close();
+//        while(scanner.hasNext()) {
+//            String line = scanner.nextLine();
+//            int index = line.indexOf(":");
+//            String key = line.substring(0, index).trim();
+//            String value = line.substring(index + 1, line.length()).trim();
+//            
+//            switch(key) {
+//                case "databaseURL": 
+//                    DB_URL = value;
+//                    if(DB_URL.charAt(DB_URL.length() - 1) != '/') {
+//                        DB_URL += "/";
+//                    }
+//                    break;
+//                case "databaseName":
+//                    DB_Name = value;
+//                    break;
+//                case "databaseUsername":
+//                    DB_Username = value;
+//                    break;
+//                case "databasePassword":
+//                    DB_Password = value;
+//                    break;
+//            }
+//        }
+//        scanner.close();
         
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(DB_URL + DB_Name, DB_Username, DB_Password);
+        Connection conn = DriverManager.getConnection("jdbc:mysql://" + DB_URL + " :3306/" + DB_Name, DB_Username, DB_Password);
         Statement stmt = conn.createStatement();
         return  stmt;
     }
@@ -155,8 +166,31 @@ public class dataMethods {
     
      public static void logError(Exception ex) {
         try {
-            FileWriter writer = new FileWriter(new File("../../../web/log/error.log"));
-            writer.write("Error while writing to database at time " + System.currentTimeMillis() + ", message: " + ex.getLocalizedMessage());
+            String path  = "/log";
+            
+            File dir = new File(path);
+            
+            if(!dir.exists())
+                dir.mkdir();
+            
+            path = path + "/dataferret_error.log";
+            
+            File file  = new File(path);
+            
+            if(!file.exists())
+                file.createNewFile();
+            
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+                    
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            ex.printStackTrace(pw);
+            
+            String error = "Database Error: " + dateFormat.format(date) + ", message: " + sw.toString() + "\r\n";
+            
+            FileWriter writer = new FileWriter(new File(path), true);
+            writer.append(error);
             writer.flush();
             writer.close();
         } catch(IOException e) {
