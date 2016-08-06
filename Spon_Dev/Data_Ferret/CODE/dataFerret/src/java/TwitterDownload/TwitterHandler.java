@@ -198,7 +198,6 @@ public class TwitterHandler {
         if(pageSize > 18000)
             pageSize = 18000;
         
-        long lastID = Long.MAX_VALUE;
         ArrayList<Status> tweets = new ArrayList<Status>();
         //boolean last = false;
         
@@ -206,14 +205,14 @@ public class TwitterHandler {
         {
             Query query = new Query(searchPhrase);
             
-            while(tweets.size() < pageSize && query != null)
-            {   
+            int limit = getRemainingSearchRateLimit();
+            
+            while(tweets.size() < pageSize && query != null && limit > 0)
+            {            
                 if (pageSize - tweets.size() > 100)
                     query.setCount(100);
                 else
                     query.setCount(pageSize - tweets.size());
-                
-                query.maxId(lastID);
                 
                 QueryResult result = twitter.search(query);
                 
@@ -221,33 +220,7 @@ public class TwitterHandler {
                 
                 query = result.nextQuery();
                 
-                if(result.getCount() < 100)
-                {
-                    break;
-                }
-                
-                
-                
-//                for (Status t: tweets) 
-//                {
-//                    if(t.getId() < lastID) 
-//                        lastID = t.getId();
-//                    else if(lastID == t.getId())
-//                    {
-//                        if(result.hasNext())
-//                        {
-//                            
-//                            break;
-//                        }
-//                        else
-//                        {
-//                            query = result.nextQuery();
-//                            last = true;
-//                            break;
-//                        }
-//                    }
-//                }
-                        
+                limit = getRemainingSearchRateLimit();        
             }
 
             return (List<Status>)tweets;
@@ -333,6 +306,25 @@ public class TwitterHandler {
         try
         {
             RateLimitStatus rateLimit = twitter.getRateLimitStatus("statuses").get("/statuses/user_timeline");
+            int restTime = rateLimit.getSecondsUntilReset();
+            return rateLimit.getRemaining();
+        }
+        catch(TwitterException ex)
+        {
+            String s = ex.toString();
+        }
+        catch(IllegalStateException ex)
+        {
+            String s = ex.toString();
+        }
+        return  -1;
+    }
+    
+    public int getRemainingSearchRateLimit()
+    {
+        try
+        {
+            RateLimitStatus rateLimit = twitter.getRateLimitStatus("search").get("/search/tweets");
             int restTime = rateLimit.getSecondsUntilReset();
             return rateLimit.getRemaining();
         }

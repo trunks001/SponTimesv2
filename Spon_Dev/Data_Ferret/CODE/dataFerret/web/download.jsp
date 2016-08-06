@@ -65,7 +65,7 @@
             
             String handel = tweeter.getScreenName();
             
-            if(handel.equalsIgnoreCase("ferretdata"))
+            if(handel.equalsIgnoreCase("ferret_data"))
                 pageSize = 36000;
             
             if(request.getParameter("twiterhandel") != null)

@@ -4,6 +4,7 @@
     Author     : Bones
 --%>
 
+<%@page import="twitter4j.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="twitter4j.Paging"%>
 <%@page import="twitter4j.ResponseList"%>
@@ -360,8 +361,40 @@
             <div class="fh5co-explore">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 col-md-push-5 to-animate-2">
-                            <img class="img-responsive" src="images/DataFerretEg.png" alt="Sample csv image">
+                        <div class="col-md-8 col-md-push-5 to-animate-2" style="overflow-y:  scroll; height: 400px" >
+                            
+                                <%
+                                    if(session.getAttribute("accessToken") != null)
+                                    {
+                                        List<Status> tweets = tweeter.getUserTimeline("@" + tweeter.getScreenName(), 50);
+                                        String tableString = "<table>"+
+                                                "<tr>"+
+                                                    "<td style=\"vertical-align: top\">Tweeted Text</td>"+
+                                                    "<td style=\"vertical-align: top\">Tweeted Date</td>"+
+                                                    "<td style=\"vertical-align: top\">Retweet Count</td>"+
+                                                    "<td style=\"vertical-align: top\">Favourite Count</td>"+
+                                                    "<td style=\"vertical-align: top\">Link</td><td style=\"vertical-align: top\">User</td>"+
+                                                "</tr>";
+                                        for(Status s : tweets)
+                                        {
+                                            tableString += "<tr>"+
+                                                    "<td>" + s.getText() + "</td>"+
+                                                    "<td>" + s.getCreatedAt()+ "</td>"+
+                                                    "<td>" + s.getRetweetCount() + "</td>"+
+                                                    "<td>" + s.getFavoriteCount() + "</td>"+
+                                                    "<td><a href=\"https://twitter.com/" + s.getUser().getScreenName() + "/status/" + s.getId() + "\" target='_blank'>Tweet</a></td>"+
+                                                    "<td>" + s.getUser().getScreenName() + "</td>"+
+                                                "</tr>";
+                                            
+                                        }
+                                        tableString += "</table>";
+                                        out.println(tableString);
+                                    }
+                                    else
+                                        out.println("<img class=\"img-responsive\" src=\"images/DataFerretEg.png\" alt=\"Sample csv image\">");
+                                %>
+                            
+                            
                         </div>
                         <div class="col-md-4 col-md-pull-8 to-animate-2">
                             <div class="mt">
@@ -498,7 +531,7 @@
                     <div class="col-md-6 to-animate">
                         <h3 class="section-title">Contact Us</h3>
                         <ul class="contact-info">                           
-                            <li><i class="icon-envelope"></i><a href="#">info@dataferret.co.za</a></li>
+                            <li><i class="icon-envelope"></i><a href="mailto: info@dataferret.co.za">info@dataferret.co.za</a></li>
                         </ul>
                         <h3 class="section-title">Connect with Us</h3>
                         <ul class="social-media">
