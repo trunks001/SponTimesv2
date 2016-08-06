@@ -136,7 +136,7 @@ public class TwitterHandler {
         if(!userName.contains(" "))
         {
             if(!userName.startsWith("@"))
-                userName = '@' + userName;
+                return getSearchTweets(userName, pageSize);
             
             long lastID = Long.MAX_VALUE;
             ArrayList<Status> tweets = new ArrayList<Status>();
@@ -179,7 +179,7 @@ public class TwitterHandler {
             catch(TwitterException ex)
             {
                 String s = ex.toString();
-                //needs to be refined to only include user not found exception
+                //TODO: needs to be refined to only include user not found exception
                 if(ex.resourceNotFound())
                     return getSearchTweets(searchPhrase, pageSize);
             }
