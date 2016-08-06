@@ -13,7 +13,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="TwitterDownload.TwitterHandler" %>
 <%@page import="TwitterDownload.TwitterExel" %>
-<%@page import="TwitterDownload.dataMethods" %>
+<%@page import="TwitterDownload.DataMethods" %>
 <%@page import="twitter4j.Status" %>
 <%@page import="twitter4j.ResponseList" %>
 <%@page import="java.io.File" %>
@@ -140,7 +140,7 @@
                     // TODO: handle exception
                 } finally {
                     int id = Integer.parseInt(session.getAttribute("userId").toString());
-                    dataMethods.saveDownload(id, filePath);
+                    DataMethods.saveDownload(id, filePath);
                     if (file != null) {
                         file = null;
                     }

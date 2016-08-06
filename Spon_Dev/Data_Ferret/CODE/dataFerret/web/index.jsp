@@ -15,7 +15,7 @@
 <%@page import="twitter4j.Status"%>
 <%@page import="TwitterDownload.TwitterHandler" %>
 <%@page import="TwitterDownload.TwitterExel" %>
-<%@page import="TwitterDownload.dataMethods" %>
+<%@page import="TwitterDownload.DataMethods" %>
 <%@page import="java.io.*" %>
 <%@page import="java.io.File" %>
 <%@page import="java.io.FileInputStream" %>
@@ -75,10 +75,10 @@
                 session.setAttribute("twitterUserId", twitterUserId);
                 String screenName = tweeter.getScreenName();
                 String userName = tweeter.getUserName();
-                int user = dataMethods.saveUser(twitterUserId, screenName, userName);
+                int user = DataMethods.saveUser(twitterUserId, screenName, userName);
                 if(user > 0)
                 {
-                    dataMethods.saveLogin(user, ip);
+                    DataMethods.saveLogin(user, ip);
                     session.setAttribute("userId", user);
                 }
                 response.sendRedirect("?logged=1");
