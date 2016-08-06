@@ -77,10 +77,13 @@
                 {
                     List<User> userFollowers = tweeter.getUserFollowers(handel, pageSize);
 
-                    if(userFollowers != null)
+                    if(userFollowers != null && userFollowers.size() > 0)
                     {
                         filePath =  TwitterExel.writeFollowers(tweeter.getUserID(), userFollowers, webRootPath);
                     }
+                    else
+                        response.sendRedirect("error.html");
+                    //TO DIFFERENT ERROR PAGE
                 }
                 else if(request.getParameter("submitFeed") != null)
                 {
@@ -88,10 +91,13 @@
 
                     limit = tweeter.getRemainingRateLimit();
 
-                    if(userTweets != null)
+                    if(userTweets != null && userTweets.size() > 0)
                     {
                         filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
                     }
+                    else
+                        response.sendRedirect("error.html");
+                    //TO DIFFERENT ERROR PAGE
                 }
                 else
                 {
@@ -99,15 +105,19 @@
 
                     limit = tweeter.getRemainingRateLimit();
 
-                    if(userTweets != null)
+                    if(userTweets != null && userTweets.size() > 0)
                     {
                         filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
                     }
+                    else
+                        response.sendRedirect("error.html");
+                    //TO DIFFERENT ERROR PAGE
                 }
             }
             catch(TwitterException ex)
             {
                 String s = ex.toString();
+                response.sendRedirect("error.html");
             }
             
             if(filePath != null)
