@@ -217,7 +217,7 @@
                                                             out.println("<input id=\"twitterhandel\" style=\"width: 600px; display: inline-block; \" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" />");
                                                             out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
                                                                 out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
-                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
+                                                                //out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
                                                             out.println("</div>");
                                                         out.println("</div>");
                                                     out.println("</fieldset>");
