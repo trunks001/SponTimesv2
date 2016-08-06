@@ -198,8 +198,8 @@
                                 <h1 class="to-animate">Welcome To Data Ferret</h1>
                                 <img src="images/ferret.png" alt=""/>
                                 <p></p>
-                                <div class="call-to-action">
-                                    <div style="border: 2px solid #5291b9; font-size: 20px; width: 350px; display: inline-block; padding: 15px 0; text-align: center;">Easily Get Twitter Timelines in Excel</div> 
+                                <div id="subheading">
+                                    <div>Easily Get Twitter Timelines in Excel</div> 
                                 </div>
                                 <p></p>
                                 <div class="call-to-action">
@@ -214,7 +214,9 @@
                                                 out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
                                                     out.println("<fieldset>");
                                                         out.println("<div class=\"row\">");
-                                                            out.println("<input id=\"twitterhandel\" style=\"width: 600px; display: inline-block; \" class=\"form-control\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" />");
+                                                            
+                                                            out.println("<input id=\"twitterhandel\" style=\"width: 600px; display: inline-block; \" class=\"form-control\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" />");
+                                                            
                                                             out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
                                                                 out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
                                                                 //out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
