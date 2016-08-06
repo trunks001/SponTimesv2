@@ -145,7 +145,7 @@ public class TwitterHandler {
             try
             {
                 int i = 0;
-                while(tweets.size() < pageSize)
+                while(tweets.size() > 0 && tweets.size() < pageSize)
                 {
                     i++;
                     if (pageSize - tweets.size() > 200)
@@ -203,7 +203,7 @@ public class TwitterHandler {
         {
             Query query = new Query(searchPhrase);
             
-            while(tweets.size() < pageSize && !last)
+            while(tweets.size() > 0 || tweets.size() < pageSize && !last)
             {   
                 if (pageSize - tweets.size() > 180)
                     query.setCount(100);
