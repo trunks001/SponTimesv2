@@ -195,15 +195,18 @@ public class TwitterHandler {
     
     public List<Status> getSearchTweets(String searchPhrase, int pageSize)
     {
+        if(pageSize > 18000)
+            pageSize = 18000;
+        
         long lastID = Long.MAX_VALUE;
         ArrayList<Status> tweets = new ArrayList<Status>();
-        boolean last = false;
+        //boolean last = false;
         
         try
         {
             Query query = new Query(searchPhrase);
             
-            while(tweets.size() < pageSize && !last)
+            while(tweets.size() < pageSize && query != null)
             {   
                 if (pageSize - tweets.size() > 100)
                     query.setCount(100);
@@ -216,29 +219,34 @@ public class TwitterHandler {
                 
                 tweets.addAll(result.getTweets());
                 
+                query = result.nextQuery();
+                
                 if(result.getCount() < 100)
                 {
                     break;
                 }
                 
-                for (Status t: tweets) 
-                {
-                    if(t.getId() < lastID) 
-                        lastID = t.getId();
-                    else if(lastID == t.getId())
-                    {
-                        if(result.hasNext())
-                        {
-                            query = result.nextQuery();
-                            break;
-                        }
-                        else
-                        {
-                            last = true;
-                            break;
-                        }
-                    }
-                }
+                
+                
+//                for (Status t: tweets) 
+//                {
+//                    if(t.getId() < lastID) 
+//                        lastID = t.getId();
+//                    else if(lastID == t.getId())
+//                    {
+//                        if(result.hasNext())
+//                        {
+//                            
+//                            break;
+//                        }
+//                        else
+//                        {
+//                            query = result.nextQuery();
+//                            last = true;
+//                            break;
+//                        }
+//                    }
+//                }
                         
             }
 
