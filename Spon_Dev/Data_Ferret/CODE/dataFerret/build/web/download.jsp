@@ -137,7 +137,7 @@
                     ServletOutputStream outs = response.getOutputStream();
                     bos.writeTo(outs);
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    response.sendRedirect("error.html");
                 } finally {
                     int id = Integer.parseInt(session.getAttribute("userId").toString());
                     DataMethods.saveDownload(id, filePath);

@@ -172,7 +172,13 @@
                                 }
                                 else
                                 {
-                                    out.println("<li class=\"navbar2\"><a href=\"#\"<span>Welcome " + tweeter.getUserName() + "!</span></a></li>");
+                                    try
+                                    {
+                                        out.println("<li class=\"navbar2\"><a href=\"#\"<span>Welcome " + tweeter.getUserName() + "!</span></a></li>");
+                                    }
+                                    catch(Exception ex){
+                                        response.sendRedirect("error.html");
+                                    }
                                 }
                             %>   
                             
@@ -182,7 +188,7 @@
             </div>
         </header>
 
-        <section id="fh5co-home" data-section="home" style="background-image: url(images/DataFerretHome.jpg);" data-stellar-background-ratio="0.5">
+        <section id="fh5co-home" data-section="home" style="background-image: url(images/twitterdata.png);" data-stellar-background-ratio="0.5">
             <div class="gradient">
             <div class="container">
                 <div class="text-wrap">
