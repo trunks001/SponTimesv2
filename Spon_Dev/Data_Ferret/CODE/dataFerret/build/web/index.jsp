@@ -306,7 +306,7 @@
                                     <h2 class="pricing-plan">Buffet</h2>
                                     <div class="price"><sup class="currency">$</sup>???</div>
                                         <div class="price small"><p>Contact us for more than 12K Tweets</p></div>
-                                        <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                        <a href="mailto: info@dataferret.co.za" class="btn btn-select-plan btn-sm">Contact Us</a>
                                         </div>
                             </div>
                             
@@ -459,7 +459,7 @@
                             </div>
                             <div class="box-faq to-animate-2">
                                 <h3>I have technical problem, who do I email? </h3>
-                                <p>Oops, we have tried our best to cover all of the bases, but sometime something slips. Drop us a line at info@dataferret.co.za and let us know what the problem is, we will get one of our team members to help you sort the problem out.</p>
+                                <p>Oops, we have tried our best to cover all of the bases, but sometime something slips. Drop us a line at <a href="mailto: info@dataferret.co.za">info@dataferret.co.za</a> and let us know what the problem is, we will get one of our team members to help you sort the problem out.</p>
                             </div>
                             <div class="box-faq to-animate-2">
                                 <h3>How do I use Data Ferret's features?</h3>
@@ -532,7 +532,7 @@
                     <div class="col-md-6 to-animate">
                         <h3 class="section-title">Contact Us</h3>
                         <ul class="contact-info">                           
-                            <li><i class="icon-envelope"></i><a href="mailto: info@dataferret.co.za">info@dataferret.co.za</a></li>
+                            <li><a href="mailto: info@dataferret.co.za"><i class="icon-envelope"></i>info@dataferret.co.za</a></li>
                         </ul>
                         <h3 class="section-title">Connect with Us</h3>
                         <ul class="social-media">
