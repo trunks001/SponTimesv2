@@ -387,6 +387,15 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none !important;
 }
 
+table.demo {
+    border: 1px solid black;
+    tr:nth-child(even) {background: #CCC};
+    tr:nth-child(odd) {background: #5291b9};
+}
+
+td.demo th.demo {
+    border: 1px solid black;
+}
 
 
 #fh5co-home .text-inner .call-to-action a.demo {

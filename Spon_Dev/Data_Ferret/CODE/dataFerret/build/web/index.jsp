@@ -255,7 +255,7 @@
 
                     <div class="row">
                         <div class="pricing">
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Starter</h2>
                                     <div class="price"><sup class="currency">$</sup>1.99</div>
@@ -264,7 +264,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Beginner</h2>
                                     <div class="price"><sup class="currency">$</sup>2.99</div>
@@ -273,7 +273,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Basic</h2>
                                     <div class="price"><sup class="currency">$</sup>3.99</div>
@@ -282,7 +282,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Intermediate</h2>
                                     <div class="price"><sup class="currency">$</sup>4.99</div>
@@ -291,7 +291,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Expert</h2>
                                     <div class="price"><sup class="currency">$</sup>6.99</div>                                    
@@ -300,10 +300,10 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Buffet</h2>
-                                    <div class="price"><sup class="currency">$</sup>6.99</div>
+                                    <div class="price"><sup class="currency">$</sup>???</div>
                                         <div class="price small"><p>Contact us for more than 12K Tweets</p></div>
                                         <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
                                         </div>
@@ -367,23 +367,24 @@
                                     if(session.getAttribute("accessToken") != null)
                                     {
                                         List<Status> tweets = tweeter.getUserTimeline("@" + tweeter.getScreenName(), 50);
-                                        String tableString = "<table>"+
-                                                "<tr>"+
-                                                    "<td style=\"vertical-align: top\">Tweeted Text</td>"+
-                                                    "<td style=\"vertical-align: top\">Tweeted Date</td>"+
-                                                    "<td style=\"vertical-align: top\">Retweet Count</td>"+
-                                                    "<td style=\"vertical-align: top\">Favourite Count</td>"+
-                                                    "<td style=\"vertical-align: top\">Link</td><td style=\"vertical-align: top\">User</td>"+
+                                        String tableString = "<table class=\"demo\">"+
+                                                "<tr class=\"demo\">"+
+                                                    "<th class=\"demo\">Tweeted Text</th>"+
+                                                    "<th class=\"demo\">Tweeted Date</th>"+
+                                                    "<th class=\"demo\">Retweet Count</th>"+
+                                                    "<th class=\"demo\">Favourite Count</th>"+
+                                                    "<th class=\"demo\">Link</th>"+
+                                                    "<th class=\"demo\">User</th>"+
                                                 "</tr>";
                                         for(Status s : tweets)
                                         {
-                                            tableString += "<tr>"+
-                                                    "<td>" + s.getText() + "</td>"+
-                                                    "<td>" + s.getCreatedAt()+ "</td>"+
-                                                    "<td>" + s.getRetweetCount() + "</td>"+
-                                                    "<td>" + s.getFavoriteCount() + "</td>"+
-                                                    "<td><a href=\"https://twitter.com/" + s.getUser().getScreenName() + "/status/" + s.getId() + "\" target='_blank'>Tweet</a></td>"+
-                                                    "<td>" + s.getUser().getScreenName() + "</td>"+
+                                            tableString += "<tr class=\"demo\">"+
+                                                    "<td class=\"demo\">" + s.getText() + "</td>"+
+                                                    "<td class=\"demo\">" + s.getCreatedAt()+ "</td>"+
+                                                    "<td class=\"demo\">" + s.getRetweetCount() + "</td>"+
+                                                    "<td class=\"demo\">" + s.getFavoriteCount() + "</td>"+
+                                                    "<td class=\"demo\"><a href=\"https://twitter.com/" + s.getUser().getScreenName() + "/status/" + s.getId() + "\" target='_blank'>Tweet</a></td>"+
+                                                    "<td class=\"demo\">" + s.getUser().getScreenName() + "</td>"+
                                                 "</tr>";
                                             
                                         }
