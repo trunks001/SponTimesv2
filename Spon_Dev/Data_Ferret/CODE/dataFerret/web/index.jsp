@@ -194,15 +194,17 @@
             <div class="container">
                 <div class="text-wrap">
                     <div class="text-inner">
-                        <div class="row">
-                            <div class="col-md-12">
+                        <div class="col-md-12">
+                             <div class="row" style="margin-top: 20px;">
                                 <h1 class="to-animate">Welcome To Data Ferret</h1>
                                 <img src="images/ferret.png" alt=""/>
-                                <p></p>
+                             </div>
+                            <div class="row" style="margin-top: 20px;">
                                 <div id="subheading">
                                     <div>Easily Get Twitter Timelines in Excel</div> 
                                 </div>
-                                <p></p>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
                                 <div class="call-to-action">
                                     <%
                                         if(session.getAttribute("accessToken") == null)
@@ -215,14 +217,13 @@
                                                 out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
                                                     out.println("<fieldset>");
                                                         out.println("<div class=\"row\">");
-                                                            
-                                                            out.println("<input id=\"twitterhandel\" style=\"width: 600px; display: inline-block; \" class=\"form-control\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword\" placeholder=\"Twitter Handel\" name=\"twiterhandel\" type=\"text\" />");
-                                                            
-                                                            out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                                out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
-                                                                //out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
-                                                            out.println("</div>");
+                                                            out.println("<input id=\"twitterhandel\" style=\"width: 40%; min-width: 350px; display: inline-block; \" class=\"form-control\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword\" placeholder=\"Twitter Handel*\" name=\"twiterhandel\" type=\"text\" />");
                                                         out.println("</div>");
+                                                        out.println("<div class=\"row\" style=\"width: 40%; min-width: 350px; display: inline-block; text-align: left;\"><p>*Note: hover over for usage guidlines</p></div>");
+                                                        out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
+                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
+                                                            //out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
+                                                            out.println("</div>");
                                                     out.println("</fieldset>");
                                                 out.println("</form>");
                                             out.println("</div>");
@@ -335,7 +336,7 @@
                            + "</div>"
                            + "<div class=\"col-md-6 to-animate-2\">"
                                + "<div class=\"call-to-action text-right\">"
-                                   + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up With Twitter</a>"
+                                   + "<a href=\"" + a + "\" class=\"sign-up\">Sign In With Twitter</a>"
                                + "</div>"
                            + "</div>"
                        + "</div>"
@@ -361,21 +362,22 @@
             <div class="fh5co-explore">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 col-md-push-5 to-animate-2" style="overflow-y:  scroll; height: 400px" >
-                            
+                        <div class="col-md-8 col-md-push-5 to-animate-2 tweet-table">
                                 <%
                                     if(session.getAttribute("accessToken") != null)
                                     {
                                         List<Status> tweets = tweeter.getUserTimeline("@" + tweeter.getScreenName(), 50);
                                         String tableString = "<table class=\"demo\">"+
-                                                "<tr class=\"demo\">"+
-                                                    "<th class=\"demo\">Tweeted Text</th>"+
-                                                    "<th class=\"demo\">Tweeted Date</th>"+
-                                                    "<th class=\"demo\">Retweet Count</th>"+
-                                                    "<th class=\"demo\">Favourite Count</th>"+
-                                                    "<th class=\"demo\">Link</th>"+
-                                                    "<th class=\"demo\">User</th>"+
-                                                "</tr>";
+                                                "<thead class=\"demo\">" +
+                                                    "<tr class=\"demo\">"+
+                                                        "<th class=\"demo\">Tweeted Text</th>"+
+                                                        "<th class=\"demo\">Tweeted Date</th>"+
+                                                        "<th class=\"demo\">Retweet Count</th>"+
+                                                        "<th class=\"demo\">Favourite Count</th>"+
+                                                        "<th class=\"demo\">Link</th>"+
+                                                        "<th class=\"demo\">User</th>"+
+                                                    "</tr>";
+                                                
                                         for(Status s : tweets)
                                         {
                                             tableString += "<tr class=\"demo\">"+
@@ -383,7 +385,7 @@
                                                     "<td class=\"demo\">" + s.getCreatedAt()+ "</td>"+
                                                     "<td class=\"demo\">" + s.getRetweetCount() + "</td>"+
                                                     "<td class=\"demo\">" + s.getFavoriteCount() + "</td>"+
-                                                    "<td class=\"demo\"><a href=\"https://twitter.com/" + s.getUser().getScreenName() + "/status/" + s.getId() + "\" target='_blank'>Tweet</a></td>"+
+                                                    "<td class=\"demo\"><a class=\"twitter\" href=\"https://twitter.com/" + s.getUser().getScreenName() + "/status/" + s.getId() + "\" target='_blank'><i class=\"icon-twitter\"></i>Tweet</a></td>"+
                                                     "<td class=\"demo\">" + s.getUser().getScreenName() + "</td>"+
                                                 "</tr>";
                                             
@@ -394,11 +396,9 @@
                                     else
                                         out.println("<img class=\"img-responsive\" src=\"images/DataFerretEg.png\" alt=\"Sample csv image\">");
                                 %>
-                            
-                            
                         </div>
                         <div class="col-md-4 col-md-pull-8 to-animate-2">
-                            <div class="mt">
+                            <div class="mt" style="margin-top: 10;">
                                 <h3>Twitter timelines in an instant!</h3>
                                 <p>Data Ferret lets you enter you choose how much you want to spend, just select your plan and use our secure payment portal to purchase the Twitter data that you need, safe easy and convenient with your download available in an Excel file</p>
                                 <ul class="list-nav">
@@ -505,11 +505,11 @@
                 + "<div class=\"row\">"
                     + "<div class=\"col-md-6 to-animate\">"
                         + "<h3>Get Started Here</h3>"
-                        + "<p>Sign up with Data Ferret today and start downloading Twitter data as an MS Excel report</p>"
+                        + "<p>Sign in with Data Ferret today and start downloading Twitter data as an MS Excel report</p>"
                     + "</div>"
                     + "<div class=\"col-md-6 to-animate-2\">"
                         + "<div class=\"call-to-action text-right\">"
-                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign Up with Twitter</a>"
+                            + "<a href=\"" + a + "\" class=\"sign-up\">Sign In with Twitter</a>"
                         + "</div>"
                     + "</div>"
                 + "</div>"

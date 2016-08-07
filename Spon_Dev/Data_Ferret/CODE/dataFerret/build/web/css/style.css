@@ -367,7 +367,9 @@ h1, h2, h3, h4, h5, h6 {
 
 
 #subheading {
+  padding-top: 20px;
   display: block;
+  min-width: 350px;
   width: 40%;  
   display: inline-block;
   font-size: 20px;
@@ -389,14 +391,41 @@ h1, h2, h3, h4, h5, h6 {
 
 table.demo {
     border: 1px solid black;
-    tr:nth-child(even) {background: #CCC};
-    tr:nth-child(odd) {background: #5291b9};
+    height: 600px;   
 }
 
-td.demo th.demo {
+th.demo {
+    border: 1px solid black;
+    
+}
+
+td.demo {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+tr:nth-child(even).demo {
+    background-color: #ffffff;
+    border: 1px solid black;
+}
+    
+tr:nth-child(odd).demo {
+    background: #ccecff;
+    color: black;
     border: 1px solid black;
 }
 
+a.twitter {
+    color: #40ccff;
+}
+
+div.tweet-table {
+    overflow-y: scroll; 
+    height: 400px; 
+    padding: 0; 
+    border-top: solid 1px; 
+    border-bottom: solid 1px;
+}
 
 #fh5co-home .text-inner .call-to-action a.demo {
     border: 2px solid #5291b9;
