@@ -255,7 +255,7 @@
 
                     <div class="row">
                         <div class="pricing">
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Starter</h2>
                                     <div class="price"><sup class="currency">$</sup>1.99</div>
@@ -264,7 +264,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Beginner</h2>
                                     <div class="price"><sup class="currency">$</sup>2.99</div>
@@ -273,7 +273,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Basic</h2>
                                     <div class="price"><sup class="currency">$</sup>3.99</div>
@@ -282,7 +282,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Intermediate</h2>
                                     <div class="price"><sup class="currency">$</sup>4.99</div>
@@ -291,7 +291,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Expert</h2>
                                     <div class="price"><sup class="currency">$</sup>6.99</div>                                    
@@ -300,10 +300,10 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Buffet</h2>
-                                    <div class="price"><sup class="currency">$</sup>6.99</div>
+                                    <div class="price"><sup class="currency">$</sup>???</div>
                                         <div class="price small"><p>Contact us for more than 12K Tweets</p></div>
                                         <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
                                         </div>
