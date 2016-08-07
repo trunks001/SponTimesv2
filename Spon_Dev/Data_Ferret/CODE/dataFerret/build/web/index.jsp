@@ -154,7 +154,7 @@
                         <!-- Mobile Toggle Menu Button -->
                         <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
                         
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="index.jsp">
                             <img class="brand-slogan" src="images/ferret.png" alt="Data Ferret logo"><span>D</span>ata Ferret
                         </a>
                     </div>
@@ -261,7 +261,7 @@
                                     <h2 class="pricing-plan">Starter</h2>
                                     <div class="price"><sup class="currency">$</sup>1.99</div>
                                     <div class="price small"><p>No. of Tweets = 500</p></div>
-                                    <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                    <a href="" class="btn btn-select-plan btn-sm" >Coming Soon</a>
                                 </div>
                             </div>
                             
@@ -270,7 +270,7 @@
                                     <h2 class="pricing-plan">Beginner</h2>
                                     <div class="price"><sup class="currency">$</sup>2.99</div>
                                     <div class="price small"><p>No. of Tweets = 1500</p></div>
-                                    <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                    <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
                                 </div>
                             </div>
                             
@@ -279,7 +279,7 @@
                                     <h2 class="pricing-plan">Basic</h2>
                                     <div class="price"><sup class="currency">$</sup>3.99</div>
                                     <div class="price small"><p>No. of Tweets = 3000</p></div> 
-                                    <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                    <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
                                 </div>
                             </div>
                             
@@ -288,7 +288,7 @@
                                     <h2 class="pricing-plan">Intermediate</h2>
                                     <div class="price"><sup class="currency">$</sup>4.99</div>
                                     <div class="price small"><p>No. of Tweets = 6000</p></div>                                       
-                                    <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                    <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
                                 </div>
                             </div>
                             
@@ -297,7 +297,7 @@
                                     <h2 class="pricing-plan">Expert</h2>
                                     <div class="price"><sup class="currency">$</sup>6.99</div>                                    
                                     <div class="price small"><p>No. of Tweets = 12000</p></div>
-                                        <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+                                        <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
                                 </div>
                             </div>
                             
@@ -312,14 +312,6 @@
                             
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3 to-animate">
-                            <p>Don't believe us? Give our FREE download a try to see how it works.</p>
-                            <p><a href="#"> Free Demo Download</a></p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -394,7 +386,10 @@
                                         out.println(tableString);
                                     }
                                     else
+                                    {
+                                        out.println("<p><a class=\"twitter\" href=\"" + a + "\" class=\"sign-up\">Sign In With Twitter <i class=\"icon-twitter\"></i></a> to see your demo report!</p>");
                                         out.println("<img class=\"img-responsive\" src=\"images/DataFerretEg.png\" alt=\"Sample csv image\">");
+                                    }
                                 %>
                         </div>
                         <div class="col-md-4 col-md-pull-8 to-animate-2">
