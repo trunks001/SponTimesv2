@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>450</y>
+      <w>250</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Hashtags
+--
+id: int PRIMARY
+text: string
+indicyX: int (Not sure what this is)
+indicyY: int (Not sure what this is)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>450</y>
+      <w>370</w>
+      <h>490</h>
+    </coordinates>
+    <panel_attributes>Tweets
+--
+id: int PRIMARY
+latitude: string nullable
+longitude: string nullable
+createdAt: date
+currentUserRetweet: string SECONDARY -&gt; TWEETS
+favoriteCount: int
+favorited: bool
+filterLevel: string
+tweetId: int
+inReplyToScreenName: string
+inReplyToStatusId: int
+inReplyToUserId: int
+language: string
+place? (Place is a big object, should we store it?)
+possiblySensitive: bool
+quotedStatusId: int
+quotedStatus: int SECONDARY -&gt; Tweets
+retweetCount: int
+retweeted: bool
+retweetedStatus: int SECONDARY -&gt; Tweets
+source: string
+text: string
+truncated: bool
+User: (NOTE: This is the entire user object, but all user information is considered 'stale')
+withheldCopyright: bool
+withheldScope: string
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>340</x>
+      <y>450</y>
+      <w>200</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>TweetsToHashtags
+--
+id: int PRIMARY
+hashtagID: int SECONDARY
+tweetID: int SECONDARY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>0</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Users?
+NOTE: not sure if we can get 
+this because tweets only
+contain one user object
+but reference multiple
+users
+--
+id: int PRIMARY
+screenName: string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>220</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>TweetContributers
+--
+id: int PRIMARY
+tweetID: int SECONDARY
+twitterUserId: int
+userID: int SECONDARY?</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>580</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>URLs
+--
+id: int PRIMARY
+url: string
+tweetId: int SECONDARY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>220</y>
+      <w>250</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>TweetUserMentions
+--
+id: int PRIMARY
+tweetId: int SECONDARY
+userId: int SECONDARY?
+screenName: string
+name: string
+indicyX: int (Not sure what this is)
+indicyY: int (Not sure what this is)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>340</x>
+      <y>590</y>
+      <w>200</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>TweetsToURLs
+--
+id: int PRIMARY
+urlID: int SECONDARY
+tweetID: int SECONDARY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>700</y>
+      <w>300</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>TweetsMedia
+--
+id: int PRIMARY
+tweetID: int SECONDARY
+url: string
+expandedUrl: string (Not sure what this is)
+type: string
+id: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>880</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>CountryCodes
+--
+id: int PRIMARY
+code: string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>880</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>TweetWithheldCountries
+--
+id: int PRIMARY
+tweetId: int SECONDARY
+countryId: int SECONDARY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>480</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>480</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>600</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>600</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>710</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>360</y>
+      <w>50</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>140</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>890</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>890</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>140</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>320</y>
+      <w>50</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+</diagram>

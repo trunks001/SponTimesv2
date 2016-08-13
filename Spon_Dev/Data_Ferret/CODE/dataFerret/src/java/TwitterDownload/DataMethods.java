@@ -143,7 +143,7 @@ public class DataMethods {
             Statement stmt = getConnection(); 
 
             ResultSet res = stmt.executeQuery(sql);
-
+            
             stmt.closeOnCompletion();
 
             return res;
