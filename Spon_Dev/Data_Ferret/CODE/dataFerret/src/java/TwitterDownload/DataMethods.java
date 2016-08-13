@@ -25,20 +25,38 @@ import java.util.Date;
 public class DataMethods {
     
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+    static final String DEFAULT_DB_URL = "41.185.26.152";
+    static final String DEFAULT_DB_NAME = "dataferret";
+    static final String DEFAULT_DB_USERNAME = "checkers";
+    static final String DEFAULT_DB_PASSWORD = "Trunkswilltry001!";
     
-    public static Statement getConnection() throws SQLException, ClassNotFoundException, IOException{
+    public static Statement getDefaultConnection() throws SQLException, ClassNotFoundException, IOException{
+       return getConnection(DEFAULT_DB_URL, DEFAULT_DB_NAME, DEFAULT_DB_USERNAME, DEFAULT_DB_PASSWORD);
+    }
+    
+    public static Statement getConnection(String dbUrl, String dbName, String dbUsername, String dbPassword) throws SQLException, ClassNotFoundException, IOException{
+        if(dbUrl == null || dbUrl.length() == 0) {
+            dbUrl = DEFAULT_DB_URL;
+        }
+        
+        if(dbName == null || dbName.length() == 0) {
+            dbName = DEFAULT_DB_NAME;
+        }
+        
+        if(dbUsername == null || dbUsername.length() == 0) {
+            dbUsername = DEFAULT_DB_USERNAME;
+        }
+        
+        if(dbPassword == null || dbPassword.length() == 0) {
+            dbPassword = DEFAULT_DB_PASSWORD;
+        }
+        
 //        String path = "/settings/dataferret.config";
 //        
 //        File test = new File(path);
 //        String testPath = test.getAbsolutePath();
 //        
 //        Scanner scanner = new Scanner(new File(path));
-        String DB_Username = "checkers";
-        String DB_Password = "Trunkswilltry001!";
-        String DB_URL = "41.185.26.152";
-        String DB_Name = "dataferret";
-        
-        
 //        while(scanner.hasNext()) {
 //            String line = scanner.nextLine();
 //            int index = line.indexOf(":");
@@ -66,11 +84,10 @@ public class DataMethods {
 //        scanner.close();
         
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://" + DB_URL + " :3306/" + DB_Name, DB_Username, DB_Password);
+        Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbUrl + " :3306/" + dbName, dbUsername, dbPassword);
         Statement stmt = conn.createStatement();
         return  stmt;
     }
-    
     
     public static ResultSet getUser(String userId) {
        try {
@@ -140,7 +157,23 @@ public class DataMethods {
     
     public static ResultSet getData(String sql) {
         try {
-            Statement stmt = getConnection(); 
+            Statement stmt = getDefaultConnection(); 
+
+            ResultSet res = stmt.executeQuery(sql);
+            
+            stmt.closeOnCompletion();
+
+            return res;
+        } catch(Exception ex) {
+            logError(ex);
+            return null;
+        }
+    }
+    
+    public static ResultSet getDebugData(String sql, String dbUrl, String dbName, String dbUsername, String dbPassword) {
+        try {
+            
+            Statement stmt = getConnection(dbUrl, dbName, dbUsername, dbPassword);
 
             ResultSet res = stmt.executeQuery(sql);
             
@@ -155,7 +188,7 @@ public class DataMethods {
     
     public static void runQuery(String sql) {
         try {
-            Statement stmt = getConnection(); 
+            Statement stmt = getDefaultConnection(); 
 
             stmt.execute(sql);
 

@@ -47,8 +47,22 @@
             out.println("<div class=\"col-md-12 to-animate\"> "+ 
                         "<form class=\"download to-animate\" action=\"debug.jsp\">" +
                             "<fieldset>" + 
-                                "<div class=\"row\">" +     
-                                    "<span>SQL query: </span><input id=\"sqlQuery\" name=\"sqlQuery\" style=\"width: 40%;\"/>" +
+                                "<div class=\"row\" >" +     
+                                    "<span>SQL query: </span><input id=\"sqlQuery\" name=\"sqlQuery\" style=\"width: 40%;\" />" +
+                                "</div>" +     
+                                "<div class=\"row\" style=\"padding-top: 4px;\" >" +     
+                                    "<span>DB Url (optional): </span><input id=\"dbUrl\" name=\"dbUrl\" style=\"width: 40%;\" />" +
+                                "</div>" +    
+                                "<div class=\"row\" style=\"padding-top: 4px;\" >" + 
+                                    "<span>DB Name (optional): </span><input id=\"dbName\" name=\"dbName\" style=\"width: 40%;\" />" +
+                                "</div>" +     
+                                "<div class=\"row\" style=\"padding-top: 4px;\" >" + 
+                                    "<span>DB Username (optional): </span><input id=\"dbUsername\" name=\"dbUsername\" style=\"width: 40%;\" />" +
+                                "</div>" +     
+                                "<div class=\"row\" style=\"padding-top: 4px;\" >" + 
+                                    "<span>DB Password (optional): </span><input id=\"dbPassword\" name=\"dbPassword\" style=\"width: 40%;\" />" +
+                                "</div>" +     
+                                "<div class=\"row\" style=\"padding-top: 4px;\">" + 
                                     "<input id=\"submitQuery\" name=\"submitQuery\" type=\"submit\" />" +
                                 "</div>" +     
                             "</fieldset>" +
@@ -64,6 +78,7 @@
                             "</div>");  
                 
                 String query = "";
+                
                 if(request.getParameter("sqlQuery") != null) {
                     query = request.getParameter("sqlQuery").trim();
                     //This debug page should only be used for debugging, NOT making changes to the db.
@@ -73,9 +88,14 @@
                         return;
                     }
                 }
-                    
-                    
-                ResultSet result = DataMethods.getData(query);
+                
+                String dbUrl, dbName, dbUsername, dbPassword;
+                dbUrl = request.getParameter("dbUrl");
+                dbName = request.getParameter("dbName");
+                dbUsername = request.getParameter("dbUsername");
+                dbPassword = request.getParameter("dbPassword");
+                
+                ResultSet result = DataMethods.getDebugData(query, dbUrl, dbName, dbUsername, dbPassword);
                 ResultSetMetaData metaData = result.getMetaData();
                 
                 //*** Column headers ***
