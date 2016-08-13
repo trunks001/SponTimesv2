@@ -200,7 +200,7 @@
                                 <img src="images/ferret.png" alt=""/>
                              </div>
                             <div class="row" style="padding-top: 10px;">
-                                <p style="font-weight: bold;">This site is currently in BETA. While in BETA all features are free to use for anyone.</p>
+                                <p style="font-weight: bold;">We are currently in BETA! Try us for free!</p>
                             </div>
                             <div class="row" style="margin-top: 10px;">
                                 <div id="subheading">
