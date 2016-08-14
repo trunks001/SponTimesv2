@@ -170,20 +170,15 @@ public class DataMethods {
         }
     }
     
-    public static ResultSet getDebugData(String sql, String dbUrl, String dbName, String dbUsername, String dbPassword) {
-        try {
-            
-            Statement stmt = getConnection(dbUrl, dbName, dbUsername, dbPassword);
+    public static ResultSet getDebugData(String sql, String dbUrl, String dbName, String dbUsername, String dbPassword) throws IOException, SQLException, ClassNotFoundException {
 
-            ResultSet res = stmt.executeQuery(sql);
-            
-            stmt.closeOnCompletion();
+        Statement stmt = getConnection(dbUrl, dbName, dbUsername, dbPassword);
 
-            return res;
-        } catch(Exception ex) {
-            logError(ex);
-            return null;
-        }
+        ResultSet res = stmt.executeQuery(sql);
+
+        stmt.closeOnCompletion();
+
+        return res;
     }
     
     public static void runQuery(String sql) {

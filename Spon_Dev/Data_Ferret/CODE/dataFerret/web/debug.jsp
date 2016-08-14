@@ -4,6 +4,13 @@
     Author     : dvt
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="java.io.StringWriter"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="TwitterDownload.TwitterHandler"%>
 <%@page import="java.sql.ResultSetMetaData"%>
 <%@page import="java.sql.ResultSet"%>
@@ -95,28 +102,75 @@
                 dbUsername = request.getParameter("dbUsername");
                 dbPassword = request.getParameter("dbPassword");
                 
-                ResultSet result = DataMethods.getDebugData(query, dbUrl, dbName, dbUsername, dbPassword);
-                ResultSetMetaData metaData = result.getMetaData();
                 
-                //*** Column headers ***
-                int columnCount = metaData.getColumnCount();
-                String columnNames = "| ";
-                for(int i = 1; i <= columnCount; i++) {
-                    columnNames += metaData.getColumnLabel(i) + " | ";
-                }
-                
-                out.println("<div class=\"row\"> " + columnNames + 
-                            "</div>");  
-                
-                //*** Values ***
-                while(result.next()) {
-                    String columnValues = "| ";
+                ResultSet result = null;
+                ResultSetMetaData metaData = null;
+                try{
+                    result = DataMethods.getDebugData(query, dbUrl, dbName, dbUsername, dbPassword);
+                    metaData = result.getMetaData();
+
+                    //*** Column headers ***
+                    int columnCount = metaData.getColumnCount();
+                    String columnNames = "| ";
                     for(int i = 1; i <= columnCount; i++) {
-                        columnValues += result.getString(i) + " | ";
+                        columnNames += metaData.getColumnLabel(i) + " | ";
                     }
+
+                    out.println("<div class=\"row\"> " + columnNames + 
+                                "</div>");  
+
+                    //*** Values ***
+                    while(result.next()) {
+                        String columnValues = "| ";
+                        for(int i = 1; i <= columnCount; i++) {
+                            columnValues += result.getString(i) + " | ";
+                        }
+
+                        out.println("<div class=\"row\" style=\"padding-top: 8px;\"> " + columnValues + 
+                                "</div>");   
+                    }
+                }
+                catch(SQLException ex){
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    Date date = new Date();
+
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    ex.printStackTrace(pw);
+
+                    String error = "Database Error: " + dateFormat.format(date) + ", message: " + sw.toString() + "\r\n";
                     
-                    out.println("<div class=\"row\" style=\"padding-top: 8px;\"> " + columnValues + 
-                            "</div>");   
+                    out.print(error);
+                }
+                catch(IOException ex){
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    Date date = new Date();
+
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    ex.printStackTrace(pw);
+
+                    String error = "Database Error: " + dateFormat.format(date) + ", message: " + sw.toString() + "\r\n";
+                    
+                    out.print(error);
+                }
+                catch(Exception ex){
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    Date date = new Date();
+
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    ex.printStackTrace(pw);
+
+                    String error = "Database Error: " + dateFormat.format(date) + ", message: " + sw.toString() + "\r\n";
+                    
+                    out.print(error);
+                }
+                finally {
+                    if(result != null)
+                    {
+                        result.close();
+                    }
                 }
             }
         %>
