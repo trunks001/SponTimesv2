@@ -225,7 +225,7 @@
 //                                                        out.println("<div class=\"row\" style=\"width: 40%; min-width: 350px; display: inline-block; text-align: left;\"><p style=\"font-weight: bold;\">Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword</p></div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
                                                             out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
-                                                            //out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
+                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
                                                             out.println("</div>");
                                                     out.println("</fieldset>");
                                                 out.println("</form>");

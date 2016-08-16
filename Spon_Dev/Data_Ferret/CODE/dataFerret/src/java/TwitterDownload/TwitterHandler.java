@@ -5,6 +5,7 @@
  */
 package TwitterDownload;
 
+import java.awt.Cursor;
 import twitter4j.Paging;
 import twitter4j.ResponseList;
 
@@ -19,6 +20,7 @@ import twitter4j.QueryResult;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import twitter4j.RateLimitStatus;
 import twitter4j.User;
@@ -94,38 +96,80 @@ public class TwitterHandler {
     }
     
     public  List<User> getUserFollowers(String searchPhrase, int pageSize) throws TwitterException
-    {        
+    {       
+        //todo test rate limit
+        
         ArrayList<User> listFollowers = new ArrayList<User>();
         
         long cursor = -1;
         
-        PagableResponseList<User> pagableFollowers;
-        do {
-            pagableFollowers = twitter.getFollowersList (searchPhrase, cursor, 15);
-            for (User user : pagableFollowers) {
-                listFollowers.add(user); // ArrayList<User>
-            }
-        } while ((cursor = pagableFollowers.getNextCursor()) != 0);
-
+        IDs followersIDs;
         
+        do{
+            followersIDs = twitter.getFollowersIDs(searchPhrase, cursor);
+            
+            long[] ids = followersIDs.getIDs();
+            
+            while(ids.length > 0){
+                long[] searchIds = Arrays.copyOfRange(ids, 0, 100);
+                if(ids.length >= 100)
+                    ids = Arrays.copyOfRange(ids, 100, ids.length);
+                else
+                    ids = new long[0];
+                
+                ResponseList<User> users = twitter.lookupUsers(searchIds);
+                
+                for(User user : users)
+                {
+                    listFollowers.add(user);
+                }
+            }
+            
+            if(followersIDs.hasNext())
+                cursor = followersIDs.getNextCursor();
+            else
+                cursor = -1;
+        }while(cursor > 0 && listFollowers.size() < pageSize);
         
         return listFollowers;
     }
     
     public  List<User> getUserFriends(String searchPhrase, int pageSize) throws TwitterException
     {       
+       //todo test rate limit
+        
         ArrayList<User> listFriends = new ArrayList<User>();
         
         long cursor = -1;
         
-        PagableResponseList<User> pagableFollowings;
-        do {
-            pagableFollowings = twitter.getFriendsList(searchPhrase, cursor, 15);
-            for (User user : pagableFollowings) {
-                listFriends.add(user); // ArrayList<User>
+        IDs friendsIDs;
+        
+        do{
+            friendsIDs = twitter.getFriendsIDs(searchPhrase, cursor);
+            
+            long[] ids = friendsIDs.getIDs();
+            
+            while(ids.length > 0){
+                long[] searchIds = Arrays.copyOfRange(ids, 0, 100);
+                if(ids.length >= 100)
+                    ids = Arrays.copyOfRange(ids, 100, ids.length);
+                else
+                    ids = new long[0];
+                
+                ResponseList<User> users = twitter.lookupUsers(searchIds);
+                
+                for(User user : users)
+                {
+                    listFriends.add(user);
+                }
             }
-        } while ((cursor = pagableFollowings.getNextCursor()) != 0);
-
+            
+            if(friendsIDs.hasNext())
+                cursor = friendsIDs.getNextCursor();
+            else
+                cursor = -1;
+        }while(cursor > 0 && listFriends.size() < pageSize);
+        
         return listFriends;
     }      
     
