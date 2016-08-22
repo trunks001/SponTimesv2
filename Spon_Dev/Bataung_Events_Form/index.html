@@ -84,71 +84,71 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" action="data.php" method="post">
+                    <form action="data.php" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Title *" id="title" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Title *" name="title" id="title1" required data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name *" id="fname" required data-validation-required-message="Please enter your email address.">
+                                    <input type="text" class="form-control" placeholder="First Name *" name="firstname" id="firstname1" required data-validation-required-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Surname *" id="surname" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="text" class="form-control" placeholder="Surname *" name="lastname" id="lastname1" required data-validation-required-message="Please enter your phone number.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email *" id="email" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="text" class="form-control" placeholder="Email *" name="email" id="email1" required data-validation-required-message="Please enter your phone number.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Telephone Number *" id="tel" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="text" class="form-control" placeholder="Telephone Number " name="telephone" id="telephone1">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Cellphone Number *" id="cell" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="text" class="form-control" placeholder="Cellphone Number *" name="cellphone" id="cellphone1" required data-validation-required-message="Please enter your cellphone number.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Fax Number *" id="fax" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="text" class="form-control" placeholder="Fax Number " name="fax" id="fax1">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Company Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Company Name *" name="companyname" id="companyname1" required data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Department *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Department *" name="department" id="department1" required data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Designation *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Designation *" name="designation" id="designation1" required data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>                                
                                 <div class="form-group">
                                     <h4>Which day will you attend?</h4>
-                                    <label class="radio-inline"><input type="radio" name="date1" required>24 August 2016</label>
-                                    <label class="radio-inline"><input type="radio" name="date1" required>25 August 2016</label>
+                                    <label class="radio-inline"><input type="radio" name="eventdate" value="24 August 2016" required>24 August 2016</label>
+                                    <label class="radio-inline"><input type="radio" name="eventdate" value="25 August 2016" required>25 August 2016</label>
                                 </div>
                                 <div class="form-group">
                                     <h4>Dietary Requirements</h4>
-                                    <label class="radio-inline"><input type="radio" name="date1" >Halaal</label>
-                                    <label class="radio-inline"><input type="radio" name="date1">Kosher</label>
-                                    <label class="radio-inline"><input type="radio" name="date1">Vegetarian</label>
-                                    <label class="radio-inline"><input type="radio" name="date1">Other</label>
+                                    <label class="radio-inline"><input type="radio" name="diet" value="Halaal">Halaal</label>
+                                    <label class="radio-inline"><input type="radio" name="diet" value="Kosher">Kosher</label>
+                                    <label class="radio-inline"><input type="radio" name="diet" value="Vegetarian">Vegetarian</label>
+                                    <label class="radio-inline"><input type="radio" name="diet" value="Other">Other</label>
                                 </div>
                                 <h5>If you have chosen other, then please specify below</h5>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Please specify other dietary requirements, if any *" id="odiet">
+                                    <input type="text" class="form-control" placeholder="Please specify other dietary requirements, if any" name="diet" id="diet1">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Allergies" id="message"></textarea>
+                                    <input type="text" class="form-control" placeholder="Allergies" name="allergies" id="allergies1">
                                     <p class="help-block text-danger"></p>
                                 </div>                  
                                 
@@ -156,9 +156,9 @@
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Accept</button>
-                                <button type="submit" class="btn btn-xl">Tentative</button>
-                                <button type="submit" class="btn btn-xl">Decline</button>
+                                <a href="ThankYou.html"><button type="submit" class="btn btn-xl" name="submit" value="Accept">Accept</button></a>
+                                <a href="Decline.html"><button type="submit" class="btn btn-xl" name="submit" value="Tentative">Tentative</button></a>
+                                <a href="Decline.html"><button type="submit" class="btn btn-xl" name="submit" value="Decline">Decline</button></a>
                             </div>
                         </div>
                     </form>
@@ -171,20 +171,11 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <span class="copyright">Copyright &copy; Bataung Events 2016</span>
                 </div>
-                <div class="col-md-4">
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
+                
+                <div class="col-md-6">
                     <ul class="list-inline quicklinks">
                         <li><a href="#">Designed by Spontaneous Ventures</a>
                         </li>                        
