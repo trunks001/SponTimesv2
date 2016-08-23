@@ -244,7 +244,7 @@
               
         </section>
                                     
-        <section id="fh5co-pricing" data-section="pricing">
+        <section id="fh5co-pricing" data-section="pricing" ng-app="dataFerret" ng-controller="productController">
             <div class="fh5co-pricing">
                 <div class="container">
                     <div class="row">
@@ -258,7 +258,7 @@
                         </div>
                     </div>
 
-                    <div class="row" ng-app="dataFerret" ng-controller="productController">
+                    <div class="row">
                         <div class="pricing">
                             <div ng-repeat="product in products" class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="price-box to-animate-2">
@@ -277,6 +277,21 @@
                                     <a href="mailto: info@dataferret.co.za" class="btn btn-select-plan btn-sm">Contact Us</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="row">
+                            <span>First name: </span><input ng-model="name"/>
+                        </div>
+                        <div class="row">
+                            <span>Surname: </span><input ng-model="surname"/>
+                        </div>
+                        <div class="row">
+                            <span>Email address: </span><input ng-model="email"/>
+                        </div>
+                        <div class="row">
+                            <button ng-click="pay()">Pay</button>
                         </div>
                     </div>
                 </div>

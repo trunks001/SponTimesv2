@@ -93,10 +93,9 @@
 %>
 
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="productController.js"></script>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -144,7 +143,9 @@
         <!--[if lt IE 9]>
         <script src="js/respond.min.js"></script>
         <![endif]-->
-
+        <script>
+            
+        </script>
     </head>
     <body>
         <header role="banner" id="fh5co-header">
@@ -225,7 +226,7 @@
 //                                                        out.println("<div class=\"row\" style=\"width: 40%; min-width: 350px; display: inline-block; text-align: left;\"><p style=\"font-weight: bold;\">Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword</p></div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
                                                             out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
-                                                            //out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
+                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
                                                             out.println("</div>");
                                                     out.println("</fieldset>");
                                                 out.println("</form>");
@@ -243,7 +244,7 @@
               
         </section>
                                     
-        <section id="fh5co-pricing" data-section="pricing">
+        <section id="fh5co-pricing" data-section="pricing" ng-app="dataFerret" ng-controller="productController">
             <div class="fh5co-pricing">
                 <div class="container">
                     <div class="row">
@@ -251,7 +252,7 @@
                             <h2 class="to-animate">Select One of the Plans Below</h2>
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2 subtext">
-                                    <h3 class="to-animate">As soon as you have made your secure purchase via your PayPal account, Data Ferret gets to work on downloading your data. As soon as it is ready you are sent an e-mail notifying you that your download is ready.</h3>
+                                    <h3 class="to-animate">As soon as you have made your secure purchase Data Ferret gets to work on downloading your data.</h3>
                                 </div>
                             </div>
                         </div>
@@ -259,60 +260,38 @@
 
                     <div class="row">
                         <div class="pricing">
-                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div ng-repeat="product in products" class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="price-box to-animate-2">
-                                    <h2 class="pricing-plan">Starter</h2>
-                                    <div class="price"><sup class="currency">$</sup>1.99</div>
-                                    <div class="price small"><p>No. of Tweets = 500</p></div>
-                                    <a href="" class="btn btn-select-plan btn-sm" >Coming Soon</a>
+                                    <h2 class="pricing-plan">{{product.name}}</h2>
+                                    <div class="price"><sup class="currency">$</sup>{{product.price}}</div>
+                                    <div class="price small"><p>Amount of data = {{product.noOfTweets | number}}</p></div>
+                                    <a href="" class="btn btn-select-plan btn-sm" ng-click="selectProduct(product.id)">{{getButtonTextForProductId(product.id)}}</a>
                                 </div>
                             </div>
                             
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="price-box to-animate-2">
-                                    <h2 class="pricing-plan">Beginner</h2>
-                                    <div class="price"><sup class="currency">$</sup>2.99</div>
-                                    <div class="price small"><p>No. of Tweets = 1500</p></div>
-                                    <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
-                                </div>
-                            </div>
-                            
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="price-box to-animate-2">
-                                    <h2 class="pricing-plan">Basic</h2>
-                                    <div class="price"><sup class="currency">$</sup>3.99</div>
-                                    <div class="price small"><p>No. of Tweets = 3000</p></div> 
-                                    <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
-                                </div>
-                            </div>
-                            
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="price-box to-animate-2">
-                                    <h2 class="pricing-plan">Intermediate</h2>
-                                    <div class="price"><sup class="currency">$</sup>4.99</div>
-                                    <div class="price small"><p>No. of Tweets = 6000</p></div>                                       
-                                    <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
-                                </div>
-                            </div>
-                            
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <div class="price-box to-animate-2">
-                                    <h2 class="pricing-plan">Expert</h2>
-                                    <div class="price"><sup class="currency">$</sup>6.99</div>                                    
-                                    <div class="price small"><p>No. of Tweets = 12000</p></div>
-                                        <a href="" class="btn btn-select-plan btn-sm">Coming Soon</a>
-                                </div>
-                            </div>
-                            
-                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Buffet</h2>
                                     <div class="price"><sup class="currency">$</sup>???</div>
-                                        <div class="price small"><p>Contact us for more than 12K Tweets</p></div>
-                                        <a href="mailto: info@dataferret.co.za" class="btn btn-select-plan btn-sm">Contact Us</a>
-                                        </div>
+                                    <div class="price small"><p>More than {{18000 | number}}</p></div>
+                                    <a href="mailto: info@dataferret.co.za" class="btn btn-select-plan btn-sm">Contact Us</a>
+                                </div>
                             </div>
-                            
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="row">
+                            <span>First name: </span><input ng-model="name"/>
+                        </div>
+                        <div class="row">
+                            <span>Surname: </span><input ng-model="surname"/>
+                        </div>
+                        <div class="row">
+                            <span>Email address: </span><input ng-model="email"/>
+                        </div>
+                        <div class="row">
+                            <button ng-click="pay()">Pay</button>
                         </div>
                     </div>
                 </div>

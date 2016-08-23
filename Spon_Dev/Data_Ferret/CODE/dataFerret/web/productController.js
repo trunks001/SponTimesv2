@@ -1,5 +1,8 @@
 var app = angular.module('dataFerret', []);
 app.controller('productController', function($scope, $rootScope) {
+    $scope.name = '';
+    $scope.surname = '';
+    $scope.email = '';
     $scope.products = [
         {id: 0, name: 'Donate', price: 0.99, noOfTweets: 1500},
         {id: 1, name: 'Starter', price: 1.99, noOfTweets: 500},
@@ -19,4 +22,12 @@ app.controller('productController', function($scope, $rootScope) {
     $scope.getButtonTextForProductId = function(productId) {
       return productId === 0 ? 'DONATE' : 'COMING SOON';  
     };
+    
+    $scope.pay = function() {
+        var email = $scope.email;
+        var name = $scope.name;
+        var surname = $scope.surname;
+        console.log(name + ' ' + surname + ' ' + email)
+        //TODO call service here
+    }
 });
