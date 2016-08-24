@@ -3,6 +3,7 @@ app.controller('productController', function($scope, $rootScope) {
     $scope.name = '';
     $scope.surname = '';
     $scope.email = '';
+    
     $scope.products = [
         {id: 0, name: 'Donate', price: 0.99, noOfTweets: 1500},
         {id: 1, name: 'Starter', price: 1.99, noOfTweets: 500},
@@ -12,6 +13,9 @@ app.controller('productController', function($scope, $rootScope) {
         {id: 5, name: 'Expert', price: 6.99, noOfTweets: 12000},
         {id: 6, name: 'Premium', price: 8.99, noOfTweets: 18000}
     ];
+    
+    $scope.selectedProduct = $scope.products[0];
+    
     $scope.selectProduct = function(productId) {
         var selectedProduct = $scope.products.find(function(element) {
            return productId ===  element.id;

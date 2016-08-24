@@ -281,19 +281,29 @@
                     </div>
                     
                     <div class="row">
-                        <div class="row">
-                            <span>First name: </span><input ng-model="name"/>
-                        </div>
-                        <div class="row">
-                            <span>Surname: </span><input ng-model="surname"/>
-                        </div>
-                        <div class="row">
-                            <span>Email address: </span><input ng-model="email"/>
-                        </div>
-                        <div class="row">
-                            <button ng-click="pay()">Pay</button>
-                        </div>
+                        <form id="get_check_form" action="https://sandbox.payfast.co.za/eng/process" method="get" >
+                            <div>
+                                <input name="merchant_id" value="10003386"/>
+                                <input name="merchant_key" value="jhjfb4ne1ppyy"/>
+                                <input name="return_url" value="http://www.dataferret.co.za"/>
+                                <input name="amount" ng-model="selectedProduct.price"/>
+                                <input name="item_name" ng-model="selectedProduct.name"/>
+                            </div>
+                            <div class="row">
+                                <span>Product: </span>
+                                <select name="mySelect" id="mySelect"
+                                    ng-options="product.name for product in products track by product.id"
+                                    ng-model="selectedProduct"></select>
+                            </div>
+                            <div class="row">
+                                <span>Search phrase: </span><input ng-model="searchPhrase"/>
+                            </div>
+                            <div class="row">
+                                <button ng-click="pay()">Pay</button>
+                            </div>
+                        </form> 
                     </div>
+                        
                 </div>
             </div>
         </section>
