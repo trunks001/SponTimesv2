@@ -1,8 +1,6 @@
 var app = angular.module('dataFerret', []);
 app.controller('productController', function($scope, $rootScope) {
-    $scope.name = '';
-    $scope.surname = '';
-    $scope.email = '';
+    $scope.loading = false;
     
     $scope.products = [
         {id: 0, name: 'Donate', price: 0.99, noOfTweets: 1500},
@@ -15,23 +13,26 @@ app.controller('productController', function($scope, $rootScope) {
     ];
     
     $scope.selectedProduct = $scope.products[0];
+//    $scope.selectedId = 0;
     
     $scope.selectProduct = function(productId) {
         var selectedProduct = $scope.products.find(function(element) {
            return productId ===  element.id;
         });
-        $rootScope.selectedProduct = selectedProduct;
-        console.log(selectedProduct);
+        $scope.selectedProduct = selectedProduct;
+        console.log($scope.selectedProduct);
     };
     $scope.getButtonTextForProductId = function(productId) {
       return productId === 0 ? 'DONATE' : 'COMING SOON';  
     };
     
     $scope.pay = function() {
-        var email = $scope.email;
-        var name = $scope.name;
-        var surname = $scope.surname;
-        console.log(name + ' ' + surname + ' ' + email)
+        $scope.loading = true;
+        var searchPhrase = $scope.searchPhrase;
+        var amount = $scope.selectedProduct.price;
+        var itemName = $scope.selectedProduct.name;
+        
+        console.log(searchPhrase + ' ' + amount + ' ' + itemName);
         //TODO call service here
     }
 });

@@ -282,24 +282,27 @@
                     
                     <div class="row">
                         <form id="get_check_form" action="https://sandbox.payfast.co.za/eng/process" method="get" >
-                            <div>
-                                <input name="merchant_id" value="10003386"/>
-                                <input name="merchant_key" value="jhjfb4ne1ppyy"/>
-                                <input name="return_url" value="http://www.dataferret.co.za"/>
-                                <input name="amount" ng-model="selectedProduct.price"/>
-                                <input name="item_name" ng-model="selectedProduct.name"/>
+                            <div ng-show="false">
+                                <input name="merchant_id" value="10003386" />
+                                <input name="merchant_key" value="jhjfb4ne1ppyy" />
+                                <input name="return_url" value="http://www.dataferret.co.za" /> 
+                                <input name="amount" ng-model="selectedProduct.price" />
+                                <input name="item_name" ng-model="selectedProduct.name" />
                             </div>
                             <div class="row">
                                 <span>Product: </span>
                                 <select name="mySelect" id="mySelect"
                                     ng-options="product.name for product in products track by product.id"
-                                    ng-model="selectedProduct"></select>
+                                    ng-model="selectedProduct">
+                                </select>
                             </div>
                             <div class="row">
                                 <span>Search phrase: </span><input ng-model="searchPhrase"/>
                             </div>
+                            
                             <div class="row">
-                                <button ng-click="pay()">Pay</button>
+                                <button ng-show="!loading" ng-click="pay()">Pay</button>
+                                <div ng-show="loading" class="loader"></div>  
                             </div>
                         </form> 
                     </div>
