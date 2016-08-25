@@ -1,0 +1,94 @@
+<?php 
+ /* Attempt MySQL server connection. Assuming you are running MySQL 
+ 
+    server with default setting (user 'root' with no password) */ 
+ 
+ 
+      
+$ipAddress = $_SERVER['REMOTE_HOST']; 
+ 
+ 
+function myErrorHandler($errno, $errstr, $errfile, $errline) 
+{ 
+ 
+    // you'd have to import or set up the connection here  
+     mysql_query("INSERT INTO error_log (number, string, file, line) ". 
+                 "VALUES '$errno', '$errstr', '$errfile', '$errline', ''");          
+ 
+    /* Don't execute PHP internal error handler */ 
+    return true; 
+} 
+ 
+ 
+ 
+function getUser() { 
+    
+    $link = mysqli_connect("localhost", "checkers", "Trunkswilltry001!", "dataferret"); 
+    $sql = "SELECT * FROM Users WHERE userId = '" + $user + "'"; 
+     
+    if($link === false){ 
+ 
+        die("ERROR: Could not connect. " . mysqli_connect_error()); 
+ 
+    } 
+     
+    try { 
+        $user = mysqli_query($link, $sql); 
+         
+        return $user; 
+       } catch (Exception $e) { 
+           logError($e); 
+           return null; 
+       }  
+} 
+ 
+ 
+function saveLogin() { 
+    $link = mysqli_connect("localhost", "checkers", "Trunkswilltry001!", "dataferret"); 
+    $sql = "INSERT INTO Logins (userId, ipAddress) VALUES ('" + $userId + "', '" + $ipAddress + "')";  
+     
+    if($link === false){ 
+ 
+        die("ERROR: Could not connect. " . mysqli_connect_error()); 
+ 
+    } 
+     
+  try { 
+            $login = mysqli_query(); 
+            return $userId; 
+        } catch (Exception $e) { 
+            logError($e); 
+        } 
+         
+    } 
+     
+     
+function saveDownload() { 
+    $link = mysqli_connect("localhost", "checkers", "Trunkswilltry001!", "dataferret"); 
+    $sql = "SELECT MAX(loginId) FROM Logins WHERE userId = " + userId; 
+    $sql = "INSERT INTO Downloads (userId, loginId, filePath) VALUES ('" + userId + "', " + loginId + ", '" + filePath + "')"; 
+     
+    if($link === false){ 
+ 
+        die("ERROR: Could not connect. " . mysqli_connect_error()); 
+ 
+    }    
+     
+    try 
+        { 
+            mysqli_query($link, $sql); 
+             
+             
+            int loginId = res.getInt("MAX(loginId)"); 
+         
+            mysqli_query(); 
+             
+        } 
+        catch(Exception $e) 
+        { 
+             echo 'Message: ' .$e->getMessage(); 
+        } 
+    } 
+ 
+} 
+

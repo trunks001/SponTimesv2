@@ -1,0 +1,130 @@
+<?php 
+ /* Attempt MySQL server connection. Assuming you are running MySQL 
+ 
+    server with default setting (user 'root' with no password) */ 
+ 
+ 
+ 
+class dataStuff { 
+         
+function myErrorHandler($errno, $errstr, $errfile, $errline) 
+{ 
+ 
+    // you'd have to import or set up the connection here  
+     mysql_query("INSERT INTO error_log (number, string, file, line) ". 
+                 "VALUES '$errno', '$errstr', '$errfile', '$errline'");          
+ 
+    /* Don't execute PHP internal error handler */ 
+    return true; 
+} 
+ 
+ 
+ 
+function getUser() { 
+    
+    $link = mysqli_connect("localhost", "checkers", "Trunkswilltry001!", "dataferret"); 
+    $sql = "SELECT * FROM Users WHERE userId = '" + $user + "'"; 
+     
+    if($link === false){ 
+ 
+        die("ERROR: Could not connect. " . mysqli_connect_error()); 
+ 
+    } 
+     
+    try { 
+        $user = mysqli_query($link, $sql); 
+         
+        return $user; 
+       } catch (Exception $e) { 
+           echo 'Message: ' .$e->getMessage(); 
+           return null; 
+       }  
+} 
+ 
+function saveUser(){ 
+    $link = mysqli_connect("localhost", "checkers", "Trunkswilltry001!", "dataferret"); 
+    $sql = "SELECT userId FROM Users WHERE twitterId = " + $twitterId;  
+    $sql2 = "SELECT userId FROM Users WHERE twitterId = '" + $twitterId + "'"; 
+     
+    if($link === false){ 
+ 
+        die("ERROR: Could not connect. " . mysqli_connect_error()); 
+ 
+    }    
+  
+    try 
+        {       
+        $ret = -1; 
+         
+        $result = mysqli_query($link, $sql); 
+        if($result == null || !$result.next()) 
+        {     
+            mysqli_query($link, "INSERT INTO Users (screenName, twitterId, userName) VALUES ('" + $screenName + "', " + $twitterId + ", '" + $userName + "')"); 
+            $result = mysqli_query($link, $sql2); 
+ 
+            if(result.next()) 
+                $ret = $result.getInt("userId"); 
+        } 
+        else 
+            $ret = result.getInt("userId"); 
+         
+        result.close(); 
+        return ret; 
+        } 
+        catch (Exception $e) 
+        { 
+            echo 'Message: ' .$e->getMessage();             
+        } 
+     
+} 
+ 
+function saveLogin() { 
+    $ipAddress = $_SERVER['REMOTE_HOST']; 
+    $link = mysqli_connect("localhost", "checkers", "Trunkswilltry001!", "dataferret"); 
+    $sql = "INSERT INTO Logins (userId, ipAddress) VALUES ('" + $userId + "', '" + $ipAddress + "')";  
+     
+    if($link === false){ 
+ 
+        die("ERROR: Could not connect. " . mysqli_connect_error()); 
+ 
+    } 
+     
+  try { 
+            $login = mysqli_query($link, $sql); 
+            return $userId; 
+        } catch (Exception $e) { 
+            echo 'Message: ' .$e->getMessage(); 
+        } 
+         
+    } 
+     
+     
+function saveDownload() { 
+    $link = mysqli_connect("localhost", "checkers", "Trunkswilltry001!", "dataferret"); 
+    $maxlogin = "SELECT MAX(loginId) FROM Logins WHERE userId = " + $userId; 
+    $downloads = "INSERT INTO Downloads (userId, loginId, filePath) VALUES ('" + $userId + "', " + $loginId + ", '" + $filePath + "')"; 
+     
+    if($link === false){ 
+ 
+        die("ERROR: Could not connect. " . mysqli_connect_error()); 
+ 
+    }    
+     
+    try 
+        { 
+            mysqli_query($link, $maxlogin); 
+             
+             
+            $loginId = res.getInt("MAX(loginId)"); 
+         
+            mysqli_query($link, $downloads); 
+             
+        } 
+        catch(Exception $e) 
+        { 
+             echo 'Message: ' .$e->getMessage(); 
+        } 
+    } 
+ 
+} 
+
