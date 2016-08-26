@@ -4,6 +4,7 @@
     Author     : Bradley
 --%>
 
+<%@page import="java.util.Map"%>
 <%@page import="twitter4j.TwitterException"%>
 <%@page import="twitter4j.User"%>
 <%@page import="java.io.IOException"%>
@@ -26,6 +27,8 @@
 <%@page import="jxl.write.*" %>
 <%@page import="javax.servlet.ServletOutputStream" %>
 <%@page import="javax.servlet.http.HttpServletResponse" %>
+
+<%@ page import = "java.util.Map" %>
 
 <!DOCTYPE html>
 <html>
@@ -53,9 +56,23 @@
                 ip = request.getRemoteAddr();  
             }
             
+            String[] values;
+            
+            Map<String, String[]> parameters = request.getParameterMap();
+            for(String parameter : parameters.keySet()) {
+                if(parameter.toLowerCase().startsWith("question")) {
+                    values = parameters.get(parameter);
+                    //your code here
+                }
+            }
+            
             TwitterHandler tweeter = (TwitterHandler)session.getAttribute("tweeter");
             
-            int pageSize = 1500;
+            int pageSize = 500;
+            if(request.getParameter("page_size") != null)
+            {
+                pageSize = Integer.parseInt(request.getParameter("page_size"));
+            }
             
             String filePath = null;
             
@@ -68,36 +85,39 @@
             if(handel.equalsIgnoreCase("ferret_data"))
                 pageSize = 36000;
             
-            if(request.getParameter("twiterhandel") != null)
-                handel = request.getParameter("twiterhandel");
+            if(request.getParameter("search_phrase") != null)
+                handel = request.getParameter("search_phrase");
             
             try
             {
-                if(request.getParameter("submitFollowers") != null)
+                if(request.getParameter("search_type") != null)
                 {
-                    List<User> userFollowers = tweeter.getUserFollowers(handel, pageSize);
-
-                    if(userFollowers != null && userFollowers.size() > 0)
+                    if(request.getParameter("search_type").equals("followers"))
                     {
-                        filePath =  TwitterExel.writeFollowers(tweeter.getUserID(), userFollowers, webRootPath);
+                        List<User> userFollowers = tweeter.getUserFollowers(handel, pageSize);
+
+                        if(userFollowers != null && userFollowers.size() > 0)
+                        {
+                            filePath =  TwitterExel.writeFollowers(tweeter.getUserID(), userFollowers, webRootPath);
+                        }
+                        else
+                            response.sendRedirect("error.html");
+                        //TO DIFFERENT ERROR PAGE
                     }
-                    else
-                        response.sendRedirect("error.html");
-                    //TO DIFFERENT ERROR PAGE
-                }
-                else if(request.getParameter("submitFeed") != null)
-                {
-                    List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
-
-                    limit = tweeter.getRemainingRateLimit();
-
-                    if(userTweets != null && userTweets.size() > 0)
+                    else if(request.getParameter("search_type").equals("followers"))
                     {
-                        filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
+                        List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
+
+                        limit = tweeter.getRemainingRateLimit();
+
+                        if(userTweets != null && userTweets.size() > 0)
+                        {
+                            filePath =  TwitterExel.writeTweets(tweeter.getUserID(), userTweets, webRootPath);
+                        }
+                        else
+                            response.sendRedirect("error.html");
+                        //TO DIFFERENT ERROR PAGE
                     }
-                    else
-                        response.sendRedirect("error.html");
-                    //TO DIFFERENT ERROR PAGE
                 }
                 else
                 {

@@ -146,6 +146,29 @@
         <script>
             
         </script>
+        
+        <!-- Google Analytics Tracking -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-82333650-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        
+        <!-- Twitter universal website tag code -->
+        <script>
+            !function(e,n,u,a){e.twq||(a=e.twq=function(){a.exe?a.exe.apply(a,arguments):
+            a.queue.push(arguments);},a.version='1',a.queue=[],t=n.createElement(u),
+            t.async=!0,t.src='//static.ads-twitter.com/uwt.js',s=n.getElementsByTagName(u)[0],
+            s.parentNode.insertBefore(t,s))}(window,document,'script');
+            // Insert Twitter Pixel ID and Standard Event data below
+            twq('init','nvb78');
+            twq('track','PageView');
+        </script>
+        
     </head>
     <body>
         <header role="banner" id="fh5co-header">
@@ -221,12 +244,12 @@
                                                 out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
                                                     out.println("<fieldset>");
                                                         out.println("<div class=\"row\">");
-                                                            out.println("<input id=\"twitterhandel\" style=\"width: 40%; min-width: 350px; display: inline-block; \" class=\"form-control\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword\" placeholder=\"Search text. Hover over for usage tips\" name=\"twiterhandel\" type=\"text\" />");
+                                                            out.println("<input id=\"twitterhandel\" style=\"width: 40%; min-width: 350px; display: inline-block; \" class=\"form-control\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword\" placeholder=\"Search text. Hover over for usage tips\" name=\"search_phrase\" type=\"text\" />");
                                                         out.println("</div>");
 //                                                        out.println("<div class=\"row\" style=\"width: 40%; min-width: 350px; display: inline-block; text-align: left;\"><p style=\"font-weight: bold;\">Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword</p></div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFeed\" type=\"submit\" value=\"Download Twitter Data\" />");
-                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"submitFollowers\" type=\"submit\" value=\"Download Twitter Followers\" />");
+                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"tweets\" text=\"Download Tweets\" />");
+                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"followers\" text=\"Download Followers\" />");
                                                             out.println("</div>");
                                                     out.println("</fieldset>");
                                                 out.println("</form>");
@@ -282,12 +305,16 @@
                     
                     <div class="row">
                         <form id="get_check_form" action="https://sandbox.payfast.co.za/eng/process" method="get" >
-                            <div ng-show="false">
+                            <div >
                                 <input name="merchant_id" value="10003386" />
                                 <input name="merchant_key" value="jhjfb4ne1ppyy" />
-                                <input name="return_url" value="http://www.dataferret.co.za" /> 
+                                <input name="return_url" value="http://www.dataferret.co.za" />
+                                <input name="cancel_url" value="http://www.dataferret.co.za" /> 
                                 <input name="amount" ng-model="selectedProduct.price" />
                                 <input name="item_name" ng-model="selectedProduct.name" />
+                                <input name="custom_str1" ng-model="searchPhrase" />
+                                <input name="custom_str2" ng-model="searchType" />
+                                <input name="custom_str3" ng-model="selectedProduct.noOfTweets" />
                             </div>
                             <div class="row">
                                 <span>Product: </span>
@@ -298,6 +325,10 @@
                             </div>
                             <div class="row">
                                 <span>Search phrase: </span><input ng-model="searchPhrase"/>
+                            </div>
+                            <div class="row">
+                                <input type="radio" name="search_type" value="tweets" ng-model="searchType" checked="checked"> Tweets<br>
+                                <input type="radio" name="search_type" value="followers" ng-model="searchType"> Followers<br>
                             </div>
                             
                             <div class="row">

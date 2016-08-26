@@ -31,8 +31,9 @@ app.controller('productController', function($scope, $rootScope) {
         var searchPhrase = $scope.searchPhrase;
         var amount = $scope.selectedProduct.price;
         var itemName = $scope.selectedProduct.name;
+        var searchType = $scope.searchType;
         
-        console.log(searchPhrase + ' ' + amount + ' ' + itemName);
+        console.log(searchPhrase + ' ' + searchType + ' ' + amount + ' ' + itemName);
         //TODO call service here
     }
 });
