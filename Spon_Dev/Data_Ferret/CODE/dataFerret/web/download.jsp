@@ -31,6 +31,15 @@
 <%@ page import = "java.util.Map" %>
 
 <!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="5; url=http://www.dataferret.co.za">
+</head>
+<body>
+Thank you for using Data Ferret! You will return shortly
+</body>
+</html>
+
         <%
             String ip = request.getHeader("X-Forwarded-For");  
             if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
@@ -62,10 +71,10 @@
             TwitterHandler tweeter = (TwitterHandler)session.getAttribute("tweeter");
             
             int pageSize = 500;
-            if(request.getParameter("page_size") != null ) {
+            if(request.getParameter("page_size") != null) {
                 pageSize = Integer.parseInt(request.getParameter("page_size"));
-            } else if(session.getAttribute("page_size")) {
-                pageSize = session.getAttribute("page_size")
+            } else if(session.getAttribute("page_size") != null) {
+                pageSize = Integer.parseInt(session.getAttribute("page_size").toString());
             }
             
             String filePath = null;
@@ -81,15 +90,15 @@
             
             if(request.getParameter("search_phrase") != null) {
                 handel = request.getParameter("search_phrase");
-            } else if(session.getAttribute("search_phrase")) {
-                handel = session.getAttribute("search_phrase")
+            } else if(session.getAttribute("search_phrase") != null) {
+                handel = session.getAttribute("search_phrase").toString();
             }    
             
             try
             {
                 if(request.getParameter("search_type") != null || session.getAttribute("search_type") != null)
                 {
-                    if(request.getParameter("search_type").equals("followers") || session.getAttribute("search_type").equals("followers"))
+                    if((request.getParameter("search_type") != null && request.getParameter("search_type").equals("followers")) || (session.getAttribute("search_type") != null && session.getAttribute("search_type").toString().equals("followers")))
                     {
                         List<User> userFollowers = tweeter.getUserFollowers(handel, pageSize);
 
@@ -101,7 +110,7 @@
                             response.sendRedirect("error.html");
                         //TO DIFFERENT ERROR PAGE
                     }
-                    else if(request.getParameter("search_type").equals("tweets") || session.getAttribute("search_type").equals("tweets"))
+                    else if((request.getParameter("search_type") != null && request.getParameter("search_type").equals("tweets")) || (session.getAttribute("search_type") != null && session.getAttribute("search_type").equals("tweets")))
                     {
                         List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
 
@@ -130,7 +139,6 @@
                         response.sendRedirect("error.html");
                     //TO DIFFERENT ERROR PAGE
                 }
-                response.sendRedirect("index.jsp");
             }
             catch(TwitterException ex)
             {
@@ -163,7 +171,7 @@
                             bos.write(buf, 0, readNum);
                         }
                     } catch (IOException ex) {
-
+                        String s = ex.toString();
                     } 
                     ServletOutputStream outs = response.getOutputStream();
                     bos.writeTo(outs);
@@ -182,6 +190,9 @@
                         bos.flush();
                         bos.close();
                     }
+                    session.setAttribute("page_size", null);
+                    session.setAttribute("search_type", null);
+                    session.setAttribute("search_phrase", null);
                 }
             }
 %>

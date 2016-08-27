@@ -34,7 +34,7 @@
     String pin;
 %>
 
-<%
+<%   
     String ip = request.getHeader("X-Forwarded-For");  
     if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
         ip = request.getHeader("Proxy-Client-IP");  
@@ -71,6 +71,7 @@
             AccessToken access = tweeter.getAccessToken(pin);
             if(access != null)
             {
+                
                 session.setAttribute("accessToken", access);
                 long twitterUserId = tweeter.getUserID();
                 session.setAttribute("twitterUserId", twitterUserId);
@@ -93,10 +94,10 @@
 %>
 
 <!DOCTYPE html>
-<html class="no-js">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="productController.js"></script>
+<html class="no-js"> 
     <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="productController.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Data Ferret - Download Twitter Data</title>
@@ -112,10 +113,10 @@
         <meta property="og:url" content=""/>
         <meta property="og:site_name" content=""/>
         <meta property="og:description" content=""/>
-        <meta name="twitter:title" content="" />
+        <!-- <meta name="twitter:title" content="" />
         <meta name="twitter:image" content="" />
         <meta name="twitter:url" content="" />
-        <meta name="twitter:card" content="" />
+        <meta name="twitter:card" content="" /> -->
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="shortcut icon" href="favicon.ico">
@@ -292,8 +293,9 @@
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">{{product.name}}</h2>
                                     <div class="price"><sup class="currency">$</sup>{{product.price}}</div>
+                                    <div class="price" style="font-size: small">Equivalent cost in ZAR: {{getRandValue(product.price) | currency : "R"}}</div>
                                     <div class="price small"><p>Amount of data = {{product.noOfTweets | number}}</p></div>
-                                    <a href="" class="btn btn-select-plan btn-sm" data-toggle="collapse" data-target="#pricing" aria-expanded="false" aria-controls="pricing" ng-click="selectProduct(product.id)">{{getButtonTextForProductId(product.id)}}</a>
+                                    <a href="" class="btn btn-select-plan btn-sm" data-toggle="collapse" data-target="#pricing" aria-expanded="false" aria-controls="pricing" ng-click="selectProduct(product.id)" ng-disabled="product.id !== 0">{{getButtonTextForProductId(product.id)}}</a>
                                 </div>
                             </div>
                            
@@ -310,28 +312,31 @@
                         
                     
                     <div class="row">
-                        <form id="get_check_form" action="payment.jsp" method="get" >
+                        <form id="get_check_form" action="payment.jsp" method="get" 
+                            <% if(session.getAttribute("accessToken") == null){out.println("ng-show=\"false\"");} %> 
+                        >
                             <h3>Order Details</h3>
                             <div ng-show="false">
-                                <input class="input-lg" name="payfast_url" value="https://sandbox.payfast.co.za/eng/process" />
-                                <input class="input-lg" name="merchant_id" value="10003386" />
-                                <input class="input-lg" name="merchant_key" value="jhjfb4ne1ppyy" />
-                                <input class="input-lg"name="return_url" value="http://www.dataferret.co.za/index.jsp" />
-                                <input class="input-lg"name="cancel_url" value="http://www.dataferret.co.za/cancel.jsp" /> 
-                                <input class="input-lg"name="amount" ng-model="selectedProduct.price" />
-                                <input class="input-lg"name="item_name" ng-model="selectedProduct.name" />
-                                <input class="input-lg"name="custom_str2" ng-model="searchType" />
-                                <input class="input-lg"name="custom_str3" ng-model="selectedProduct.noOfTweets" />
+                                <input class="input-lg" name="payfast_url" value="https://www.payfast.co.za/eng/process" />
+                                <input class="input-lg" name="merchant_id" value="10277262" />
+                                <input class="input-lg" name="merchant_key" value="061n75263zg71" />
+                                <input class="input-lg" name="return_url" value="http://www.dataferret.co.za/download.jsp" />
+                                <!--<input class="input-lg" name="return_url" value="http://www.dataferret.co.za/?logged=1" />-->
+                                <input class="input-lg" name="cancel_url" value="http://www.dataferret.co.za/cancel.jsp" /> 
+                                <input class="input-lg" name="amount" ng-model="getRandValue(selectedProduct.price)" />
+                                <input class="input-lg" name="item_name" ng-model="selectedProduct.name" />
+                                <input class="input-lg" name="custom_str2" ng-model="searchType" />
+                                <input class="input-lg" name="custom_str3" ng-model="selectedProduct.noOfTweets" />
                             </div>
                             <div class="row">
+                                <span>Search phrase: </span><input class="input-lg" id="search_phrase" name="custom_str1" ng-model="searchPhrase" required/>
+                                
                                 <span>Product: </span>
                                 <select class="btn btn-primary btn-lg" name="mySelect" id="mySelect"
                                     ng-options="product.name for product in products track by product.id"
-                                    ng-model="selectedProduct">
+                                    ng-model="selectedProduct" ng-disabled="true">
                                 </select>
-                            </div>
-                            <div class="row">
-                                <span>Search phrase: </span><input class="input-lg" name="custom_str1" ng-model="searchPhrase"/>
+                                
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -350,13 +355,10 @@
                                     </div>
                                 </div>
                                 </div>
-                            </div>
-                      
-                                
-                            </div>
+                            </div>                    
                             
                             <div class="row">
-                                <button class="btn btn-primary btn-lg" ng-show="!loading" ng-click="pay()">Pay</button>
+                                <button class="btn btn-primary btn-lg" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()">Pay</button>
                                 <div ng-show="loading" class="loader"></div>  
                             </div>
                         </form> 
@@ -608,7 +610,15 @@
         <script src="js/google_map.js"></script>
         <!-- Main JS (Do not remove) -->
         <script src="js/main.js"></script>
-
+        
+        <%
+            if(session.getAttribute("accessToken") != null && session.getAttribute("search_phrase") != null)
+            {
+                out.println("<script>var http = new XMLHttpRequest();http.open(\"POST\", \"www.dataferret.co.za/download.jsp\", true);</script>");
+                //response.sendRedirect("download.jsp");
+            }
+        %>
+        
     </body>
 </html>
 

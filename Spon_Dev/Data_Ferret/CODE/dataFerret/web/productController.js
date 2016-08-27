@@ -1,5 +1,7 @@
 var app = angular.module('dataFerret', []);
 app.controller('productController', function($scope, $rootScope) {
+    var exchange = 12;
+    
     $scope.loading = false;
     
     $scope.products = [
@@ -21,6 +23,10 @@ app.controller('productController', function($scope, $rootScope) {
 
     if(sessionStorage.searchType && sessionStorage.searchPhrase && sessionStorage.numberOfTweets) {
         
+    }
+    
+    $scope.getRandValue = function(price){
+        return price * exchange;
     }
     
     $scope.selectProduct = function(productId) {
