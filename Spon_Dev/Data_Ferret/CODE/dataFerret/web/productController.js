@@ -12,8 +12,16 @@ app.controller('productController', function($scope, $rootScope) {
         {id: 6, name: 'Premium', price: 8.99, noOfTweets: 18000}
     ];
     
+    sessionStorage.searchType = "searchType";
+        sessionStorage.searchPhrase = "searchPhrase";
+        sessionStorage.numberOfTweets = "numberOfTweets";
+        
+    
     $scope.selectedProduct = $scope.products[0];
-//    $scope.selectedId = 0;
+
+    if(sessionStorage.searchType && sessionStorage.searchPhrase && sessionStorage.numberOfTweets) {
+        
+    }
     
     $scope.selectProduct = function(productId) {
         var selectedProduct = $scope.products.find(function(element) {
@@ -21,6 +29,7 @@ app.controller('productController', function($scope, $rootScope) {
         });
         $scope.selectedProduct = selectedProduct;
         console.log($scope.selectedProduct);
+        console.log(document.cookie);
     };
     $scope.getButtonTextForProductId = function(productId) {
       return productId === 0 ? 'DONATE' : 'COMING SOON';  
@@ -32,6 +41,11 @@ app.controller('productController', function($scope, $rootScope) {
         var amount = $scope.selectedProduct.price;
         var itemName = $scope.selectedProduct.name;
         var searchType = $scope.searchType;
+        var numberOfTweets = $scope.selectedProduct.noOfTweets;
+        
+        sessionStorage.searchType = searchType;
+        sessionStorage.searchPhrase = searchPhrase;
+        sessionStorage.numberOfTweets = numberOfTweets;
         
         console.log(searchPhrase + ' ' + searchType + ' ' + amount + ' ' + itemName);
         //TODO call service here

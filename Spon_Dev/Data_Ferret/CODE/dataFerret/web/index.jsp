@@ -310,16 +310,16 @@
                         
                     
                     <div class="row">
-                        <form id="get_check_form" action="https://sandbox.payfast.co.za/eng/process" method="get" >
+                        <form id="get_check_form" action="payment.jsp" method="get" >
                             <h3>Order Details</h3>
-                            <div>
+                            <div ng-show="false">
+                                <input class="input-lg" name="payfast_url" value="https://sandbox.payfast.co.za/eng/process" />
                                 <input class="input-lg" name="merchant_id" value="10003386" />
                                 <input class="input-lg" name="merchant_key" value="jhjfb4ne1ppyy" />
-                                <input class="input-lg"name="return_url" value="http://www.dataferret.co.za" />
-                                <input class="input-lg"name="cancel_url" value="http://www.dataferret.co.za" /> 
+                                <input class="input-lg"name="return_url" value="http://www.dataferret.co.za/index.jsp" />
+                                <input class="input-lg"name="cancel_url" value="http://www.dataferret.co.za/cancel.jsp" /> 
                                 <input class="input-lg"name="amount" ng-model="selectedProduct.price" />
                                 <input class="input-lg"name="item_name" ng-model="selectedProduct.name" />
-                                <input class="input-lg"name="custom_str1" ng-model="searchPhrase" />
                                 <input class="input-lg"name="custom_str2" ng-model="searchType" />
                                 <input class="input-lg"name="custom_str3" ng-model="selectedProduct.noOfTweets" />
                             </div>
@@ -331,7 +331,7 @@
                                 </select>
                             </div>
                             <div class="row">
-                                <span>Search phrase: </span><input class="input-lg" ng-model="searchPhrase"/>
+                                <span>Search phrase: </span><input class="input-lg" name="custom_str1" ng-model="searchPhrase"/>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">

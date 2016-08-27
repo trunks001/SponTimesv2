@@ -31,13 +31,6 @@
 <%@ page import = "java.util.Map" %>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Data Ferret</title>
-    </head>
-    <body>
-        <p>Your download  will begin shortly, please be patient</p>
         <%
             String ip = request.getHeader("X-Forwarded-For");  
             if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
@@ -69,9 +62,10 @@
             TwitterHandler tweeter = (TwitterHandler)session.getAttribute("tweeter");
             
             int pageSize = 500;
-            if(request.getParameter("page_size") != null)
-            {
+            if(request.getParameter("page_size") != null ) {
                 pageSize = Integer.parseInt(request.getParameter("page_size"));
+            } else if(session.getAttribute("page_size")) {
+                pageSize = session.getAttribute("page_size")
             }
             
             String filePath = null;
@@ -85,14 +79,17 @@
             if(handel.equalsIgnoreCase("ferret_data"))
                 pageSize = 36000;
             
-            if(request.getParameter("search_phrase") != null)
+            if(request.getParameter("search_phrase") != null) {
                 handel = request.getParameter("search_phrase");
+            } else if(session.getAttribute("search_phrase")) {
+                handel = session.getAttribute("search_phrase")
+            }    
             
             try
             {
-                if(request.getParameter("search_type") != null)
+                if(request.getParameter("search_type") != null || session.getAttribute("search_type") != null)
                 {
-                    if(request.getParameter("search_type").equals("followers"))
+                    if(request.getParameter("search_type").equals("followers") || session.getAttribute("search_type").equals("followers"))
                     {
                         List<User> userFollowers = tweeter.getUserFollowers(handel, pageSize);
 
@@ -104,7 +101,7 @@
                             response.sendRedirect("error.html");
                         //TO DIFFERENT ERROR PAGE
                     }
-                    else if(request.getParameter("search_type").equals("followers"))
+                    else if(request.getParameter("search_type").equals("tweets") || session.getAttribute("search_type").equals("tweets"))
                     {
                         List<Status> userTweets = tweeter.getUserTimeline(handel, pageSize);
 
@@ -133,6 +130,7 @@
                         response.sendRedirect("error.html");
                     //TO DIFFERENT ERROR PAGE
                 }
+                response.sendRedirect("index.jsp");
             }
             catch(TwitterException ex)
             {
@@ -186,6 +184,4 @@
                     }
                 }
             }
-        %>
-    </body>
-</html>
+%>
