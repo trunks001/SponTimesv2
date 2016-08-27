@@ -276,22 +276,27 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2 subtext">
                                     <h3 class="to-animate">As soon as you have made your secure purchase Data Ferret gets to work on downloading your data.</h3>
+                                    
+                                        <a class="btn btn-primary btn-lg" data-toggle="collapse" data-parent="#accordion" href="#pricing" aria-expanded="false" aria-controls="pricing"> 
+                                            Show Prices</a>
+                                    
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
+                    </div>                                           
+                         
+                        <div class="row collapse in" id="pricing">
                         <div class="pricing">
+                        
                             <div ng-repeat="product in products" class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">{{product.name}}</h2>
                                     <div class="price"><sup class="currency">$</sup>{{product.price}}</div>
                                     <div class="price small"><p>Amount of data = {{product.noOfTweets | number}}</p></div>
-                                    <a href="" class="btn btn-select-plan btn-sm" ng-click="selectProduct(product.id)">{{getButtonTextForProductId(product.id)}}</a>
+                                    <a href="" class="btn btn-select-plan btn-sm" data-toggle="collapse" data-target="#pricing" aria-expanded="false" aria-controls="pricing" ng-click="selectProduct(product.id)">{{getButtonTextForProductId(product.id)}}</a>
                                 </div>
                             </div>
-                            
+                           
                             <div class="col-xs-12 col-sm-6 col-md-3">
                                 <div class="price-box to-animate-2">
                                     <h2 class="pricing-plan">Buffet</h2>
@@ -302,6 +307,7 @@
                             </div>
                         </div>
                     </div>
+                        
                     
                     <div class="row">
                         <form id="get_check_form" action="https://sandbox.payfast.co.za/eng/process" method="get" >
@@ -348,11 +354,11 @@
                 out.println("<div class=\"getting-started getting-started-1\">"
                     + "<div class=\"container\">"
                        + "<div class=\"row\">"
-                           + "<div class=\"col-md-6 to-animate\">"
+                           + "<div class=\"col-md-6\">"
                                + "<h3>Get Started Here</h3>"
                                + "<p>Sign in with your Twitter account and start downloading data from Twitter</p>"
                            + "</div>"
-                           + "<div class=\"col-md-6 to-animate-2\">"
+                           + "<div class=\"col-md-6\">"
                                + "<div class=\"call-to-action text-right\">"
                                    + "<a href=\"" + a + "\" class=\"sign-up\">Sign In With Twitter</a>"
                                + "</div>"
@@ -367,9 +373,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 section-heading text-center">
-                        <h2 class="to-animate">What is Data Ferret?</h2>
+                        <h2>What is Data Ferret?</h2>
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                            <div class="col-md-8 col-md-offset-2 subtext">
                                 <h3>Ever been in the frustrating situation where you need to download a Twitter data and produce a report? Ever wanted all of those Tweets in front of you in Excel? Ever tried to copy tweets from Twitter into Excel? We have, and we know the frustration. We made Data Ferret to help you.</h3>
                             </div>
                         </div>
