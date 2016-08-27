@@ -3319,10 +3319,15 @@ input[type="checkbox"] {
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
   height: 30px;
-  padding: 5px 20px;
-  font-size: 12px;
+  padding: 20px 20px;
+  font-size: 20px;
   line-height: 1.5;
   border-radius: 3px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  background: #5291b9;
+  box-shadow: none;
 }
 
 select.input-sm, .input-group-sm > select.form-control,
@@ -3373,6 +3378,12 @@ select[multiple].input-sm,
   font-size: 18px;
   line-height: 1.33333;
   border-radius: 6px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  background: #5291b9;
+  box-shadow: none;
+  margin: 10px 10px 10px 10px;
 }
 
 select.input-lg, .input-group-lg > select.form-control,

@@ -311,34 +311,52 @@
                     
                     <div class="row">
                         <form id="get_check_form" action="https://sandbox.payfast.co.za/eng/process" method="get" >
-                            <div >
-                                <input name="merchant_id" value="10003386" />
-                                <input name="merchant_key" value="jhjfb4ne1ppyy" />
-                                <input name="return_url" value="http://www.dataferret.co.za" />
-                                <input name="cancel_url" value="http://www.dataferret.co.za" /> 
-                                <input name="amount" ng-model="selectedProduct.price" />
-                                <input name="item_name" ng-model="selectedProduct.name" />
-                                <input name="custom_str1" ng-model="searchPhrase" />
-                                <input name="custom_str2" ng-model="searchType" />
-                                <input name="custom_str3" ng-model="selectedProduct.noOfTweets" />
+                            <h3>Order Details</h3>
+                            <div>
+                                <input class="input-lg" name="merchant_id" value="10003386" />
+                                <input class="input-lg" name="merchant_key" value="jhjfb4ne1ppyy" />
+                                <input class="input-lg"name="return_url" value="http://www.dataferret.co.za" />
+                                <input class="input-lg"name="cancel_url" value="http://www.dataferret.co.za" /> 
+                                <input class="input-lg"name="amount" ng-model="selectedProduct.price" />
+                                <input class="input-lg"name="item_name" ng-model="selectedProduct.name" />
+                                <input class="input-lg"name="custom_str1" ng-model="searchPhrase" />
+                                <input class="input-lg"name="custom_str2" ng-model="searchType" />
+                                <input class="input-lg"name="custom_str3" ng-model="selectedProduct.noOfTweets" />
                             </div>
                             <div class="row">
                                 <span>Product: </span>
-                                <select name="mySelect" id="mySelect"
+                                <select class="btn btn-primary btn-lg" name="mySelect" id="mySelect"
                                     ng-options="product.name for product in products track by product.id"
                                     ng-model="selectedProduct">
                                 </select>
                             </div>
                             <div class="row">
-                                <span>Search phrase: </span><input ng-model="searchPhrase"/>
+                                <span>Search phrase: </span><input class="input-lg" ng-model="searchPhrase"/>
                             </div>
                             <div class="row">
-                                <input type="radio" name="search_type" value="tweets" ng-model="searchType" checked="checked"> Tweets<br>
-                                <input type="radio" name="search_type" value="followers" ng-model="searchType"> Followers<br>
+                                <div class="col-md-4">
+                                    
+                                <div class="funkyradio">
+                                    
+                                    <div class="funkyradio-primary">
+                                     
+                                        <input type="radio" name="search_type" value="tweets" id="tweets" ng-model="searchType" checked>
+                                        <label for="tweets">Select Tweets Data</label>
+                                    </div>
+                                    
+                                    <div class="funkyradio-primary">
+                                        <input type="radio" name="search_type" value="followers" id="followers" ng-model="searchType">
+                                        <label for="followers">Select Followers Data</label>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                      
+                                
                             </div>
                             
                             <div class="row">
-                                <button ng-show="!loading" ng-click="pay()">Pay</button>
+                                <button class="btn btn-primary btn-lg" ng-show="!loading" ng-click="pay()">Pay</button>
                                 <div ng-show="loading" class="loader"></div>  
                             </div>
                         </form> 
