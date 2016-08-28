@@ -1,6 +1,6 @@
 var app = angular.module('dataFerret', []);
 app.controller('productController', function($scope, $rootScope) {
-    var exchange = 12;
+    var exchange = 14;
     
     $scope.loading = false;
     

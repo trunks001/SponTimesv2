@@ -200,7 +200,7 @@
                                 {
                                     try
                                     {
-                                        out.println("<li class=\"navbar2\"><a href=\"#\"<span>Welcome " + tweeter.getUserName() + "!</span></a></li>");
+                                        out.println("<li class=\"navbar2\"><span>Welcome " + tweeter.getUserName() + "!</span></li><li class=\"call-to-action\"><a class=\"external\" href=\"index.jsp\"><span>Logout</span></a></li>");
                                     }
                                     catch(Exception ex){
                                         response.sendRedirect("error.html");
@@ -222,14 +222,16 @@
                         <div class="col-md-12">
                              <div class="row" style="margin-top: 20px;">
                                 <h1 class="to-animate">Welcome To Data Ferret</h1>
+                                <h2 style="font-weight: bold;">Login with Twitter to try us for free and get 500 tweets or followers.</h2>
                                 <img src="images/ferret.png" alt=""/>
                              </div>
                             <div class="row" style="padding-top: 10px;">
                                 <p style="font-weight: bold;">We are currently in BETA! Try us for free!</p>
+                                <p style="font-weight: bold;">See our deals below for more options!</p>
                             </div>
                             <div class="row" style="margin-top: 10px;">
                                 <div id="subheading">
-                                    <div>Easily Get Twitter Timelines in Excel</div> 
+                                    <div>Easily Get Twitter Data in Excel</div> 
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 20px;">
@@ -249,9 +251,13 @@
                                                         out.println("</div>");
 //                                                        out.println("<div class=\"row\" style=\"width: 40%; min-width: 350px; display: inline-block; text-align: left;\"><p style=\"font-weight: bold;\">Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword</p></div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"tweets\" text=\"Download Tweets\" />");
-                                                            out.println("<input class=\"download to-animate\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"followers\" text=\"Download Followers\" />");
-                                                            out.println("</div>");
+                                                            out.println("<button class=\"btn btn-primary btn-lg\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"tweets\">500 Tweets Free</button>");
+                                                            out.println("<button class=\"btn btn-primary btn-lg\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"followers\">500 Followers Free</button>");
+                                                        out.println("</div>");
+                                                        out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
+                                                            out.println("<a href=\"#\" data-nav-section=\"buy\"<button class=\"btn btn-primary btn-lg\">1,500 Tweets $0.99</button></a>");
+                                                            out.println("<a href=\"#\" data-nav-section=\"buy\"<button class=\"btn btn-primary btn-lg\">1,500 Followers $0.99</button></a>");
+                                                        out.println("</div>");
                                                     out.println("</fieldset>");
                                                 out.println("</form>");
                                             out.println("</div>");
@@ -310,59 +316,47 @@
                         </div>
                     </div>
                         
-                    
-                    <div class="row">
-                        <form id="get_check_form" action="payment.jsp" method="get" 
-                            <% if(session.getAttribute("accessToken") == null){out.println("ng-show=\"false\"");} %> 
-                        >
-                            <h3>Order Details</h3>
-                            <div ng-show="false">
-                                <input class="input-lg" name="payfast_url" value="https://www.payfast.co.za/eng/process" />
-                                <input class="input-lg" name="merchant_id" value="10277262" />
-                                <input class="input-lg" name="merchant_key" value="061n75263zg71" />
-                                <input class="input-lg" name="return_url" value="http://www.dataferret.co.za/download.jsp" />
-                                <!--<input class="input-lg" name="return_url" value="http://www.dataferret.co.za/?logged=1" />-->
-                                <input class="input-lg" name="cancel_url" value="http://www.dataferret.co.za/cancel.jsp" /> 
-                                <input class="input-lg" name="amount" ng-model="getRandValue(selectedProduct.price)" />
-                                <input class="input-lg" name="item_name" ng-model="selectedProduct.name" />
-                                <input class="input-lg" name="custom_str2" ng-model="searchType" />
-                                <input class="input-lg" name="custom_str3" ng-model="selectedProduct.noOfTweets" />
-                            </div>
-                            <div class="row">
-                                <span>Search phrase: </span><input class="input-lg" id="search_phrase" name="custom_str1" ng-model="searchPhrase" required/>
-                                
-                                <span>Product: </span>
-                                <select class="btn btn-primary btn-lg" name="mySelect" id="mySelect"
-                                    ng-options="product.name for product in products track by product.id"
-                                    ng-model="selectedProduct" ng-disabled="true">
-                                </select>
-                                
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    
-                                <div class="funkyradio">
-                                    
-                                    <div class="funkyradio-primary">
-                                     
-                                        <input type="radio" name="search_type" value="tweets" id="tweets" ng-model="searchType" checked>
-                                        <label for="tweets">Select Tweets Data</label>
-                                    </div>
-                                    
-                                    <div class="funkyradio-primary">
-                                        <input type="radio" name="search_type" value="followers" id="followers" ng-model="searchType">
-                                        <label for="followers">Select Followers Data</label>
-                                    </div>
+                    <section id="fh5co-buy" data-section="buy">
+                        <div class="fh5co-buy">
+                            <div class="container">
+                                <div class="row">
+                                    <form id="get_check_form" action="payment.jsp" method="get" 
+                                        <% if(session.getAttribute("accessToken") == null){out.println("ng-show=\"false\"");} %> 
+                                    >
+                                        <h3>Order Details</h3>
+                                        <div ng-show="false">
+                                            <input class="input-lg" name="payfast_url" value="https://www.payfast.co.za/eng/process" />
+                                            <input class="input-lg" name="merchant_id" value="10277262" />
+                                            <input class="input-lg" name="merchant_key" value="061n75263zg71" />
+                                            <input class="input-lg" name="return_url" value="http://www.dataferret.co.za/download.jsp" />
+                                            <!--<input class="input-lg" name="return_url" value="http://www.dataferret.co.za/?logged=1" />-->
+                                            <input class="input-lg" name="cancel_url" value="http://www.dataferret.co.za/cancel.jsp" /> 
+                                            <input class="input-lg" name="amount" ng-model="getRandValue(selectedProduct.price)" />
+                                            <input class="input-lg" name="item_name" ng-model="selectedProduct.name" />
+                                            <input class="input-lg" name="custom_str2" ng-model="searchType" />
+                                            <input class="input-lg" name="custom_str3" ng-model="selectedProduct.noOfTweets" />
+                                        </div>
+                                        <div class="row">
+                                            <span>Search phrase: </span><input style="width: 40%; min-width: 350px; display: inline-block; " class="form-control" data-toggle="tooltip" data-placement="top" title="Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword" placeholder="Search text. Hover over for usage tips" type="text" id="search_phrase" name="custom_str1" ng-model="searchPhrase" required/>
+
+                                            <span>Product: </span>
+                                            <select class="btn btn-primary btn-lg" name="mySelect" id="mySelect"
+                                                ng-options="product.name for product in products track by product.id"
+                                                ng-model="selectedProduct" ng-disabled="true">
+                                            </select>
+
+                                        </div>                    
+
+                                        <div class="row">
+                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="followers" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()">Get 1,500 Tweets for $0.99</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="tweets" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()" >Get 1,500 Followers for $0.99"</button>
+                                            <div ng-show="loading" class="loader"></div>  
+                                        </div>
+                                    </form> 
                                 </div>
-                                </div>
-                            </div>                    
-                            
-                            <div class="row">
-                                <button class="btn btn-primary btn-lg" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()">Pay</button>
-                                <div ng-show="loading" class="loader"></div>  
                             </div>
-                        </form> 
-                    </div>
+                        </div>
+                    </section>
                         
                 </div>
             </div>

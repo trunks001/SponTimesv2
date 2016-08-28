@@ -77,6 +77,9 @@ Thank you for using Data Ferret! You will return shortly
                 pageSize = Integer.parseInt(session.getAttribute("page_size").toString());
             }
             
+            if(request.getParameter("search_type") != null && request.getParameter("search_type").contains("1500"))
+                pageSize = 1500;
+            
             String filePath = null;
             
             String webRootPath = getServletContext().getRealPath("/").replace('\\', '/');
