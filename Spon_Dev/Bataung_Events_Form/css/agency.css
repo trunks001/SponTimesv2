@@ -150,8 +150,13 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .logo {
-    height: 50px;
-    width: 50px;
+    height: 80px;
+    width: auto;
+}
+
+.logo2 {
+    height: 80px;
+    width: auto;
 }
 
 @media (max-width: 800px) {

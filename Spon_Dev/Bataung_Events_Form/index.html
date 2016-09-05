@@ -44,7 +44,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Bataung Events</a>
+                <a class="navbar-brand page-scroll" href="#page-top"><img src="img/logos/bataunglogo.jpg" alt="" class="logo2"/></a>               
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,23 +84,23 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="data.php" method="POST">
+                    <form action="data.php" method="POST" data-toggle="validator" role="form">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Title *" name="title" id="title1" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Title *" name="title" id="title1" data-error="Please enter your title." data-validation-required-message="Please enter your title." required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="First Name *" name="firstname" id="firstname1" required data-validation-required-message="Please enter your email address.">
+                                    <input type="text" class="form-control" placeholder="First Name *" name="firstname" id="firstname1" data-validation-required-message="Please enter your first name." required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Surname *" name="lastname" id="lastname1" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="text" class="form-control" placeholder="Surname *" name="lastname" id="lastname1" data-validation-required-message="Please enter your last name." required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email *" name="email" id="email1" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="email" class="form-control" placeholder="Email *" name="email" id="email1" data-validation-required-message="Please enter your valid email address." required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
@@ -108,7 +108,7 @@
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Cellphone Number *" name="cellphone" id="cellphone1" required data-validation-required-message="Please enter your cellphone number.">
+                                    <input type="text" class="form-control" placeholder="Cellphone Number *" name="cellphone" id="cellphone1" data-validation-required-message="Please enter your cellphone number." required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
@@ -119,15 +119,15 @@
                             <div class="col-md-6">
                                 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Company Name *" name="companyname" id="companyname1" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Company Name *" name="companyname" id="companyname1" data-validation-required-message="Please enter your company name." required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Department *" name="department" id="department1" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Department *" name="department" id="department1" data-validation-required-message="Please enter department." required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Designation *" name="designation" id="designation1" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Designation *" name="designation" id="designation1" data-validation-required-message="Please enter your designation." required>
                                     <p class="help-block text-danger"></p>
                                 </div>                                
                                 <div class="form-group">
@@ -156,9 +156,9 @@
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <a href="ThankYou.html"><button type="submit" class="btn btn-xl" name="submit" value="Accept">Accept</button></a>
-                                <a href="Decline.html"><button type="submit" class="btn btn-xl" name="submit" value="Tentative">Tentative</button></a>
-                                <a href="Decline.html"><button type="submit" class="btn btn-xl" name="submit" value="Decline">Decline</button></a>
+                                <button type="submit" class="btn btn-xl" name="submit" value="Accept">Accept</button>
+                                <button type="submit" class="btn btn-xl" name="submit" value="Tentative">Tentative</button>
+                                <button type="submit" class="btn btn-xl" name="submit" value="Decline">Decline</button>
                             </div>
                         </div>
                     </form>
