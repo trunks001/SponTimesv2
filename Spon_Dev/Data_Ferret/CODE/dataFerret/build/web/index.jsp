@@ -222,13 +222,8 @@
                         <div class="col-md-12">
                              <div class="row" style="margin-top: 20px;">
                                 <h1 class="to-animate">Welcome To Data Ferret</h1>
-                                <h2 style="font-weight: bold;">Login with Twitter to try us for free and get 500 tweets or followers.</h2>
                                 <img src="images/ferret.png" alt=""/>
                              </div>
-                            <div class="row" style="padding-top: 10px;">
-                                <p style="font-weight: bold;">We are currently in BETA! Try us for free!</p>
-                                <p style="font-weight: bold;">See our deals below for more options!</p>
-                            </div>
                             <div class="row" style="margin-top: 10px;">
                                 <div id="subheading">
                                     <div>Easily Get Twitter Data in Excel</div> 
@@ -246,18 +241,12 @@
                                             out.println("<div class=\"col-md-12 to-animate\">");                                      
                                                 out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
                                                     out.println("<fieldset>");
-                                                        out.println("<div class=\"row\">");
-                                                            out.println("<input id=\"twitterhandel\" style=\"width: 40%; min-width: 350px; display: inline-block; \" class=\"form-control\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword\" placeholder=\"Search text. Hover over for usage tips\" name=\"search_phrase\" type=\"text\" />");
-                                                        out.println("</div>");
-//                                                        out.println("<div class=\"row\" style=\"width: 40%; min-width: 350px; display: inline-block; text-align: left;\"><p style=\"font-weight: bold;\">Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword</p></div>");
-                                                        out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                            out.println("<button class=\"btn btn-primary btn-lg\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"tweets\">500 Tweets Free</button>");
-                                                            out.println("<button class=\"btn btn-primary btn-lg\" id=\"submitform\" name=\"search_type\" type=\"submit\" value=\"followers\">500 Followers Free</button>");
-                                                        out.println("</div>");
+                                                        out.println("<div class=\"row\" style=\"padding-top: 8px;\">Popular choices:</div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
                                                             out.println("<a href=\"#\" data-nav-section=\"buy\"<button class=\"btn btn-primary btn-lg\">1,500 Tweets $0.99</button></a>");
                                                             out.println("<a href=\"#\" data-nav-section=\"buy\"<button class=\"btn btn-primary btn-lg\">1,500 Followers $0.99</button></a>");
                                                         out.println("</div>");
+                                                        out.println("<div class=\"row\" style=\"padding-top: 8px;\">*if what you're looking for isn't here, please scroll down for more options!</div>");
                                                     out.println("</fieldset>");
                                                 out.println("</form>");
                                             out.println("</div>");
@@ -301,7 +290,7 @@
                                     <div class="price"><sup class="currency">$</sup>{{product.price}}</div>
                                     <div class="price" style="font-size: small">Equivalent cost in ZAR: {{getRandValue(product.price) | currency : "R"}}</div>
                                     <div class="price small"><p>Amount of data = {{product.noOfTweets | number}}</p></div>
-                                    <a href="" class="btn btn-select-plan btn-sm" data-toggle="collapse" data-target="#pricing" aria-expanded="false" aria-controls="pricing" ng-click="selectProduct(product.id)" ng-disabled="product.id !== 0">{{getButtonTextForProductId(product.id)}}</a>
+                                    <a href="" class="btn btn-select-plan btn-sm" data-nav-section="buy" ng-click="selectProduct(product.id)" >{{getButtonTextForProductId(product.id)}}</a>
                                 </div>
                             </div>
                            
@@ -342,14 +331,14 @@
                                             <span>Product: </span>
                                             <select class="btn btn-primary btn-lg" name="mySelect" id="mySelect"
                                                 ng-options="product.name for product in products track by product.id"
-                                                ng-model="selectedProduct" ng-disabled="true">
+                                                ng-model="selectedProduct">
                                             </select>
 
                                         </div>                    
 
-                                        <div class="row">
-                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="followers" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()">Get 1,500 Tweets for $0.99</button>
-                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="tweets" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()" >Get 1,500 Followers for $0.99"</button>
+                                        <div class="row" style="padding-top: 8px;">
+                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="followers" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()">Get {{selectedProduct.noOfTweets}} Tweets for {{selectedProduct.price | currency}}</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="tweets" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()" >Get {{selectedProduct.noOfTweets}} Followers for {{selectedProduct.price | currency}}"</button>
                                             <div ng-show="loading" class="loader"></div>  
                                         </div>
                                     </form> 

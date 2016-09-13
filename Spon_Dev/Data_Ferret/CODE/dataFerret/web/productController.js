@@ -38,7 +38,7 @@ app.controller('productController', function($scope, $rootScope) {
         console.log(document.cookie);
     };
     $scope.getButtonTextForProductId = function(productId) {
-      return productId === 0 ? 'DONATE' : 'COMING SOON';  
+      return $scope.products[productId].name;
     };
     
     $scope.pay = function() {
