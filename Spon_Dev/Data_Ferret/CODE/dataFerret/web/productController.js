@@ -1,22 +1,17 @@
 var app = angular.module('dataFerret', []);
-app.controller('productController', function($scope, $rootScope) {
+app.controller('productController', function($scope, $element) {
+    
     var exchange = 14;
-    
-    $scope.loading = false;
-    
-    $scope.products = [
-        {id: 0, name: 'Donate', price: 0.99, noOfTweets: 1500},
-        {id: 1, name: 'Starter', price: 1.99, noOfTweets: 500},
-        {id: 2, name: 'Beginner', price: 2.99, noOfTweets: 1500},
-        {id: 3, name: 'Basic', price: 3.99, noOfTweets: 3000},
-        {id: 4, name: 'Intermediate', price: 4.99, noOfTweets: 6000},
-        {id: 5, name: 'Expert', price: 6.99, noOfTweets: 12000},
-        {id: 6, name: 'Premium', price: 8.99, noOfTweets: 18000}
-    ];
+    var productJson = $element[0].attributes["product-list"].value;
+    while (productJson.includes("$")) {
+        productJson = productJson.replace("$", "\"");
+    };
+   
+    $scope.products = JSON.parse(productJson);
     
     sessionStorage.searchType = "searchType";
-        sessionStorage.searchPhrase = "searchPhrase";
-        sessionStorage.numberOfTweets = "numberOfTweets";
+    sessionStorage.searchPhrase = "searchPhrase";
+    sessionStorage.numberOfTweets = "numberOfTweets";
         
     
     $scope.selectedProduct = $scope.products[0];
@@ -36,9 +31,6 @@ app.controller('productController', function($scope, $rootScope) {
         $scope.selectedProduct = selectedProduct;
         console.log($scope.selectedProduct);
         console.log(document.cookie);
-    };
-    $scope.getButtonTextForProductId = function(productId) {
-      return $scope.products[productId].name;
     };
     
     $scope.pay = function() {

@@ -190,7 +190,7 @@ public class DataMethods {
             String prods = "[";            
             
             while(res.next()){
-                prods += "{id:" + res.getInt("productId") + ", name: '" + res.getString("name") + "', price: " + res.getDouble("priceDollars") + ", noOfTweets: " + res.getInt("ammountOfData") + "},";
+                prods += "{$id$:" + res.getInt("productId") + ", $name$: $" + res.getString("name") + "$, $price$: " + res.getDouble("priceDollars") + ", $noOfTweets$: " + res.getInt("ammountOfData") + "},";
             }
             
             prods = prods.substring(0, prods.length() - 1);

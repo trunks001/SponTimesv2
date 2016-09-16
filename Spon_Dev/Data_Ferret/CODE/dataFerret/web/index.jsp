@@ -54,6 +54,9 @@
     
     String callBack = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/index.jsp?logged=1";
     
+    session.setAttribute("products", DataMethods.getProducts());
+    System.out.println("Products: " + session.getAttribute("products"));
+    
     if(request.getParameter("logged") == null || session.getAttribute("tweeter") == null)
     {
         session.setAttribute("tweeter", tweeter = new TwitterHandler());
@@ -171,7 +174,7 @@
         </script>
         
     </head>
-    <body>
+    <body >
         <header role="banner" id="fh5co-header">
             <div class="fluid-container">
                 <nav class="navbar navbar-default">
@@ -243,8 +246,7 @@
                                                     out.println("<fieldset>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">Popular choices:</div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                            out.println("<a href=\"#\" data-nav-section=\"buy\"<button class=\"btn btn-primary btn-lg\">1,500 Tweets $0.99</button></a>");
-                                                            out.println("<a href=\"#\" data-nav-section=\"buy\"<button class=\"btn btn-primary btn-lg\">1,500 Followers $0.99</button></a>");
+                                                            out.println("<a href=\"#\" data-nav-section=\"pricing\"<button class=\"btn btn-primary btn-lg\">1,500 Tweets $0.99</button></a>");
                                                         out.println("</div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">*if what you're looking for isn't here, please scroll down for more options!</div>");
                                                     out.println("</fieldset>");
@@ -263,7 +265,7 @@
               
         </section>
                                     
-        <section id="fh5co-pricing" data-section="pricing" ng-app="dataFerret" ng-controller="productController">
+                                    <section id="fh5co-pricing" data-section="pricing" ng-app="dataFerret" ng-controller="productController" product-list="${sessionScope.products}">
             <div class="fh5co-pricing">
                 <div class="container">
                     <div class="row">
@@ -290,7 +292,14 @@
                                     <div class="price"><sup class="currency">$</sup>{{product.price}}</div>
                                     <div class="price" style="font-size: small">Equivalent cost in ZAR: {{getRandValue(product.price) | currency : "R"}}</div>
                                     <div class="price small"><p>Amount of data = {{product.noOfTweets | number}}</p></div>
-                                    <a href="" class="btn btn-select-plan btn-sm" data-nav-section="buy" ng-click="selectProduct(product.id)" >{{getButtonTextForProductId(product.id)}}</a>
+                                    <%
+                                        if(session.getAttribute("accessToken") == null) {
+                                            out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
+                                        } else {
+                                            out.println("<a href=\"\" class=\"btn btn-select-plan btn-sm\" data-nav-section=\"buy\" ng-click=\"selectProduct(product.id)\" >Select</a>");
+                                        }
+                                    %>
+                                    
                                 </div>
                             </div>
                            
