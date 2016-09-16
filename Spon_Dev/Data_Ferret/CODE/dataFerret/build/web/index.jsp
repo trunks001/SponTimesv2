@@ -244,11 +244,12 @@
                                             out.println("<div class=\"col-md-12 to-animate\">");                                      
                                                 out.println("<form class=\"download to-animate\" action=\"download.jsp\">");
                                                     out.println("<fieldset>");
-                                                        out.println("<div class=\"row\" style=\"padding-top: 8px;\">Popular choices:</div>");
+                                                       //out.println("<div class=\"row\" style=\"padding-top: 8px;\">Popular choices:</div>");
                                                         out.println("<div class=\"row\" style=\"padding-top: 8px;\">");
-                                                            out.println("<a href=\"#\" data-nav-section=\"pricing\"<button class=\"btn btn-primary btn-lg\">1,500 Tweets $0.99</button></a>");
+                                                            //out.println("<nav class=\"navbar\"><a href=\"#\" data-nav-section=\"pricing\"<button class=\"btn btn-primary btn-lg\">1,500 Tweets $0.99</button></a></nav>");
+                                                            out.println("<div class=\"row\" style=\"padding-top: 8px;\">Scroll down to see our options!</div>");
                                                         out.println("</div>");
-                                                        out.println("<div class=\"row\" style=\"padding-top: 8px;\">*if what you're looking for isn't here, please scroll down for more options!</div>");
+                                                        //out.println("<div class=\"row\" style=\"padding-top: 8px;\">*if what you're looking for isn't here, please scroll down for more options!</div>");
                                                     out.println("</fieldset>");
                                                 out.println("</form>");
                                             out.println("</div>");
@@ -294,9 +295,9 @@
                                     <div class="price small"><p>Amount of data = {{product.noOfTweets | number}}</p></div>
                                     <%
                                         if(session.getAttribute("accessToken") == null) {
-                                            out.println("<a href=\"" + a + "\" class=\"demo to-animate\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
+                                            out.println("<a href=\"" + a + "\" class=\"btn btn-select-plan btn-sm\"><i class=\"icon-twitter\"></i>Sign In with Twitter</a>");
                                         } else {
-                                            out.println("<a href=\"\" class=\"btn btn-select-plan btn-sm\" data-nav-section=\"buy\" ng-click=\"selectProduct(product.id)\" >Select</a>");
+                                            out.println("<a class=\"btn btn-select-plan btn-sm\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#pricing\" aria-expanded=\"false\" aria-controls=\"pricing\" ng-click=\"selectProduct(product.id)\" >Select</a>");
                                         }
                                     %>
                                     
@@ -331,8 +332,9 @@
                                             <input class="input-lg" name="cancel_url" value="http://www.dataferret.co.za/cancel.jsp" /> 
                                             <input class="input-lg" name="amount" ng-model="getRandValue(selectedProduct.price)" />
                                             <input class="input-lg" name="item_name" ng-model="selectedProduct.name" />
-                                            <input class="input-lg" name="custom_str2" ng-model="searchType" />
+                                            <!--<input class="input-lg" name="custom_str2" ng-model="searchType" />-->
                                             <input class="input-lg" name="custom_str3" ng-model="selectedProduct.noOfTweets" />
+                                            <input class="input-lg" name="custom_str4" ng-model="selectedProduct.id" />
                                         </div>
                                         <div class="row">
                                             <span>Search phrase: </span><input style="width: 40%; min-width: 350px; display: inline-block; " class="form-control" data-toggle="tooltip" data-placement="top" title="Use the @ sign as a prefix to download a Twitter user's tweets or timeline.&#013 Use the # sign as a prefix to download the Twitter data for the specific hashtag.&#013 Use a keyword to search for Twitter data based on a particular keyword" placeholder="Search text. Hover over for usage tips" type="text" id="search_phrase" name="custom_str1" ng-model="searchPhrase" required/>
@@ -346,8 +348,8 @@
                                         </div>                    
 
                                         <div class="row" style="padding-top: 8px;">
-                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="followers" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()">Get {{selectedProduct.noOfTweets}} Tweets for {{selectedProduct.price | currency}}</button>
-                                            <button type="submit" class="btn btn-primary btn-lg" name="search_type" value="tweets" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()" >Get {{selectedProduct.noOfTweets}} Followers for {{selectedProduct.price | currency}}"</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" name="custom_str2" value="tweets" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()">Get {{selectedProduct.noOfTweets}} Tweets for {{selectedProduct.price | currency}}</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" name="custom_str2" value="followers" <% if(session.getAttribute("accessToken") != null){out.println("ng-show=\"!loading\"");} %> ng-submit="pay()" >Get {{selectedProduct.noOfTweets}} Followers for {{selectedProduct.price | currency}}"</button>
                                             <div ng-show="loading" class="loader"></div>  
                                         </div>
                                     </form> 

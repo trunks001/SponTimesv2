@@ -141,12 +141,14 @@ public class DataMethods {
         ResultSet res;
         try
         {
+            
+            Double.parseDouble(filePath);
             res = getData("SELECT MAX(loginId) FROM Logins WHERE userId = " + userId);
             res.next();
             
             int loginId = res.getInt("MAX(loginId)");
         
-            runQuery("INSERT INTO Downloads (userId, loginId, product, filePath, paidDollars) VALUES ('" + userId + "', " + loginId +"," + productId + ", '" + filePath + "', " + price + ")");
+            runQuery("INSERT INTO Downloads (userId, loginId, product, filePath, paidZAR) VALUES ('" + userId + "', " + loginId +"," + productId + ", '" + filePath + "', " + price + ")");
             res.close();
         }
         catch(Exception ex)

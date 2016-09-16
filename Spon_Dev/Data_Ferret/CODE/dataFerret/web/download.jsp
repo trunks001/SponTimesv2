@@ -182,7 +182,9 @@ Thank you for using Data Ferret! You will return shortly
                     response.sendRedirect("error.html");
                 } finally {
                     int id = Integer.parseInt(session.getAttribute("userId").toString());
-                    DataMethods.saveDownload(id, filePath);
+                    double price = Double.parseDouble(session.getAttribute("priceZAR").toString());
+                    String productId = session.getAttribute("productId").toString();
+                    DataMethods.saveDownload(id, filePath, productId, price);
                     if (file != null) {
                         file = null;
                     }
@@ -196,6 +198,8 @@ Thank you for using Data Ferret! You will return shortly
                     session.setAttribute("page_size", null);
                     session.setAttribute("search_type", null);
                     session.setAttribute("search_phrase", null);
+                    session.setAttribute("priceZAR", null);
+                    session.setAttribute("productId", null);
                 }
             }
 %>
