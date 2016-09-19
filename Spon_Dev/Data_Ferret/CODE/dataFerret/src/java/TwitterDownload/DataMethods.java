@@ -137,11 +137,10 @@ public class DataMethods {
         
     }
     
-    public static void saveDownload(int userId, String filePath, int productId, Double price) {
+    public static void saveDownload(int userId, String filePath, String productId, Double price) {
         ResultSet res;
         try
         {
-            
             Double.parseDouble(filePath);
             res = getData("SELECT MAX(loginId) FROM Logins WHERE userId = " + userId);
             res.next();
