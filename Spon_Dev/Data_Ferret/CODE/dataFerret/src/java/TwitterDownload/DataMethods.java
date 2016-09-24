@@ -137,16 +137,17 @@ public class DataMethods {
         
     }
     
-    public static void saveDownload(int userId, String filePath) {
+    public static void saveDownload(int userId, String filePath, String productId, Double price) {
         ResultSet res;
         try
         {
+            Double.parseDouble(filePath);
             res = getData("SELECT MAX(loginId) FROM Logins WHERE userId = " + userId);
             res.next();
             
             int loginId = res.getInt("MAX(loginId)");
         
-            runQuery("INSERT INTO Downloads (userId, loginId, filePath) VALUES ('" + userId + "', " + loginId + ", '" + filePath + "')");
+            runQuery("INSERT INTO Downloads (userId, loginId, product, filePath, paidZAR) VALUES ('" + userId + "', " + loginId +"," + productId + ", '" + filePath + "', " + price + ")");
             res.close();
         }
         catch(Exception ex)
@@ -179,6 +180,33 @@ public class DataMethods {
         stmt.closeOnCompletion();
 
         return res;
+    }
+    
+    public static String getProducts() {
+        try {
+            Statement stmt = getDefaultConnection(); 
+
+            ResultSet res = stmt.executeQuery("SELECT * FROM dataferret.Products WHERE active = 1 ORDER BY priceDollars;");
+            
+            String prods = "[";            
+            
+            while(res.next()){
+                prods += "{$id$:" + res.getInt("productId") + ", $name$: $" + res.getString("name") + "$, $price$: " + res.getDouble("priceDollars") + ", $noOfTweets$: " + res.getInt("ammountOfData") + "},";
+            }
+            
+            prods = prods.substring(0, prods.length() - 1);
+            
+            prods += "]";
+            
+            
+            res.close();
+            stmt.close();
+
+            return prods;
+        } catch(Exception ex) {
+            logError(ex);
+            return null;
+        }
     }
     
     public static void runQuery(String sql) {

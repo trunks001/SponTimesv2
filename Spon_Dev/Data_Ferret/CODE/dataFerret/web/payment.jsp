@@ -11,6 +11,7 @@
     String searchPhrase = request.getParameter("custom_str1");
     String searchType = request.getParameter("custom_str2");
     String numberOfTweets = request.getParameter("custom_str3");
+    String productId = request.getParameter("custom_str4");
     
     String payfastUrl = request.getParameter("payfast_url");
     String merchantId = request.getParameter("merchant_id");
@@ -23,12 +24,19 @@
     session.setAttribute("search_type", searchType);
     session.setAttribute("search_phrase", searchPhrase);
     session.setAttribute("page_size", numberOfTweets);
+    session.setAttribute("productId", productId);
+    session.setAttribute("priceZAR", amount);
     
-    response.sendRedirect(payfastUrl + 
-            "?merchant_id=" + merchantId + 
-            "&merchant_key=" + merchantKey +
-            "&return_url=" + returnUrl +
-            "&cancel_url=" + cancelUrl +
-            "&amount=" + amount +
-            "&item_name=" + itemName);
+    if(amount.equals("0")){
+        response.sendRedirect("download.jsp");
+    }
+    else{
+        response.sendRedirect(payfastUrl + 
+                "?merchant_id=" + merchantId + 
+                "&merchant_key=" + merchantKey +
+                "&return_url=" + returnUrl +
+                "&cancel_url=" + cancelUrl +
+                "&amount=" + amount +
+                "&item_name=" + itemName);
+    }
 %>
