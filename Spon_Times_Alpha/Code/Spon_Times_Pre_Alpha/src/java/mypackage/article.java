@@ -15,18 +15,26 @@ import java.sql.*;
 public class article {
     private String header;
     private String body;
-    
     private articleTrailer trailer;
-    
     private articleRating rating;
-    
     private int views;
+    private int width;
     
     public article(String header, String body){
         this.header = header;
         this.body = body;
         
-        this.trailer = new articleTrailer(header, body.length() > 255?body.substring(0, 255):body);
+        this.trailer = new articleTrailer(header, body.length() > 255 ? body.substring(0, 255):body);
+        
+        if(body.length() < 50) {
+            this.width = 100;
+        } else if(body.length() < 100) {
+            this.width = 200;
+        } else if(body.length() < 150) {
+            this.width = 300;
+        } else if(body.length() < 200) {
+            this.width = 400;
+        }
     }
     
     public article(String header, String body, articleTrailer trailer){
@@ -34,6 +42,17 @@ public class article {
         this.body = body;
         
         this.trailer = trailer;
+        
+        this.trailer = new articleTrailer(header, body.length() > 255 ? body.substring(0, 255):body);
+        if(body.length() < 50) {
+            this.width = 100;
+        } else if(body.length() < 100) {
+            this.width = 200;
+        } else if(body.length() < 150) {
+            this.width = 300;
+        } else if(body.length() < 200) {
+            this.width = 400;
+        }
     }
     
     public String print(){
@@ -70,6 +89,10 @@ public class article {
             return id;
         }
     
+   public int getWidth() {
+       return this.width;
+   }
+    
     private class articleTrailer{
         private String header;
         private String body;
@@ -77,6 +100,10 @@ public class article {
         public articleTrailer(String header, String body){
             this.header = header;
             this.body = body;
+        }
+        
+        public String getArticleTrailer() {
+            return this.body.substring(0, 255);
         }
         
         public String print(){
